@@ -2,13 +2,14 @@
   "name": "app-frontend",
   "private": true,
   "version": "0.0.1",
-  "description": "Stencil App Starter",
+  "description": "App frontend",
   "scripts": {
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "pfd": "rm -rf www && npm run build --prerender && rsync -av --delete www/ ../../prod/core/www"
   },
   "devDependencies": {
     "@stencil/core": "2.13.0",
