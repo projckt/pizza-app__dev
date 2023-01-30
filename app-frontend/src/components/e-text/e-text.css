@@ -1,0 +1,11 @@
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.text--display {
+  font-family: 'PT Serif', serif;
+}

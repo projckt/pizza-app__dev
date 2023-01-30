@@ -5,62 +5,296 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MatchResults } from "@stencil/router";
 export namespace Components {
-    interface AppHome {
-    }
-    interface AppProfile {
-        "match": MatchResults;
-    }
     interface AppRoot {
+    }
+    interface CCard {
+    }
+    interface CPage {
+    }
+    interface CSidebar {
+    }
+    interface EButton {
+        "action": string;
+        "value": any;
+    }
+    interface EDropdown {
+    }
+    interface EInput {
+        "name": string;
+        "placeholder": string;
+        "type": string;
+    }
+    interface ELink {
+    }
+    interface EText {
+        "variant": string;
+    }
+    interface LRow {
+    }
+    interface LSeperator {
+    }
+    interface LSpacer {
+        "value": number;
+    }
+    interface VCheckout {
+    }
+    interface VForgotPassword {
+    }
+    interface VHome {
+    }
+    interface VLogin {
+    }
+    interface VPaymentFailed {
+    }
+    interface VPaymentSuccess {
+    }
+    interface VSignup {
+    }
+    interface VStore {
     }
 }
 declare global {
-    interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
-    }
-    var HTMLAppHomeElement: {
-        prototype: HTMLAppHomeElement;
-        new (): HTMLAppHomeElement;
-    };
-    interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
-    }
-    var HTMLAppProfileElement: {
-        prototype: HTMLAppProfileElement;
-        new (): HTMLAppProfileElement;
-    };
     interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
     }
     var HTMLAppRootElement: {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLCCardElement extends Components.CCard, HTMLStencilElement {
+    }
+    var HTMLCCardElement: {
+        prototype: HTMLCCardElement;
+        new (): HTMLCCardElement;
+    };
+    interface HTMLCPageElement extends Components.CPage, HTMLStencilElement {
+    }
+    var HTMLCPageElement: {
+        prototype: HTMLCPageElement;
+        new (): HTMLCPageElement;
+    };
+    interface HTMLCSidebarElement extends Components.CSidebar, HTMLStencilElement {
+    }
+    var HTMLCSidebarElement: {
+        prototype: HTMLCSidebarElement;
+        new (): HTMLCSidebarElement;
+    };
+    interface HTMLEButtonElement extends Components.EButton, HTMLStencilElement {
+    }
+    var HTMLEButtonElement: {
+        prototype: HTMLEButtonElement;
+        new (): HTMLEButtonElement;
+    };
+    interface HTMLEDropdownElement extends Components.EDropdown, HTMLStencilElement {
+    }
+    var HTMLEDropdownElement: {
+        prototype: HTMLEDropdownElement;
+        new (): HTMLEDropdownElement;
+    };
+    interface HTMLEInputElement extends Components.EInput, HTMLStencilElement {
+    }
+    var HTMLEInputElement: {
+        prototype: HTMLEInputElement;
+        new (): HTMLEInputElement;
+    };
+    interface HTMLELinkElement extends Components.ELink, HTMLStencilElement {
+    }
+    var HTMLELinkElement: {
+        prototype: HTMLELinkElement;
+        new (): HTMLELinkElement;
+    };
+    interface HTMLETextElement extends Components.EText, HTMLStencilElement {
+    }
+    var HTMLETextElement: {
+        prototype: HTMLETextElement;
+        new (): HTMLETextElement;
+    };
+    interface HTMLLRowElement extends Components.LRow, HTMLStencilElement {
+    }
+    var HTMLLRowElement: {
+        prototype: HTMLLRowElement;
+        new (): HTMLLRowElement;
+    };
+    interface HTMLLSeperatorElement extends Components.LSeperator, HTMLStencilElement {
+    }
+    var HTMLLSeperatorElement: {
+        prototype: HTMLLSeperatorElement;
+        new (): HTMLLSeperatorElement;
+    };
+    interface HTMLLSpacerElement extends Components.LSpacer, HTMLStencilElement {
+    }
+    var HTMLLSpacerElement: {
+        prototype: HTMLLSpacerElement;
+        new (): HTMLLSpacerElement;
+    };
+    interface HTMLVCheckoutElement extends Components.VCheckout, HTMLStencilElement {
+    }
+    var HTMLVCheckoutElement: {
+        prototype: HTMLVCheckoutElement;
+        new (): HTMLVCheckoutElement;
+    };
+    interface HTMLVForgotPasswordElement extends Components.VForgotPassword, HTMLStencilElement {
+    }
+    var HTMLVForgotPasswordElement: {
+        prototype: HTMLVForgotPasswordElement;
+        new (): HTMLVForgotPasswordElement;
+    };
+    interface HTMLVHomeElement extends Components.VHome, HTMLStencilElement {
+    }
+    var HTMLVHomeElement: {
+        prototype: HTMLVHomeElement;
+        new (): HTMLVHomeElement;
+    };
+    interface HTMLVLoginElement extends Components.VLogin, HTMLStencilElement {
+    }
+    var HTMLVLoginElement: {
+        prototype: HTMLVLoginElement;
+        new (): HTMLVLoginElement;
+    };
+    interface HTMLVPaymentFailedElement extends Components.VPaymentFailed, HTMLStencilElement {
+    }
+    var HTMLVPaymentFailedElement: {
+        prototype: HTMLVPaymentFailedElement;
+        new (): HTMLVPaymentFailedElement;
+    };
+    interface HTMLVPaymentSuccessElement extends Components.VPaymentSuccess, HTMLStencilElement {
+    }
+    var HTMLVPaymentSuccessElement: {
+        prototype: HTMLVPaymentSuccessElement;
+        new (): HTMLVPaymentSuccessElement;
+    };
+    interface HTMLVSignupElement extends Components.VSignup, HTMLStencilElement {
+    }
+    var HTMLVSignupElement: {
+        prototype: HTMLVSignupElement;
+        new (): HTMLVSignupElement;
+    };
+    interface HTMLVStoreElement extends Components.VStore, HTMLStencilElement {
+    }
+    var HTMLVStoreElement: {
+        prototype: HTMLVStoreElement;
+        new (): HTMLVStoreElement;
+    };
     interface HTMLElementTagNameMap {
-        "app-home": HTMLAppHomeElement;
-        "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "c-card": HTMLCCardElement;
+        "c-page": HTMLCPageElement;
+        "c-sidebar": HTMLCSidebarElement;
+        "e-button": HTMLEButtonElement;
+        "e-dropdown": HTMLEDropdownElement;
+        "e-input": HTMLEInputElement;
+        "e-link": HTMLELinkElement;
+        "e-text": HTMLETextElement;
+        "l-row": HTMLLRowElement;
+        "l-seperator": HTMLLSeperatorElement;
+        "l-spacer": HTMLLSpacerElement;
+        "v-checkout": HTMLVCheckoutElement;
+        "v-forgot-password": HTMLVForgotPasswordElement;
+        "v-home": HTMLVHomeElement;
+        "v-login": HTMLVLoginElement;
+        "v-payment-failed": HTMLVPaymentFailedElement;
+        "v-payment-success": HTMLVPaymentSuccessElement;
+        "v-signup": HTMLVSignupElement;
+        "v-store": HTMLVStoreElement;
     }
 }
 declare namespace LocalJSX {
-    interface AppHome {
-    }
-    interface AppProfile {
-        "match"?: MatchResults;
-    }
     interface AppRoot {
     }
+    interface CCard {
+    }
+    interface CPage {
+    }
+    interface CSidebar {
+    }
+    interface EButton {
+        "action"?: string;
+        "onButtonClick"?: (event: CustomEvent<any>) => void;
+        "value"?: any;
+    }
+    interface EDropdown {
+    }
+    interface EInput {
+        "name"?: string;
+        "onTextInput"?: (event: CustomEvent<any>) => void;
+        "placeholder"?: string;
+        "type"?: string;
+    }
+    interface ELink {
+    }
+    interface EText {
+        "variant"?: string;
+    }
+    interface LRow {
+    }
+    interface LSeperator {
+    }
+    interface LSpacer {
+        "value"?: number;
+    }
+    interface VCheckout {
+    }
+    interface VForgotPassword {
+    }
+    interface VHome {
+    }
+    interface VLogin {
+    }
+    interface VPaymentFailed {
+    }
+    interface VPaymentSuccess {
+    }
+    interface VSignup {
+    }
+    interface VStore {
+    }
     interface IntrinsicElements {
-        "app-home": AppHome;
-        "app-profile": AppProfile;
         "app-root": AppRoot;
+        "c-card": CCard;
+        "c-page": CPage;
+        "c-sidebar": CSidebar;
+        "e-button": EButton;
+        "e-dropdown": EDropdown;
+        "e-input": EInput;
+        "e-link": ELink;
+        "e-text": EText;
+        "l-row": LRow;
+        "l-seperator": LSeperator;
+        "l-spacer": LSpacer;
+        "v-checkout": VCheckout;
+        "v-forgot-password": VForgotPassword;
+        "v-home": VHome;
+        "v-login": VLogin;
+        "v-payment-failed": VPaymentFailed;
+        "v-payment-success": VPaymentSuccess;
+        "v-signup": VSignup;
+        "v-store": VStore;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
-            "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "c-card": LocalJSX.CCard & JSXBase.HTMLAttributes<HTMLCCardElement>;
+            "c-page": LocalJSX.CPage & JSXBase.HTMLAttributes<HTMLCPageElement>;
+            "c-sidebar": LocalJSX.CSidebar & JSXBase.HTMLAttributes<HTMLCSidebarElement>;
+            "e-button": LocalJSX.EButton & JSXBase.HTMLAttributes<HTMLEButtonElement>;
+            "e-dropdown": LocalJSX.EDropdown & JSXBase.HTMLAttributes<HTMLEDropdownElement>;
+            "e-input": LocalJSX.EInput & JSXBase.HTMLAttributes<HTMLEInputElement>;
+            "e-link": LocalJSX.ELink & JSXBase.HTMLAttributes<HTMLELinkElement>;
+            "e-text": LocalJSX.EText & JSXBase.HTMLAttributes<HTMLETextElement>;
+            "l-row": LocalJSX.LRow & JSXBase.HTMLAttributes<HTMLLRowElement>;
+            "l-seperator": LocalJSX.LSeperator & JSXBase.HTMLAttributes<HTMLLSeperatorElement>;
+            "l-spacer": LocalJSX.LSpacer & JSXBase.HTMLAttributes<HTMLLSpacerElement>;
+            "v-checkout": LocalJSX.VCheckout & JSXBase.HTMLAttributes<HTMLVCheckoutElement>;
+            "v-forgot-password": LocalJSX.VForgotPassword & JSXBase.HTMLAttributes<HTMLVForgotPasswordElement>;
+            "v-home": LocalJSX.VHome & JSXBase.HTMLAttributes<HTMLVHomeElement>;
+            "v-login": LocalJSX.VLogin & JSXBase.HTMLAttributes<HTMLVLoginElement>;
+            "v-payment-failed": LocalJSX.VPaymentFailed & JSXBase.HTMLAttributes<HTMLVPaymentFailedElement>;
+            "v-payment-success": LocalJSX.VPaymentSuccess & JSXBase.HTMLAttributes<HTMLVPaymentSuccessElement>;
+            "v-signup": LocalJSX.VSignup & JSXBase.HTMLAttributes<HTMLVSignupElement>;
+            "v-store": LocalJSX.VStore & JSXBase.HTMLAttributes<HTMLVStoreElement>;
         }
     }
 }
