@@ -11,7 +11,9 @@ export class VLogin {
       <Host>
         <e-text variant="display">Login</e-text>
         <l-spacer value={0.5}></l-spacer>
-        <e-text>Sign up if you do not have an account</e-text>
+        <e-text>
+          <e-link href="/signup">Sign up</e-link> if you do not have an account
+        </e-text>
         <l-spacer value={1.5}></l-spacer>
         <e-input type="email" name="email" placeholder="Email"></e-input>
         <br />
@@ -23,7 +25,16 @@ export class VLogin {
         <l-spacer value={1.5}></l-spacer>
         <l-seperator></l-seperator>
         <l-spacer value={1}></l-spacer>
-        <e-text>If you log in, you accept our T&C and privacy policy</e-text>
+        <e-text>
+          If you log in, you accept our{' '}
+          <e-link href="https://aitihyatheheritage.in/terms-of-service.html" target="_blank">
+            TOS
+          </e-link>{' '}
+          and{' '}
+          <e-link href="https://aitihyatheheritage.in/cancellation-refund-policy.html" target="_blank">
+            privacy policy
+          </e-link>
+        </e-text>{' '}
       </Host>
     );
   }

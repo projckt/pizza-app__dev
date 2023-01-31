@@ -26,6 +26,8 @@ export namespace Components {
         "type": string;
     }
     interface ELink {
+        "href": string;
+        "target": string;
     }
     interface EText {
         "variant": string;
@@ -221,6 +223,8 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface ELink {
+        "href"?: string;
+        "target"?: string;
     }
     interface EText {
         "variant"?: string;
