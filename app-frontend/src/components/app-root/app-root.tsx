@@ -14,6 +14,7 @@ export class AppRoot {
           <stencil-route url="/forgot-password" component="v-forgot-password" />
           <stencil-route url="/home" component="v-home" exact={true} />
           <stencil-route url="/login" component="v-login" exact={true} />
+          <stencil-route url="/my-library" component="v-my-library" exact={true} />
           <stencil-route url="/payment-failed" component="v-payment-failed" exact={true} />
           <stencil-route url="/payment-success" component="v-payment-success" exact={true} />
           <stencil-route url="/signup" component="v-signup" />

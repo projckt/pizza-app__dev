@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { VHome } from '../v-home';
+import { VMyLibrary } from '../v-my-library';
 
-describe('v-home', () => {
+describe('v-my-library', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [VHome],
-      html: `<v-home></v-home>`,
+      components: [VMyLibrary],
+      html: `<v-my-library></v-my-library>`,
     });
     expect(page.root).toEqualHtml(`
-      <v-home>
+      <v-my-library>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </v-home>
+      </v-my-library>
     `);
   });
 });

@@ -11,12 +11,18 @@ interface LooseObject {
 })
 export class LSpacer {
   @Prop() value: number = 1;
+  @Prop() variant: string = 'vertical';
 
   private styleObj: LooseObject = {};
 
   componentWillLoad() {
-    this.styleObj.marginTop = `${this.value}em`;
-    this.styleObj.marginBottom = `${this.value}em`;
+    if (this.variant === 'vertical') {
+      this.styleObj.marginTop = `${this.value}em`;
+      this.styleObj.marginBottom = `${this.value}em`;
+    } else if (this.variant === 'horizontal') {
+      this.styleObj.marginLeft = `${this.value}em`;
+      this.styleObj.marginRight = `${this.value}em`;
+    }
   }
 
   render() {

@@ -14,10 +14,30 @@
   --site-font-weight--subHeading: 500;
   --site-font-weight--body: 400;
 
+  --site-border-radius: 0.25em;
+
   --grey-dark: rgba(0, 0, 0, 0.9);
   --grey-medium: rgba(0, 0, 0, 0.6);
   --grey-light: rgba(0, 0, 0, 0.3);
-  --grey-super-light: rgba(0, 0, 0, 0.1);
+  --grey-lightest: rgba(0, 0, 0, 0.1);
+
+  --blue-darkest: #04355b;
+  --blue-dark: #065c9f;
+  --blue-regular: #0984e3;
+  --blue-light: #53a9eb;
+  --blue-lightest: #e6f3fc;
+
+  --blue-darkest: #561314;
+  --blue-dark: #962222;
+  --red-regular: #d63031;
+  --blue-light: #e68383;
+  --blue-lightest: #fbeaea;
+
+  --blue-darkest: #004a3b;
+  --blue-dark: #008168;
+  --green-regular: #00b894;
+  --blue-light: #80dcca;
+  --blue-lightest: #e6f8f4;
 }
 
 html {

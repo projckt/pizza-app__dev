@@ -18,14 +18,13 @@ export namespace Components {
         "action": string;
         "value": any;
     }
-    interface EDropdown {
-    }
     interface EInput {
         "name": string;
         "placeholder": string;
         "type": string;
     }
     interface ELink {
+        "highlight": boolean;
         "href": string;
         "target": string;
     }
@@ -38,14 +37,15 @@ export namespace Components {
     }
     interface LSpacer {
         "value": number;
+        "variant": string;
     }
     interface VCheckout {
     }
     interface VForgotPassword {
     }
-    interface VHome {
-    }
     interface VLogin {
+    }
+    interface VMyLibrary {
     }
     interface VPaymentFailed {
     }
@@ -86,12 +86,6 @@ declare global {
     var HTMLEButtonElement: {
         prototype: HTMLEButtonElement;
         new (): HTMLEButtonElement;
-    };
-    interface HTMLEDropdownElement extends Components.EDropdown, HTMLStencilElement {
-    }
-    var HTMLEDropdownElement: {
-        prototype: HTMLEDropdownElement;
-        new (): HTMLEDropdownElement;
     };
     interface HTMLEInputElement extends Components.EInput, HTMLStencilElement {
     }
@@ -141,17 +135,17 @@ declare global {
         prototype: HTMLVForgotPasswordElement;
         new (): HTMLVForgotPasswordElement;
     };
-    interface HTMLVHomeElement extends Components.VHome, HTMLStencilElement {
-    }
-    var HTMLVHomeElement: {
-        prototype: HTMLVHomeElement;
-        new (): HTMLVHomeElement;
-    };
     interface HTMLVLoginElement extends Components.VLogin, HTMLStencilElement {
     }
     var HTMLVLoginElement: {
         prototype: HTMLVLoginElement;
         new (): HTMLVLoginElement;
+    };
+    interface HTMLVMyLibraryElement extends Components.VMyLibrary, HTMLStencilElement {
+    }
+    var HTMLVMyLibraryElement: {
+        prototype: HTMLVMyLibraryElement;
+        new (): HTMLVMyLibraryElement;
     };
     interface HTMLVPaymentFailedElement extends Components.VPaymentFailed, HTMLStencilElement {
     }
@@ -183,7 +177,6 @@ declare global {
         "c-page": HTMLCPageElement;
         "c-sidebar": HTMLCSidebarElement;
         "e-button": HTMLEButtonElement;
-        "e-dropdown": HTMLEDropdownElement;
         "e-input": HTMLEInputElement;
         "e-link": HTMLELinkElement;
         "e-text": HTMLETextElement;
@@ -192,8 +185,8 @@ declare global {
         "l-spacer": HTMLLSpacerElement;
         "v-checkout": HTMLVCheckoutElement;
         "v-forgot-password": HTMLVForgotPasswordElement;
-        "v-home": HTMLVHomeElement;
         "v-login": HTMLVLoginElement;
+        "v-my-library": HTMLVMyLibraryElement;
         "v-payment-failed": HTMLVPaymentFailedElement;
         "v-payment-success": HTMLVPaymentSuccessElement;
         "v-signup": HTMLVSignupElement;
@@ -214,8 +207,6 @@ declare namespace LocalJSX {
         "onButtonClick"?: (event: CustomEvent<any>) => void;
         "value"?: any;
     }
-    interface EDropdown {
-    }
     interface EInput {
         "name"?: string;
         "onTextInput"?: (event: CustomEvent<any>) => void;
@@ -223,6 +214,7 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface ELink {
+        "highlight"?: boolean;
         "href"?: string;
         "target"?: string;
     }
@@ -235,14 +227,15 @@ declare namespace LocalJSX {
     }
     interface LSpacer {
         "value"?: number;
+        "variant"?: string;
     }
     interface VCheckout {
     }
     interface VForgotPassword {
     }
-    interface VHome {
-    }
     interface VLogin {
+    }
+    interface VMyLibrary {
     }
     interface VPaymentFailed {
     }
@@ -258,7 +251,6 @@ declare namespace LocalJSX {
         "c-page": CPage;
         "c-sidebar": CSidebar;
         "e-button": EButton;
-        "e-dropdown": EDropdown;
         "e-input": EInput;
         "e-link": ELink;
         "e-text": EText;
@@ -267,8 +259,8 @@ declare namespace LocalJSX {
         "l-spacer": LSpacer;
         "v-checkout": VCheckout;
         "v-forgot-password": VForgotPassword;
-        "v-home": VHome;
         "v-login": VLogin;
+        "v-my-library": VMyLibrary;
         "v-payment-failed": VPaymentFailed;
         "v-payment-success": VPaymentSuccess;
         "v-signup": VSignup;
@@ -284,7 +276,6 @@ declare module "@stencil/core" {
             "c-page": LocalJSX.CPage & JSXBase.HTMLAttributes<HTMLCPageElement>;
             "c-sidebar": LocalJSX.CSidebar & JSXBase.HTMLAttributes<HTMLCSidebarElement>;
             "e-button": LocalJSX.EButton & JSXBase.HTMLAttributes<HTMLEButtonElement>;
-            "e-dropdown": LocalJSX.EDropdown & JSXBase.HTMLAttributes<HTMLEDropdownElement>;
             "e-input": LocalJSX.EInput & JSXBase.HTMLAttributes<HTMLEInputElement>;
             "e-link": LocalJSX.ELink & JSXBase.HTMLAttributes<HTMLELinkElement>;
             "e-text": LocalJSX.EText & JSXBase.HTMLAttributes<HTMLETextElement>;
@@ -293,8 +284,8 @@ declare module "@stencil/core" {
             "l-spacer": LocalJSX.LSpacer & JSXBase.HTMLAttributes<HTMLLSpacerElement>;
             "v-checkout": LocalJSX.VCheckout & JSXBase.HTMLAttributes<HTMLVCheckoutElement>;
             "v-forgot-password": LocalJSX.VForgotPassword & JSXBase.HTMLAttributes<HTMLVForgotPasswordElement>;
-            "v-home": LocalJSX.VHome & JSXBase.HTMLAttributes<HTMLVHomeElement>;
             "v-login": LocalJSX.VLogin & JSXBase.HTMLAttributes<HTMLVLoginElement>;
+            "v-my-library": LocalJSX.VMyLibrary & JSXBase.HTMLAttributes<HTMLVMyLibraryElement>;
             "v-payment-failed": LocalJSX.VPaymentFailed & JSXBase.HTMLAttributes<HTMLVPaymentFailedElement>;
             "v-payment-success": LocalJSX.VPaymentSuccess & JSXBase.HTMLAttributes<HTMLVPaymentSuccessElement>;
             "v-signup": LocalJSX.VSignup & JSXBase.HTMLAttributes<HTMLVSignupElement>;
