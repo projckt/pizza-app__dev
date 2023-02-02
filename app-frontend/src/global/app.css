@@ -16,7 +16,9 @@
 
   --site-padding-default: 1em;
 
-  --site-border-radius: 0.25em;
+  --site-border-radius: 0.5em;
+
+  --site-line-height: 1.5;
 
   --grey-dark: rgba(0, 0, 0, 0.9);
   --grey-medium: rgba(0, 0, 0, 0.6);
@@ -52,4 +54,5 @@ body {
   font-size: var(--site-font-size--body);
   color: var(--grey-dark);
   font-family: 'Montserrat', sans-serif;
+  line-height: var(--site-line-height);
 }

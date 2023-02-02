@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'p-user-control',
@@ -8,7 +8,7 @@ import { Component, Host, h } from '@stencil/core';
 export class PUserControl {
   render() {
     return (
-      <Host>
+      <c-card>
         <l-row>
           <ion-icon name="person-outline"></ion-icon>
           <l-spacer variant="horizontal" value={0.25}></l-spacer>
@@ -27,7 +27,7 @@ export class PUserControl {
           <l-spacer variant="horizontal" value={0.25}></l-spacer>
           <e-text>Logout</e-text>
         </e-link>
-      </Host>
+      </c-card>
     );
   }
 }

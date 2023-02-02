@@ -1,0 +1,17 @@
+button {
+  background: none;
+  outline: none;
+  border: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.primary {
+  font-weight: 600;
+  padding: 0.5em 1em;
+  background: var(--blue-regular);
+  color: white;
+  border-radius: 0.25em;
+}

@@ -8,6 +8,7 @@ import { Component, Event, EventEmitter, Prop, h } from '@stencil/core';
 export class EButton {
   @Prop() action: string;
   @Prop() value: any;
+  @Prop() variant: string = 'primary';
 
   @Event({
     eventName: 'buttonClick',
@@ -22,9 +23,21 @@ export class EButton {
     });
   }
 
+  private styleClasses: string = '';
+
+  componentWillLoad() {
+    this.generate_StyleClasses();
+  }
+
+  generate_StyleClasses() {
+    if (this.variant === 'primary') {
+      this.styleClasses = `${this.styleClasses} primary`;
+    }
+  }
+
   render() {
     return (
-      <button onClick={() => this.handle_ButtonClick()}>
+      <button class={this.styleClasses} onClick={() => this.handle_ButtonClick()}>
         <slot />
       </button>
     );

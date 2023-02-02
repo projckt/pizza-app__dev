@@ -1,0 +1,16 @@
+:host {
+  width: 30%;
+}
+
+header {
+  height: 250px;
+  background: var(--grey-dark);
+  border-radius: var(--site-border-radius) var(--site-border-radius) 0 0;
+}
+
+footer {
+  padding: var(--site-padding-default);
+  border: 1px solid var(--grey-lightest);
+  border-radius: 0 0 var(--site-border-radius) var(--site-border-radius);
+  word-wrap: break-word;
+}

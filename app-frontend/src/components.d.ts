@@ -17,6 +17,7 @@ export namespace Components {
     interface EButton {
         "action": string;
         "value": any;
+        "variant": string;
     }
     interface EInput {
         "name": string;
@@ -33,12 +34,21 @@ export namespace Components {
         "variant": string;
     }
     interface LRow {
+        "justifyContent": string;
+        "variant": string;
     }
     interface LSeperator {
     }
     interface LSpacer {
         "value": number;
         "variant": string;
+    }
+    interface PGallery {
+    }
+    interface PItemDoc {
+        "cover": string;
+        "purpose": string;
+        "title": string;
     }
     interface PUserControl {
     }
@@ -53,6 +63,8 @@ export namespace Components {
     interface VPaymentFailed {
     }
     interface VPaymentSuccess {
+    }
+    interface VReader {
     }
     interface VSignup {
     }
@@ -126,6 +138,18 @@ declare global {
         prototype: HTMLLSpacerElement;
         new (): HTMLLSpacerElement;
     };
+    interface HTMLPGalleryElement extends Components.PGallery, HTMLStencilElement {
+    }
+    var HTMLPGalleryElement: {
+        prototype: HTMLPGalleryElement;
+        new (): HTMLPGalleryElement;
+    };
+    interface HTMLPItemDocElement extends Components.PItemDoc, HTMLStencilElement {
+    }
+    var HTMLPItemDocElement: {
+        prototype: HTMLPItemDocElement;
+        new (): HTMLPItemDocElement;
+    };
     interface HTMLPUserControlElement extends Components.PUserControl, HTMLStencilElement {
     }
     var HTMLPUserControlElement: {
@@ -168,6 +192,12 @@ declare global {
         prototype: HTMLVPaymentSuccessElement;
         new (): HTMLVPaymentSuccessElement;
     };
+    interface HTMLVReaderElement extends Components.VReader, HTMLStencilElement {
+    }
+    var HTMLVReaderElement: {
+        prototype: HTMLVReaderElement;
+        new (): HTMLVReaderElement;
+    };
     interface HTMLVSignupElement extends Components.VSignup, HTMLStencilElement {
     }
     var HTMLVSignupElement: {
@@ -192,6 +222,8 @@ declare global {
         "l-row": HTMLLRowElement;
         "l-seperator": HTMLLSeperatorElement;
         "l-spacer": HTMLLSpacerElement;
+        "p-gallery": HTMLPGalleryElement;
+        "p-item-doc": HTMLPItemDocElement;
         "p-user-control": HTMLPUserControlElement;
         "v-checkout": HTMLVCheckoutElement;
         "v-forgot-password": HTMLVForgotPasswordElement;
@@ -199,6 +231,7 @@ declare global {
         "v-my-library": HTMLVMyLibraryElement;
         "v-payment-failed": HTMLVPaymentFailedElement;
         "v-payment-success": HTMLVPaymentSuccessElement;
+        "v-reader": HTMLVReaderElement;
         "v-signup": HTMLVSignupElement;
         "v-store": HTMLVStoreElement;
     }
@@ -216,6 +249,7 @@ declare namespace LocalJSX {
         "action"?: string;
         "onButtonClick"?: (event: CustomEvent<any>) => void;
         "value"?: any;
+        "variant"?: string;
     }
     interface EInput {
         "name"?: string;
@@ -233,12 +267,21 @@ declare namespace LocalJSX {
         "variant"?: string;
     }
     interface LRow {
+        "justifyContent"?: string;
+        "variant"?: string;
     }
     interface LSeperator {
     }
     interface LSpacer {
         "value"?: number;
         "variant"?: string;
+    }
+    interface PGallery {
+    }
+    interface PItemDoc {
+        "cover"?: string;
+        "purpose"?: string;
+        "title"?: string;
     }
     interface PUserControl {
     }
@@ -253,6 +296,8 @@ declare namespace LocalJSX {
     interface VPaymentFailed {
     }
     interface VPaymentSuccess {
+    }
+    interface VReader {
     }
     interface VSignup {
     }
@@ -270,6 +315,8 @@ declare namespace LocalJSX {
         "l-row": LRow;
         "l-seperator": LSeperator;
         "l-spacer": LSpacer;
+        "p-gallery": PGallery;
+        "p-item-doc": PItemDoc;
         "p-user-control": PUserControl;
         "v-checkout": VCheckout;
         "v-forgot-password": VForgotPassword;
@@ -277,6 +324,7 @@ declare namespace LocalJSX {
         "v-my-library": VMyLibrary;
         "v-payment-failed": VPaymentFailed;
         "v-payment-success": VPaymentSuccess;
+        "v-reader": VReader;
         "v-signup": VSignup;
         "v-store": VStore;
     }
@@ -296,6 +344,8 @@ declare module "@stencil/core" {
             "l-row": LocalJSX.LRow & JSXBase.HTMLAttributes<HTMLLRowElement>;
             "l-seperator": LocalJSX.LSeperator & JSXBase.HTMLAttributes<HTMLLSeperatorElement>;
             "l-spacer": LocalJSX.LSpacer & JSXBase.HTMLAttributes<HTMLLSpacerElement>;
+            "p-gallery": LocalJSX.PGallery & JSXBase.HTMLAttributes<HTMLPGalleryElement>;
+            "p-item-doc": LocalJSX.PItemDoc & JSXBase.HTMLAttributes<HTMLPItemDocElement>;
             "p-user-control": LocalJSX.PUserControl & JSXBase.HTMLAttributes<HTMLPUserControlElement>;
             "v-checkout": LocalJSX.VCheckout & JSXBase.HTMLAttributes<HTMLVCheckoutElement>;
             "v-forgot-password": LocalJSX.VForgotPassword & JSXBase.HTMLAttributes<HTMLVForgotPasswordElement>;
@@ -303,6 +353,7 @@ declare module "@stencil/core" {
             "v-my-library": LocalJSX.VMyLibrary & JSXBase.HTMLAttributes<HTMLVMyLibraryElement>;
             "v-payment-failed": LocalJSX.VPaymentFailed & JSXBase.HTMLAttributes<HTMLVPaymentFailedElement>;
             "v-payment-success": LocalJSX.VPaymentSuccess & JSXBase.HTMLAttributes<HTMLVPaymentSuccessElement>;
+            "v-reader": LocalJSX.VReader & JSXBase.HTMLAttributes<HTMLVReaderElement>;
             "v-signup": LocalJSX.VSignup & JSXBase.HTMLAttributes<HTMLVSignupElement>;
             "v-store": LocalJSX.VStore & JSXBase.HTMLAttributes<HTMLVStoreElement>;
         }

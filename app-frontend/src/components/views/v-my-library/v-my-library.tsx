@@ -36,6 +36,14 @@ export class VMyLibrary {
       <e-text>My library</e-text>
       <l-spacer value={1}></l-spacer>
       <l-seperator></l-seperator>
+      <l-spacer value={2}></l-spacer>
+      <p-gallery>
+        <p-item-doc purpose="read" cover="" title="kjebrkvejbrkvbalejbrlvajblrvalwjrblvjbrv"></p-item-doc>
+        <p-item-doc purpose="read" cover="" title="kvjrnkvjkaejbr"></p-item-doc>
+        <p-item-doc purpose="read" cover="" title="kjebrkvejbrkvbalejbrlvajblrvalwjrblvjbrv 3"></p-item-doc>
+        <p-item-doc purpose="read" cover="" title="kvjrnkvjkaejbr"></p-item-doc>
+        <p-item-doc purpose="read" cover="" title="Vol 1, Issue V33"></p-item-doc>
+      </p-gallery>
     </div>
   );
 
