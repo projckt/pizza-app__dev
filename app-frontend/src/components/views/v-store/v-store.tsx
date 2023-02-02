@@ -12,13 +12,13 @@ export class VStore {
         <e-text variant="heading">Aitihya</e-text>
         <e-text>Digital Library</e-text>
         <l-spacer value={4}></l-spacer>
-        <e-link href="/my-library">
+        <e-link variant="navLink" href="/my-library">
           <ion-icon name="book-outline"></ion-icon>
           <l-spacer variant="horizontal" value={0.5}></l-spacer>
           <e-text>My Library</e-text>
         </e-link>
         <l-spacer value={1}></l-spacer>
-        <e-link highlight={true}>
+        <e-link variant="navLink_Active">
           <ion-icon name="cart-outline"></ion-icon>
           <l-spacer variant="horizontal" value={0.5}></l-spacer>
           <e-text>Store</e-text>
@@ -26,17 +26,7 @@ export class VStore {
         <l-spacer value={1}></l-spacer>
       </header>
       <footer>
-        <l-seperator></l-seperator>
-        <l-spacer value={1}></l-spacer>
-        <e-link>
-          <ion-icon name="settings-outline"></ion-icon>
-          <l-spacer variant="horizontal" value={0.5}></l-spacer>
-          <e-text>Settings</e-text>
-        </e-link>
-        <l-spacer value={1}></l-spacer>
-        <e-button>
-          <e-text>Logout</e-text>
-        </e-button>
+        <p-user-control></p-user-control>
       </footer>
     </div>
   );

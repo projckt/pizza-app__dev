@@ -24,9 +24,10 @@ export namespace Components {
         "type": string;
     }
     interface ELink {
-        "highlight": boolean;
         "href": string;
         "target": string;
+        "theme": string;
+        "variant": string;
     }
     interface EText {
         "variant": string;
@@ -38,6 +39,8 @@ export namespace Components {
     interface LSpacer {
         "value": number;
         "variant": string;
+    }
+    interface PUserControl {
     }
     interface VCheckout {
     }
@@ -123,6 +126,12 @@ declare global {
         prototype: HTMLLSpacerElement;
         new (): HTMLLSpacerElement;
     };
+    interface HTMLPUserControlElement extends Components.PUserControl, HTMLStencilElement {
+    }
+    var HTMLPUserControlElement: {
+        prototype: HTMLPUserControlElement;
+        new (): HTMLPUserControlElement;
+    };
     interface HTMLVCheckoutElement extends Components.VCheckout, HTMLStencilElement {
     }
     var HTMLVCheckoutElement: {
@@ -183,6 +192,7 @@ declare global {
         "l-row": HTMLLRowElement;
         "l-seperator": HTMLLSeperatorElement;
         "l-spacer": HTMLLSpacerElement;
+        "p-user-control": HTMLPUserControlElement;
         "v-checkout": HTMLVCheckoutElement;
         "v-forgot-password": HTMLVForgotPasswordElement;
         "v-login": HTMLVLoginElement;
@@ -214,9 +224,10 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface ELink {
-        "highlight"?: boolean;
         "href"?: string;
         "target"?: string;
+        "theme"?: string;
+        "variant"?: string;
     }
     interface EText {
         "variant"?: string;
@@ -228,6 +239,8 @@ declare namespace LocalJSX {
     interface LSpacer {
         "value"?: number;
         "variant"?: string;
+    }
+    interface PUserControl {
     }
     interface VCheckout {
     }
@@ -257,6 +270,7 @@ declare namespace LocalJSX {
         "l-row": LRow;
         "l-seperator": LSeperator;
         "l-spacer": LSpacer;
+        "p-user-control": PUserControl;
         "v-checkout": VCheckout;
         "v-forgot-password": VForgotPassword;
         "v-login": VLogin;
@@ -282,6 +296,7 @@ declare module "@stencil/core" {
             "l-row": LocalJSX.LRow & JSXBase.HTMLAttributes<HTMLLRowElement>;
             "l-seperator": LocalJSX.LSeperator & JSXBase.HTMLAttributes<HTMLLSeperatorElement>;
             "l-spacer": LocalJSX.LSpacer & JSXBase.HTMLAttributes<HTMLLSpacerElement>;
+            "p-user-control": LocalJSX.PUserControl & JSXBase.HTMLAttributes<HTMLPUserControlElement>;
             "v-checkout": LocalJSX.VCheckout & JSXBase.HTMLAttributes<HTMLVCheckoutElement>;
             "v-forgot-password": LocalJSX.VForgotPassword & JSXBase.HTMLAttributes<HTMLVForgotPasswordElement>;
             "v-login": LocalJSX.VLogin & JSXBase.HTMLAttributes<HTMLVLoginElement>;

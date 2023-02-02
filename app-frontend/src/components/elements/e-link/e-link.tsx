@@ -6,9 +6,10 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class ELink {
+  @Prop() variant: string = 'default';
   @Prop() href: string = '';
   @Prop() target: string = '';
-  @Prop() highlight: boolean = false;
+  @Prop() theme: string = 'default';
 
   private styleClasses: string = '';
 
@@ -17,8 +18,14 @@ export class ELink {
   }
 
   generateStyles() {
-    if (this.highlight) {
-      this.styleClasses = this.styleClasses + ` highlight`;
+    if (this.variant === 'navLink') {
+      this.styleClasses = this.styleClasses + ` nav__link`;
+    } else if (this.variant === 'navLink_Active') {
+      this.styleClasses = this.styleClasses + ` nav__link--active`;
+    }
+
+    if (this.theme === 'danger') {
+      this.styleClasses = this.styleClasses + ` danger`;
     }
   }
 

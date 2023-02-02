@@ -3,7 +3,7 @@ a {
   display: flex;
   align-items: center;
   color: var(--blue-regular);
-  padding: 0.5em 0 0.5em 0.75em;
+  padding: 0.5em 0;
 }
 
 a:hover {
@@ -14,9 +14,25 @@ a:active {
   color: var(--blue-darkest);
 }
 
-.highlight {
+.nav__link {
+  padding: 0.5em 0 0.5em 0.75em;
+}
+
+.nav__link--active {
   color: var(--blue-darkest);
   background: var(--blue-lightest);
-  /* padding: 1em; */
   border-radius: var(--site-border-radius);
+  padding: 0.5em 0 0.5em 0.75em;
+}
+
+.danger {
+  color: var(--red-regular);
+}
+
+.danger:hover {
+  color: var(--red-dark);
+}
+
+.danger:active {
+  color: var(--red-darkest);
 }
