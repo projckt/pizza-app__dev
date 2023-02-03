@@ -22,6 +22,7 @@ export class PUserControl {
           <l-spacer variant="horizontal" value={0.25}></l-spacer>
           <e-text>Settings</e-text>
         </e-link>
+        <l-spacer value={0.5}></l-spacer>
         <e-link theme="danger">
           <ion-icon name="log-out-outline"></ion-icon>
           <l-spacer variant="horizontal" value={0.25}></l-spacer>

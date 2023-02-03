@@ -3,7 +3,6 @@ a {
   display: flex;
   align-items: center;
   color: var(--blue-regular);
-  padding: 0.5em 0;
 }
 
 a:hover {

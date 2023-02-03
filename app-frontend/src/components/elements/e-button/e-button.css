@@ -2,6 +2,7 @@ button {
   background: none;
   outline: none;
   border: 0;
+  font-size: 0.9em;
 }
 
 button:hover {
@@ -14,4 +15,12 @@ button:hover {
   background: var(--blue-regular);
   color: white;
   border-radius: 0.25em;
+}
+
+.primary:hover {
+  background: var(--blue-dark);
+}
+
+.primary:active {
+  background: var(--blue-darkest);
 }

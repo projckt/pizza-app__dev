@@ -1,4 +1,4 @@
-import { Component, FunctionalComponent, Host, h } from '@stencil/core';
+import { Component, FunctionalComponent, Host, Listen, h } from '@stencil/core';
 
 @Component({
   tag: 'v-store',
@@ -17,7 +17,7 @@ export class VStore {
           <l-spacer variant="horizontal" value={0.5}></l-spacer>
           <e-text>My Library</e-text>
         </e-link>
-        <l-spacer value={1}></l-spacer>
+        <l-spacer value={0.5}></l-spacer>
         <e-link variant="navLink_Active">
           <ion-icon name="cart-outline"></ion-icon>
           <l-spacer variant="horizontal" value={0.5}></l-spacer>

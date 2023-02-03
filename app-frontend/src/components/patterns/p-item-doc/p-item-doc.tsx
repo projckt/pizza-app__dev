@@ -13,14 +13,14 @@ export class PItemDoc {
   ReadControls: FunctionalComponent = () => (
     <l-row justifyContent="space-between">
       <div></div>
-      <e-button>Read</e-button>
+      <e-button action="openReader">Read</e-button>
     </l-row>
   );
 
   BuyControls: FunctionalComponent = () => (
     <l-row justifyContent="space-between">
       <e-link>Read Abstract</e-link>
-      <e-button>Buy</e-button>
+      <e-button action="goToCheckout">Buy</e-button>
     </l-row>
   );
 
