@@ -16,7 +16,8 @@ export class EButton {
   })
   event_ButtonClick: EventEmitter;
 
-  private handle_ButtonClick() {
+  private handle_ButtonClick(e) {
+    e.preventDefault();
     this.event_ButtonClick.emit({
       action: this.action,
       value: this.value,
@@ -37,7 +38,7 @@ export class EButton {
 
   render() {
     return (
-      <button class={this.styleClasses} onClick={() => this.handle_ButtonClick()}>
+      <button class={this.styleClasses} onClick={e => this.handle_ButtonClick(e)}>
         <slot />
       </button>
     );

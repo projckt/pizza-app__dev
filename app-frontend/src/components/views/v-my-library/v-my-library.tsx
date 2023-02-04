@@ -1,4 +1,5 @@
-import { Component, FunctionalComponent, Host, h } from '@stencil/core';
+import { Component, FunctionalComponent, Listen, Prop, Host, h } from '@stencil/core';
+import { RouterHistory } from '@stencil/router';
 
 @Component({
   tag: 'v-my-library',
@@ -6,6 +7,18 @@ import { Component, FunctionalComponent, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class VMyLibrary {
+  @Prop() history: RouterHistory;
+
+  @Listen('buttonClick') handle_ButtonClick(e) {
+    if (e.detail.action === 'openReader') {
+      this.open_Reader();
+    }
+  }
+
+  open_Reader() {
+    this.history.push(`/reader`, {});
+  }
+
   LeftPanel: FunctionalComponent = () => (
     <div class="left-panel">
       <header>

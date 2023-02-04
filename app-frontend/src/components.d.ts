@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { RouterHistory } from "@stencil/router";
 export namespace Components {
     interface AppRoot {
     }
@@ -59,6 +60,7 @@ export namespace Components {
     interface VLogin {
     }
     interface VMyLibrary {
+        "history": RouterHistory;
     }
     interface VPaymentFailed {
     }
@@ -69,6 +71,7 @@ export namespace Components {
     interface VSignup {
     }
     interface VStore {
+        "history": RouterHistory;
     }
 }
 declare global {
@@ -292,6 +295,7 @@ declare namespace LocalJSX {
     interface VLogin {
     }
     interface VMyLibrary {
+        "history"?: RouterHistory;
     }
     interface VPaymentFailed {
     }
@@ -302,6 +306,7 @@ declare namespace LocalJSX {
     interface VSignup {
     }
     interface VStore {
+        "history"?: RouterHistory;
     }
     interface IntrinsicElements {
         "app-root": AppRoot;

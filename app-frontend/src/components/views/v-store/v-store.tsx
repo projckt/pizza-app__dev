@@ -1,4 +1,5 @@
-import { Component, FunctionalComponent, Host, Listen, h } from '@stencil/core';
+import { Component, FunctionalComponent, Listen, Prop, Host, h } from '@stencil/core';
+import { RouterHistory } from '@stencil/router';
 
 @Component({
   tag: 'v-store',
@@ -6,6 +7,18 @@ import { Component, FunctionalComponent, Host, Listen, h } from '@stencil/core';
   shadow: true,
 })
 export class VStore {
+  @Prop() history: RouterHistory;
+
+  @Listen('buttonClick') handle_ButtonClick(e) {
+    if (e.detail.action === 'goToCheckout') {
+      this.route_ToCheckout();
+    }
+  }
+
+  route_ToCheckout() {
+    this.history.push(`/checkout`, {});
+  }
+
   LeftPanel: FunctionalComponent = () => (
     <div class="left-panel">
       <header>
