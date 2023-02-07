@@ -9,3 +9,15 @@ p {
 .text--display {
   font-family: 'PT Serif', serif;
 }
+
+.text--footnote {
+  font-size: 0.8em;
+}
+
+.text--success {
+  color: var(--green-dark);
+}
+
+.text--danger {
+  color: var(--red-dark);
+}

@@ -6,38 +6,42 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class EText {
-  @Prop() variant: string;
+  @Prop() variant: string = 'body';
+  @Prop() theme: string = 'default';
+
+  private styleClasses: string;
+
+  componentWillLoad() {
+    this.render_StyleClasses();
+  }
+
+  render_StyleClasses() {
+    this.styleClasses = this.styleClasses + ` text--${this.variant}`;
+    this.styleClasses = this.styleClasses + ` text--${this.theme}`;
+  }
 
   render() {
     if (this.variant === 'display') {
       return (
-        <h1 class="text--display">
+        <h1 class={this.styleClasses}>
           <slot></slot>
         </h1>
       );
     } else if (this.variant === 'heading') {
       return (
-        <h2 class="text--heading">
+        <h2 class={this.styleClasses}>
           <slot />
         </h2>
       );
     } else if (this.variant === 'subHeading') {
       return (
-        <h3 class="text--subHeading">
+        <h3 class={this.styleClasses}>
           <slot />
         </h3>
       );
-    } else if (this.variant === 'footnote') {
-      <p class="text--footnote">
-        <slot />
-      </p>;
-    } else if (this.variant === 'label') {
-      <p class="text--label">
-        <slot />
-      </p>;
     } else {
       return (
-        <p class="text--body">
+        <p class={this.styleClasses}>
           <slot />
         </p>
       );

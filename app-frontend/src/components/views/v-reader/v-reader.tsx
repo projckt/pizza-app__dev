@@ -6,13 +6,12 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class VReader {
-
   render() {
     return (
       <Host>
+        Reader
         <slot></slot>
       </Host>
     );
   }
-
 }

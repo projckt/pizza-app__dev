@@ -21,9 +21,12 @@ export namespace Components {
         "variant": string;
     }
     interface EInput {
+        "checked": boolean;
+        "label": string;
         "name": string;
         "placeholder": string;
         "type": string;
+        "value": string;
     }
     interface ELink {
         "href": string;
@@ -32,6 +35,7 @@ export namespace Components {
         "variant": string;
     }
     interface EText {
+        "theme": string;
         "variant": string;
     }
     interface LRow {
@@ -255,10 +259,13 @@ declare namespace LocalJSX {
         "variant"?: string;
     }
     interface EInput {
+        "checked"?: boolean;
+        "label"?: string;
         "name"?: string;
         "onTextInput"?: (event: CustomEvent<any>) => void;
         "placeholder"?: string;
         "type"?: string;
+        "value"?: string;
     }
     interface ELink {
         "href"?: string;
@@ -267,6 +274,7 @@ declare namespace LocalJSX {
         "variant"?: string;
     }
     interface EText {
+        "theme"?: string;
         "variant"?: string;
     }
     interface LRow {

@@ -12,10 +12,12 @@ export class EInput {
   })
   event_TextInput: EventEmitter;
 
-  @Prop()
-  type: string;
+  @Prop() label: string;
+  @Prop() type: string;
   @Prop() name: string;
   @Prop() placeholder: string = 'Your text';
+  @Prop() value: string;
+  @Prop() checked: boolean = false;
 
   handle_AlphanumericInput(e) {
     this.event_TextInput.emit({
@@ -29,8 +31,16 @@ export class EInput {
   }
 
   render() {
-    if (this.type === 'email' || 'number' || 'password' || 'text') {
+    if (this.type === 'email' || this.type === 'number' || this.type === 'password' || this.type === 'text') {
       return <input type={this.type} placeholder={this.placeholder} onChange={e => this.handle_AlphanumericInput(e)} />;
+    } else if (this.type === 'radio') {
+      return (
+        <l-row>
+          <input id={this.name} type={this.type} name={this.name} value={this.value} checked={this.checked} />
+          <l-spacer variant="horizontal" value={0.15}></l-spacer>
+          <label htmlFor={this.name}>{this.label}</label>
+        </l-row>
+      );
     }
   }
 }
