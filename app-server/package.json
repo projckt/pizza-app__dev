@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "build": "tsc",
-    "pfd": "rm -rf dest && npm run build && rsync -av dest/ ../../prod && cp package.json ../../prod && cp .gitignore ../../prod"
+    "build": "tsc"
   },
   "author": "Tuhin Bhuyan (Projckt)",
   "license": "ISC",
