@@ -12,7 +12,6 @@ export class AppRoot {
         <stencil-route-switch scrollTopOffset={0}>
           <stencil-route url="/checkout" component="v-checkout" />
           <stencil-route url="/forgot-password" component="v-forgot-password" />
-          <stencil-route url="/home" component="v-home" exact={true} />
           <stencil-route url="/login" component="v-login" exact={true} />
           <stencil-route url="/my-library" component="v-my-library" exact={true} />
           <stencil-route url="/payment-failed" component="v-payment-failed" exact={true} />

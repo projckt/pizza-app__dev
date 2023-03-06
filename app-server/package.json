@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",
-    "pfd": "rm -rf dest && npm run build && rsync -av dest/ ../../prod/core && cp package.json ../../prod/core && cp .gitignore ../../prod/core"
+    "pfd": "rm -rf dest && npm run build && rsync -av dest/ ../../prod && cp package.json ../../prod && cp .gitignore ../../prod"
   },
   "author": "Tuhin Bhuyan (Projckt)",
   "license": "ISC",

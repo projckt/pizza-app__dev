@@ -9,7 +9,7 @@
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "pfd": "rm -rf www && npm run build --prerender && rsync -av --delete www/ ../../prod/core/www"
+    "pfd": "rm -rf www && npm run build --prerender && rsync -av --delete www/ ../../prod/www"
   },
   "devDependencies": {
     "@stencil/core": "2.13.0",
