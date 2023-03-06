@@ -17,6 +17,6 @@ cd prod
 npm install 
 git add --all
 git commit -m "Pre-deploy"
-git push origin main
+git push origin main --force
 cd ..
 cd dev
