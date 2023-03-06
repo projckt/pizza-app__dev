@@ -34,7 +34,7 @@ cd ..
 cd ..
 cd prod
 git add --all
-git commit -m "Pre-deploy"
+git commit -m "Deploy build `date`"
 git push origin main --force
 
 # Install modules
