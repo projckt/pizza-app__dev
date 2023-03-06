@@ -17,7 +17,7 @@ cd app-server
 rm -rf dest
 npm run build
 rsync -av dest/ ../../prod
-cp {.gitignore,package.json} ../prod
+cp {.gitignore,package.json} ../../prod
 
 
 # Pre-build app-frontend
@@ -33,9 +33,11 @@ rsync -av --delete www/ ../../prod/www
 cd ..
 cd ..
 cd prod
-npm install 
 git add --all
 git commit -m "Pre-deploy"
 git push origin main --force
+
+# Install modules
+npm install 
 cd ..
 cd dev
