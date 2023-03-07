@@ -1,4 +1,5 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Listen, h } from '@stencil/core';
+import { helper_Validate_LoginInputs, generate_Login_Payload } from './helpers';
 
 @Component({
   tag: 'v-login',
@@ -6,6 +7,36 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class VLogin {
+  private email: string = '';
+  private password: string = '';
+
+  @Listen('textInput') handle_TextInput(e) {
+    if (e.detail.name === 'email') {
+      this.email = e.detail.value;
+    } else if (e.detail.name === 'password') {
+      this.password = e.detail.value;
+    }
+  }
+
+  @Listen('buttonClick') handle_ButtonClick(e) {
+    if (e.detail.action === 'submit_LoginInputs') {
+      this.handle_Submit_LoginInputs();
+    }
+  }
+
+  handle_Submit_LoginInputs() {
+    let payload_LoginInputs = generate_Login_Payload(this.email, this.password);
+    let { isValid_LoginInputs, message } = helper_Validate_LoginInputs(payload_LoginInputs);
+
+    if (!isValid_LoginInputs) {
+      return alert(message);
+    }
+
+    console.log('LoginInputs valid');
+
+    // send LoginInputs to server
+  }
+
   render() {
     return (
       <Host>
@@ -21,7 +52,7 @@ export class VLogin {
           <e-input type="password" name="password" placeholder="Password"></e-input>
           <br />
           <l-spacer value={1}></l-spacer>
-          <e-button>Login</e-button>
+          <e-button action="submit_LoginInputs">Login</e-button>
           <l-spacer value={1}></l-spacer>
           <e-text variant="footnote">
             {' '}

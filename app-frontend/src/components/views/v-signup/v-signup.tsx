@@ -38,7 +38,7 @@ export class VSignup {
       return alert(message);
     }
 
-    // send signupinputs to server
+    // send SignupInputs to server
   }
 
   render() {
