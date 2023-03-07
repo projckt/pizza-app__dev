@@ -12,7 +12,7 @@ export class VLogin {
         <c-card>
           <e-text variant="display">Login</e-text>
           <e-text>
-            Not registered yet? <e-link href="/signup">Sign up</e-link>
+            Not registered? <e-link href="/signup">Sign up</e-link>
           </e-text>
           <l-spacer value={1.5}></l-spacer>
           <e-input type="email" name="email" placeholder="Email"></e-input>

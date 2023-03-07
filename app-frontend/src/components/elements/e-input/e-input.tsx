@@ -27,25 +27,29 @@ export class EInput {
 
   componentWillLoad() {
     if (this.type === 'email' || this.type === 'number' || this.type === 'password' || this.type === 'text') {
-      this.styleObject_Textbox.padding = '0.5em';
-      this.styleObject_Textbox.border = '1px solid rgba(0, 0, 0, 0.3)';
-      this.styleObject_Textbox.borderRadius = '0.25em';
-      this.styleObject_Textbox.fontSize = '1em';
+      this.generate_StyleObject_Textbox();
     }
   }
 
-  generate_StyleObject_Textbox() {}
+  generate_StyleObject_Textbox() {
+    this.styleObject_Textbox.padding = '0.5em';
+    this.styleObject_Textbox.border = '1px solid rgba(0, 0, 0, 0.3)';
+    this.styleObject_Textbox.borderRadius = '0.25em';
+    this.styleObject_Textbox.fontSize = '0.9em';
+    this.styleObject_Textbox.width = '100%';
+    this.styleObject_Textbox.boxSizing = 'border-box';
+  }
 
   handle_AlphanumericInput(e) {
     this.event_TextInput.emit({
-      name: name,
-      value: e.target.value,
+      name: this.name,
+      value: e.target.value.trim(),
     });
   }
 
   render() {
     if (this.type === 'email' || this.type === 'number' || this.type === 'password' || this.type === 'text') {
-      return <input style={this.styleObject_Textbox} type={this.type} placeholder={this.placeholder} onChange={e => this.handle_AlphanumericInput(e)} />;
+      return <input style={this.styleObject_Textbox} type={this.type} placeholder={this.placeholder} onInput={e => this.handle_AlphanumericInput(e)} />;
     } else if (this.type === 'radio') {
       return (
         <l-row>
