@@ -27,8 +27,8 @@ export class VLogin {
           <l-spacer value={1.5}></l-spacer>
           <l-seperator></l-seperator>
           <l-spacer value={1}></l-spacer>
-          <e-text>
-            By logging in, you accept <br /> our{' '}
+          <e-text variant="footnote">
+            By logging in, you accept our <br />
             <e-link href="https://aitihyatheheritage.in/terms-of-service.html" target="_blank">
               terms
             </e-link>{' '}

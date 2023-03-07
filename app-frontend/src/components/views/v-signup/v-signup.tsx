@@ -12,7 +12,7 @@ export class VSignup {
         <c-card>
           <e-text variant="display">Sign up</e-text>
           <e-text>
-            Already have an account? <e-link href="/login">Login</e-link>
+            Have an account? <e-link href="/login">Login</e-link>
           </e-text>
           <l-spacer value={1.5}></l-spacer>
           <e-input type="text" name="firstName" placeholder="First name"></e-input>
@@ -28,9 +28,9 @@ export class VSignup {
           <l-spacer value={1.5}></l-spacer>
           <l-seperator></l-seperator>
           <l-spacer value={1}></l-spacer>
-          <e-text>
-            By signing up, you accept <br />
-            our{' '}
+          <e-text variant="footnote">
+            By signing up, you accept our
+            <br />
             <e-link href="https://aitihyatheheritage.in/terms-of-service.html" target="_blank">
               terms
             </e-link>{' '}
