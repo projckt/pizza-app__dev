@@ -1,4 +1,3 @@
-e-input input[type='email'] {
-  display: none;
+e-input input {
   padding: 1em;
 }

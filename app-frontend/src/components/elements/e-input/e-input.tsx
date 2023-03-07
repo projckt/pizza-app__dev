@@ -1,5 +1,9 @@
 import { Component, Event, EventEmitter, Prop, h } from '@stencil/core';
 
+interface LooseObject {
+  [key: string]: any;
+}
+
 @Component({
   tag: 'e-input',
   styleUrl: 'e-input.css',
@@ -19,6 +23,18 @@ export class EInput {
   @Prop() value: string;
   @Prop() checked: boolean = false;
 
+  private styleObject_Textbox: LooseObject = {};
+
+  componentWillLoad() {
+    if (this.type === 'email' || this.type === 'number' || this.type === 'password' || this.type === 'text') {
+      this.styleObject_Textbox.padding = '0.5em';
+      this.styleObject_Textbox.border = '1px solid rgba(0, 0, 0, 0.3)';
+      this.styleObject_Textbox.borderRadius = '0.25em';
+    }
+  }
+
+  generate_StyleObject_Textbox() {}
+
   handle_AlphanumericInput(e) {
     this.event_TextInput.emit({
       name: name,
@@ -28,7 +44,7 @@ export class EInput {
 
   render() {
     if (this.type === 'email' || this.type === 'number' || this.type === 'password' || this.type === 'text') {
-      return <input type={this.type} placeholder={this.placeholder} onChange={e => this.handle_AlphanumericInput(e)} />;
+      return <input style={this.styleObject_Textbox} type={this.type} placeholder={this.placeholder} onChange={e => this.handle_AlphanumericInput(e)} />;
     } else if (this.type === 'radio') {
       return (
         <l-row>
