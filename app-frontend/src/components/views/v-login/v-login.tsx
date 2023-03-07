@@ -11,7 +11,6 @@ export class VLogin {
       <Host>
         <c-card>
           <e-text variant="display">Login</e-text>
-          <l-spacer value={0.5}></l-spacer>
           <e-text>
             Not registered yet? <e-link href="/signup">Sign up</e-link>
           </e-text>

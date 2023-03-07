@@ -26,10 +26,6 @@ export class EInput {
     });
   }
 
-  componentWillLoad() {
-    console.log('Component is about to be rendered');
-  }
-
   render() {
     if (this.type === 'email' || this.type === 'number' || this.type === 'password' || this.type === 'text') {
       return <input type={this.type} placeholder={this.placeholder} onChange={e => this.handle_AlphanumericInput(e)} />;

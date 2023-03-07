@@ -1,3 +1,4 @@
-e-input input[type='password'] {
-  display: block;
+e-input input[type='email'] {
+  display: none;
+  padding: 1em;
 }
