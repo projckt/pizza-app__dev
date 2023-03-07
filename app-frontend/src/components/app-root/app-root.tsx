@@ -1,4 +1,6 @@
 import { Component, h } from '@stencil/core';
+import { state } from '../../global/script';
+import { helper_AppRoot_Api_GetUserData, helper_AppRoot_Session_IsUserLogged } from './helpers';
 
 @Component({
   tag: 'app-root',
@@ -6,6 +8,17 @@ import { Component, h } from '@stencil/core';
   shadow: true,
 })
 export class AppRoot {
+  componentWillLoad() {
+    this.verify_IsUserLogged();
+  }
+
+  verify_IsUserLogged() {
+    state.is_Logged = helper_AppRoot_Session_IsUserLogged();
+    if (state.is_Logged) {
+      helper_AppRoot_Api_GetUserData();
+    }
+  }
+
   render() {
     return (
       <stencil-router>
