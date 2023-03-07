@@ -1,4 +1,5 @@
 import { Component, Host, Listen, h } from '@stencil/core';
+import { helper_Validate_SignupInputs, generate_Signup_Payload } from './helpers';
 
 @Component({
   tag: 'v-signup',
@@ -25,8 +26,19 @@ export class VSignup {
 
   @Listen('buttonClick') handle_ButtonClick(e) {
     if (e.detail.action === 'submit_SignupInputs') {
-      console.log('Submit SignupInputs');
+      this.handle_Submit_SignupInputs();
     }
+  }
+
+  handle_Submit_SignupInputs() {
+    let payload_SignupInputs = generate_Signup_Payload(this.name_First, this.name_Last, this.email, this.password);
+    let { isValid_SignupInputs, message } = helper_Validate_SignupInputs(payload_SignupInputs);
+
+    if (!isValid_SignupInputs) {
+      return alert(message);
+    }
+
+    // send signupinputs to server
   }
 
   render() {

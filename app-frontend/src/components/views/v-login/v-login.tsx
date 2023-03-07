@@ -23,7 +23,10 @@ export class VLogin {
           <l-spacer value={1}></l-spacer>
           <e-button>Login</e-button>
           <l-spacer value={1}></l-spacer>
-          <e-link href="/forgot-password">Forgot Password</e-link>
+          <e-text variant="footnote">
+            {' '}
+            <e-link href="/forgot-password">Forgot Password</e-link>
+          </e-text>
           <l-spacer value={1.5}></l-spacer>
           <l-seperator></l-seperator>
           <l-spacer value={1}></l-spacer>
