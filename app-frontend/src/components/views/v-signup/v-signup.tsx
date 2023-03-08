@@ -59,7 +59,7 @@ export class VSignup {
           <e-text>
             Have an account? <e-link href="/login">Login</e-link>
           </e-text>
-          <l-spacer value={1.5}></l-spacer>
+          <l-spacer value={2}></l-spacer>
           <e-input type="text" name="name_First" placeholder="First name"></e-input>
           <br />
           <l-spacer value={1}></l-spacer>
@@ -71,10 +71,15 @@ export class VSignup {
           <l-spacer value={1}></l-spacer>
           <e-input type="password" name="password" placeholder="Password (Min. 8 letters)"></e-input>
           <l-spacer value={1}></l-spacer>
-          <e-button action="submit_SignupInputs">Sign up</e-button>
-          <l-spacer value={1.5}></l-spacer>
+          <l-row justifyContent="space-between">
+            <e-text variant="footnote">
+              <e-link href="/forgot-password">Forgot Password</e-link>
+            </e-text>
+            <e-button action="submit_SignupInputs">Sign up</e-button>
+          </l-row>
+          <l-spacer value={2}></l-spacer>
           <l-seperator></l-seperator>
-          <l-spacer value={1}></l-spacer>
+          <l-spacer value={0.5}></l-spacer>
           <e-text variant="footnote">
             By signing up, you accept our
             <br />

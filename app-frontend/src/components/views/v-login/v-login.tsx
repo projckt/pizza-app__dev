@@ -54,22 +54,22 @@ export class VLogin {
           <e-text>
             Not registered? <e-link href="/signup">Sign up</e-link>
           </e-text>
-          <l-spacer value={1.5}></l-spacer>
+          <l-spacer value={2}></l-spacer>
           <e-input type="email" name="email" placeholder="Email"></e-input>
           <br />
           <l-spacer value={1}></l-spacer>
           <e-input type="password" name="password" placeholder="Password"></e-input>
           <br />
           <l-spacer value={1}></l-spacer>
-          <e-button action="submit_LoginInputs">Login</e-button>
-          <l-spacer value={1}></l-spacer>
-          <e-text variant="footnote">
-            {' '}
-            <e-link href="/forgot-password">Forgot Password</e-link>
-          </e-text>
-          <l-spacer value={1.5}></l-spacer>
+          <l-row justifyContent="space-between">
+            <e-text variant="footnote">
+              <e-link href="/forgot-password">Forgot Password</e-link>
+            </e-text>
+            <e-button action="submit_LoginInputs">Login</e-button>
+          </l-row>
+          <l-spacer value={2}></l-spacer>
           <l-seperator></l-seperator>
-          <l-spacer value={1}></l-spacer>
+          <l-spacer value={0.5}></l-spacer>
           <e-text variant="footnote">
             By logging in, you accept our <br />
             <e-link href="https://aitihyatheheritage.in/terms-of-service.html" target="_blank">
