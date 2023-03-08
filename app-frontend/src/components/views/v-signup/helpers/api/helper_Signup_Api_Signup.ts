@@ -1,7 +1,7 @@
-import { SignupInputs } from '../../interfaces';
+import { interface_SignupInputs } from '../../interfaces';
 import { vars } from '../../../../../global/script';
 
-export const helper_Signup_Api_Signup = async (payload_SignupInputs: SignupInputs) => {
+export const helper_Signup_Api_Signup = async (payload_SignupInputs: interface_SignupInputs) => {
   let isSuccess_SignupInputs_Submission: boolean = false;
   let url: string = `${vars.api.url}/${vars.api.endpoint.signup}`;
   let options: any = {

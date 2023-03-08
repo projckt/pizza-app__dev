@@ -1,6 +1,6 @@
 import { Component, Host, Listen, h } from '@stencil/core';
 import { generate_Signup_Payload, helper_Validate_SignupInputs, helper_Signup_Api_Signup } from './helpers';
-import { SignupInputs } from './interfaces';
+import { interface_SignupInputs } from './interfaces';
 
 @Component({
   tag: 'v-signup',
@@ -32,7 +32,7 @@ export class VSignup {
   }
 
   async handle_Submit_SignupInputs() {
-    let payload_SignupInputs: SignupInputs = generate_Signup_Payload(this.name_First, this.name_Last, this.email, this.password);
+    let payload_SignupInputs: interface_SignupInputs = generate_Signup_Payload(this.name_First, this.name_Last, this.email, this.password);
 
     let { isValid_SignupInputs, message_Validation_SignupInputs } = helper_Validate_SignupInputs(payload_SignupInputs);
     if (!isValid_SignupInputs) {
@@ -47,6 +47,8 @@ export class VSignup {
     if (!payload_SignupInputs_Submission.success) {
       return alert(payload_SignupInputs_Submission.message);
     }
+
+    // route to home
   }
 
   render() {

@@ -1,5 +1,6 @@
 import { Component, Host, Listen, h } from '@stencil/core';
-import { helper_Validate_LoginInputs, generate_Login_Payload } from './helpers';
+import { generate_Login_Payload, helper_Validate_LoginInputs, helper_Login_Api_Login } from './helpers';
+import { interface_LoginInputs } from './interfaces';
 
 @Component({
   tag: 'v-login',
@@ -24,17 +25,24 @@ export class VLogin {
     }
   }
 
-  handle_Submit_LoginInputs() {
-    let payload_LoginInputs = generate_Login_Payload(this.email, this.password);
-    let { isValid_LoginInputs, message } = helper_Validate_LoginInputs(payload_LoginInputs);
+  async handle_Submit_LoginInputs() {
+    let payload_LoginInputs: interface_LoginInputs = generate_Login_Payload(this.email, this.password);
 
+    let { isValid_LoginInputs, message_Validate_LoginInputs } = helper_Validate_LoginInputs(payload_LoginInputs);
     if (!isValid_LoginInputs) {
-      return alert(message);
+      return alert(message_Validate_LoginInputs);
     }
 
-    console.log('LoginInputs valid');
+    let { isSuccess_LoginInputs_Submission, message_LoginInputs_Submission, payload_LoginInputs_Submission } = await helper_Login_Api_Login(payload_LoginInputs);
+    if (!isSuccess_LoginInputs_Submission) {
+      return alert(message_LoginInputs_Submission);
+    }
 
-    // send LoginInputs to server
+    if (!payload_LoginInputs_Submission.success) {
+      return alert(payload_LoginInputs_Submission.message);
+    }
+
+    // route to home
   }
 
   render() {
