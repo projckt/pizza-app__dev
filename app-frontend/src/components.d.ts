@@ -29,9 +29,12 @@ export namespace Components {
         "value": string;
     }
     interface ELink {
+        "action": string;
+        "event": boolean;
         "href": string;
         "target": string;
         "theme": string;
+        "value": any;
         "variant": string;
     }
     interface EText {
@@ -268,9 +271,13 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface ELink {
+        "action"?: string;
+        "event"?: boolean;
         "href"?: string;
+        "onEvent_LinkClick"?: (event: CustomEvent<any>) => void;
         "target"?: string;
         "theme"?: string;
+        "value"?: any;
         "variant"?: string;
     }
     interface EText {

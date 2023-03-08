@@ -23,6 +23,7 @@ export class AppRoot {
     return (
       <stencil-router>
         <stencil-route-switch scrollTopOffset={0}>
+          <stencil-route url="/" component={state.is_Logged ? 'v-my-library' : 'v-login'} />
           <stencil-route url="/checkout" component="v-checkout" />
           <stencil-route url="/forgot-password" component="v-forgot-password" />
           <stencil-route url="/login" component="v-login" exact={true} />

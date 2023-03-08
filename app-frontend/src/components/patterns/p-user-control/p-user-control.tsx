@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, Listen, h } from '@stencil/core';
 
 @Component({
   tag: 'p-user-control',
@@ -6,6 +6,14 @@ import { Component, h } from '@stencil/core';
   shadow: true,
 })
 export class PUserControl {
+  @Listen('event_LinkClick') handle_LinkClick(e) {
+    if ((e.detail.action = 'logout')) {
+      this.handle_Logout();
+    }
+  }
+
+  handle_Logout() {}
+
   render() {
     return (
       <c-card>
@@ -23,7 +31,7 @@ export class PUserControl {
           <e-text>Settings</e-text>
         </e-link>
         <l-spacer value={0.5}></l-spacer>
-        <e-link theme="danger">
+        <e-link theme="danger" action="logout" event={true}>
           {/* <ion-icon name="log-out-outline"></ion-icon>
           <l-spacer variant="horizontal" value={0.25}></l-spacer> */}
           <e-text>Logout</e-text>
