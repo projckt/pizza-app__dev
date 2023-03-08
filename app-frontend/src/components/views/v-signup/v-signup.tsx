@@ -1,5 +1,5 @@
 import { Component, Host, Listen, h } from '@stencil/core';
-import { helper_Validate_SignupInputs, generate_Signup_Payload } from './helpers';
+import { generate_Signup_Payload, helper_Validate_SignupInputs, helper_Signup_Api_Signup } from './helpers';
 import { SignupInputs } from './interfaces';
 
 @Component({
@@ -31,15 +31,22 @@ export class VSignup {
     }
   }
 
-  handle_Submit_SignupInputs() {
+  async handle_Submit_SignupInputs() {
     let payload_SignupInputs: SignupInputs = generate_Signup_Payload(this.name_First, this.name_Last, this.email, this.password);
-    let { isValid_SignupInputs, message } = helper_Validate_SignupInputs(payload_SignupInputs);
 
+    let { isValid_SignupInputs, message_Validation_SignupInputs } = helper_Validate_SignupInputs(payload_SignupInputs);
     if (!isValid_SignupInputs) {
-      return alert(message);
+      return alert(message_Validation_SignupInputs);
     }
 
-    // send SignupInputs to server
+    let { isSuccess_SignupInputs_Submission, message_SignupInputs_Submission, payload_SignupInputs_Submission } = await helper_Signup_Api_Signup(payload_SignupInputs);
+    if (!isSuccess_SignupInputs_Submission) {
+      return alert(message_SignupInputs_Submission);
+    }
+
+    if (!payload_SignupInputs_Submission.success) {
+      return alert(payload_SignupInputs_Submission.message);
+    }
   }
 
   render() {

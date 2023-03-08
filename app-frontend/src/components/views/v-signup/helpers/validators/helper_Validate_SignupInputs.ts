@@ -18,8 +18,8 @@ export const helper_Validate_SignupInputs = (payload_SignupInputs: SignupInputs)
   let { error } = schema_Signup_Inputs.validate(payload_SignupInputs);
 
   if (error) {
-    return { isValid_SignupInputs: false, message: error.details[0].message };
+    return { isValid_SignupInputs: false, message_Validation_SignupInputs: error.details[0].message };
   } else {
-    return { isValid_SignupInputs: true, message: '' };
+    return { isValid_SignupInputs: true, message_Validation_SignupInputs: '' };
   }
 };
