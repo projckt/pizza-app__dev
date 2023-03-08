@@ -1,8 +1,9 @@
 import { createStore } from '@stencil/store';
 
 export const { state } = createStore({
-  is_Logged: false,
-  account_FirstName: '',
-  account_LastName: '',
-  account_Email: '',
+  isUser_Logged: false,
+  isUser_DataFetched: false,
+  user_FirstName: '',
+  user_LastName: '',
+  user_Email: '',
 });

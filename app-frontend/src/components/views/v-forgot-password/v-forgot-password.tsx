@@ -19,7 +19,9 @@ export class VForgotPassword {
           <e-input type="email" name="email" placeholder="Email"></e-input>
           <l-spacer value={2}></l-spacer>
           <l-row justifyContent="space-between">
-            <e-link href="/login">&lt; Back</e-link>
+            <e-text variant="footnote">
+              <e-link href="/login">&lt; Back</e-link>
+            </e-text>
             <e-button>Send reset link</e-button>
           </l-row>
         </c-card>

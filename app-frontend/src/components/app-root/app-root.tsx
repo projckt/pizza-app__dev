@@ -13,8 +13,8 @@ export class AppRoot {
   }
 
   verify_IsUserLogged() {
-    state.is_Logged = helper_AppRoot_Session_IsUserLogged();
-    if (state.is_Logged) {
+    state.isUser_Logged = helper_AppRoot_Session_IsUserLogged();
+    if (state.isUser_Logged) {
       helper_AppRoot_Api_GetUserData();
     }
   }
@@ -38,7 +38,7 @@ export class AppRoot {
           <this.Route_LoggedIn url="/payment-failed" component="v-payment-failed"></this.Route_LoggedIn>
 
           {/* Discarded Routes */}
-          {/* <stencil-route url="/" component={state.is_Logged ? 'v-my-library' : 'v-login'} /> */}
+          {/* <stencil-route url="/" component={state.isUser_Logged ? 'v-my-library' : 'v-login'} /> */}
           {/* <stencil-route url="/checkout" component="v-checkout" /> */}
           {/* <stencil-route url="/forgot-password" component="v-forgot-password" /> */}
           {/* <stencil-route url="/login" component="v-login" exact={true} /> */}
@@ -59,7 +59,7 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (state.is_Logged) {
+          if (state.isUser_Logged) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
           }
           return <stencil-router-redirect url="/login"></stencil-router-redirect>;
@@ -74,7 +74,7 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (!state.is_Logged) {
+          if (!state.isUser_Logged) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
           }
           return <stencil-router-redirect url="/my-library"></stencil-router-redirect>;
