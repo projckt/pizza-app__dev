@@ -26,14 +26,14 @@ export class VMyLibrary {
         <e-text>Digital Library</e-text>
         <l-spacer value={4}></l-spacer>
         <e-link variant="navLink_Active">
-          <ion-icon name="book-outline"></ion-icon>
-          <l-spacer variant="horizontal" value={0.5}></l-spacer>
+          {/* <ion-icon name="book-outline"></ion-icon>
+          <l-spacer variant="horizontal" value={0.5}></l-spacer> */}
           <e-text>My Library</e-text>
         </e-link>
         <l-spacer value={0.5}></l-spacer>
         <e-link variant="navLink" href="/store">
-          <ion-icon name="cart-outline"></ion-icon>
-          <l-spacer variant="horizontal" value={0.5}></l-spacer>
+          {/* <ion-icon name="cart-outline"></ion-icon>
+          <l-spacer variant="horizontal" value={0.5}></l-spacer> */}
           <e-text>Store</e-text>
         </e-link>
         <l-spacer value={1}></l-spacer>

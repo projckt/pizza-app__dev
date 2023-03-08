@@ -42,6 +42,7 @@ export class VLogin {
       return alert(payload_LoginInputs_Submission.message);
     }
 
+    console.log('Successful login');
     // route to home
   }
 

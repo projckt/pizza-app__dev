@@ -9,6 +9,7 @@ export const helper_Signup_Api_Signup = async (payload_SignupInputs: interface_S
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify(payload_SignupInputs),
   };
   let payload_SignupInputs_Submission: any;

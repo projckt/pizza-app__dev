@@ -20,7 +20,7 @@ a:active {
   color: var(--blue-darkest);
   background: var(--blue-lightest);
   border-radius: var(--site-border-radius);
-  padding: 0.5em 0 0.5em 0.75em;
+  padding: 0.5em 1em;
 }
 
 .danger {
