@@ -6,5 +6,5 @@ export const { state } = createStore({
   account_FirstName: '',
   account_LastName: '',
   account_Email: '',
-  url_Base: document.domain === 'localhost' ? `${vars.dev.api.url}:${vars.dev.api.port}` : vars.prod.api.url,
+  url_Base: vars.url_Base,
 });

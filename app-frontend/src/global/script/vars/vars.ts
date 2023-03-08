@@ -1,14 +1,3 @@
 export const vars = {
-  dev: {
-    api: {
-      url: 'http://localhost',
-      port: 5555,
-    },
-  },
-  prod: {
-    api: {
-      url: 'https://api.slimdl.com',
-      port: -1,
-    },
-  },
+  url_Base: document.domain === 'localhost' ? 'http://localhost:5555' : 'https://api.slimdl.com',
 };

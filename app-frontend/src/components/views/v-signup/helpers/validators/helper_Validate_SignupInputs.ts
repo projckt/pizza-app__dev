@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { SignupInputs } from '../../interfaces';
 
 const schema_Signup_Inputs = Joi.object({
   name_First: Joi.string().required(),
@@ -13,7 +14,7 @@ const schema_Signup_Inputs = Joi.object({
   password: Joi.string().min(8).max(1024).required(),
 });
 
-export const helper_Validate_SignupInputs = (payload_SignupInputs: object) => {
+export const helper_Validate_SignupInputs = (payload_SignupInputs: SignupInputs) => {
   let { error } = schema_Signup_Inputs.validate(payload_SignupInputs);
 
   if (error) {

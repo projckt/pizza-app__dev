@@ -1,5 +1,6 @@
 import { Component, Host, Listen, h } from '@stencil/core';
 import { helper_Validate_SignupInputs, generate_Signup_Payload } from './helpers';
+import { SignupInputs } from './interfaces';
 
 @Component({
   tag: 'v-signup',
@@ -31,7 +32,7 @@ export class VSignup {
   }
 
   handle_Submit_SignupInputs() {
-    let payload_SignupInputs = generate_Signup_Payload(this.name_First, this.name_Last, this.email, this.password);
+    let payload_SignupInputs: SignupInputs = generate_Signup_Payload(this.name_First, this.name_Last, this.email, this.password);
     let { isValid_SignupInputs, message } = helper_Validate_SignupInputs(payload_SignupInputs);
 
     if (!isValid_SignupInputs) {
