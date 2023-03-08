@@ -46,7 +46,7 @@ export class VMyLibrary {
 
   RightPanel: FunctionalComponent = () => (
     <div class="right-panel">
-      <e-text>My library</e-text>
+      {/* <e-text>My library</e-text>
       <l-spacer value={1}></l-spacer>
       <l-seperator></l-seperator>
       <l-spacer value={2}></l-spacer>
@@ -56,7 +56,10 @@ export class VMyLibrary {
         <p-item-doc purpose="read" cover="" title="kjebrkvejbrkvbalejbrlvajblrvalwjrblvjbrv 3"></p-item-doc>
         <p-item-doc purpose="read" cover="" title="kvjrnkvjkaejbr"></p-item-doc>
         <p-item-doc purpose="read" cover="" title="Vol 1, Issue V33"></p-item-doc>
-      </p-gallery>
+      </p-gallery> */}
+      <e-text>
+        Your library is empty. Please visit <e-link href="/store">our store</e-link> to buy journals
+      </e-text>
     </div>
   );
 

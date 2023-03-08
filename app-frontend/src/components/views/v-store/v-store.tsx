@@ -46,7 +46,7 @@ export class VStore {
 
   RightPanel: FunctionalComponent = () => (
     <div class="right-panel">
-      <e-text>Store - Buy new journals</e-text>
+      {/* <e-text>Store - Buy new journals</e-text>
       <l-spacer value={1}></l-spacer>
       <l-seperator></l-seperator>
       <l-spacer value={2}></l-spacer>
@@ -56,7 +56,8 @@ export class VStore {
         <p-item-doc purpose="buy" cover="" title="kjebrkvejbrkvbalejbrlvajblrvalwjrblvjbrv 3"></p-item-doc>
         <p-item-doc purpose="buy" cover="" title="kvjrnkvjkaejbr"></p-item-doc>
         <p-item-doc purpose="buy" cover="" title="Vol 1, Issue V33"></p-item-doc>
-      </p-gallery>
+      </p-gallery> */}
+      <e-text>Journals will be uploaded soon</e-text>
     </div>
   );
 
