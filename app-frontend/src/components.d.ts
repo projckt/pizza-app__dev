@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { RouterHistory } from "@stencil/router";
 export namespace Components {
     interface AppRoot {
+        "history": RouterHistory;
     }
     interface CCard {
     }
@@ -248,6 +249,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AppRoot {
+        "history"?: RouterHistory;
     }
     interface CCard {
     }
@@ -308,6 +310,7 @@ declare namespace LocalJSX {
     interface VForgotPassword {
     }
     interface VLogin {
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VMyLibrary {
         "history"?: RouterHistory;
@@ -319,6 +322,7 @@ declare namespace LocalJSX {
     interface VReader {
     }
     interface VSignup {
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VStore {
         "history"?: RouterHistory;

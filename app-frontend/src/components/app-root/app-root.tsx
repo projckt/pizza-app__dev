@@ -1,4 +1,5 @@
-import { Component, h } from '@stencil/core';
+import { Component, Prop, Listen, h } from '@stencil/core';
+import { RouterHistory, injectHistory } from '@stencil/router';
 import { state } from '../../global/script';
 import { helper_AppRoot_Api_GetUserData, helper_AppRoot_Session_IsUserLogged } from './helpers';
 
@@ -8,6 +9,13 @@ import { helper_AppRoot_Api_GetUserData, helper_AppRoot_Session_IsUserLogged } f
   shadow: true,
 })
 export class AppRoot {
+  @Prop() history: RouterHistory;
+
+  @Listen('event_RouteTo') handle_RouteTo(e) {
+    console.log(`routeTo: ${e.detail.route}`);
+    this.history.push(e.detail.route, e.detail.data);
+  }
+
   componentWillLoad() {
     this.verify_IsUserLogged();
   }
@@ -71,3 +79,5 @@ export class AppRoot {
     );
   };
 }
+
+injectHistory(AppRoot);

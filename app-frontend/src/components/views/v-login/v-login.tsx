@@ -1,4 +1,5 @@
-import { Component, Host, Listen, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
+import { state } from '../../../global/script';
 import { generate_Login_Payload, helper_Validate_LoginInputs, helper_Login_Api_Login } from './helpers';
 import { interface_LoginInputs } from './interfaces';
 
@@ -10,6 +11,12 @@ import { interface_LoginInputs } from './interfaces';
 export class VLogin {
   private email: string = '';
   private password: string = '';
+
+  @Event({
+    eventName: 'event_RouteTo',
+    bubbles: true,
+  })
+  event_RouteTo: EventEmitter;
 
   @Listen('textInput') handle_TextInput(e) {
     if (e.detail.name === 'email') {
@@ -42,8 +49,11 @@ export class VLogin {
       return alert(payload_LoginInputs_Submission.message);
     }
 
-    console.log('Successful login');
-    // route to home
+    state.isUser_Logged = true;
+    this.event_RouteTo.emit({
+      route: '/my-library',
+      data: {},
+    });
   }
 
   render() {
