@@ -22,19 +22,23 @@ export class PUserControl {
           <l-spacer variant="horizontal" value={0.25}></l-spacer>
           <e-text>Tuhin</e-text>
         </l-row>
-        <l-spacer value={1}></l-spacer>
+        <l-spacer value={0.5}></l-spacer>
         <l-seperator></l-seperator>
-        <l-spacer value={1}></l-spacer>
+        <l-spacer value={0.5}></l-spacer>
         <e-link>
-          {/* <ion-icon name="settings-outline"></ion-icon>
-          <l-spacer variant="horizontal" value={0.25}></l-spacer> */}
-          <e-text>Settings</e-text>
+          <l-row>
+            <ion-icon name="settings-outline"></ion-icon>
+            <l-spacer variant="horizontal" value={0.25}></l-spacer>
+            <e-text>Settings</e-text>
+          </l-row>
         </e-link>
         <l-spacer value={0.5}></l-spacer>
         <e-link theme="danger" action="logout" event={true}>
-          {/* <ion-icon name="log-out-outline"></ion-icon>
-          <l-spacer variant="horizontal" value={0.25}></l-spacer> */}
-          <e-text>Logout</e-text>
+          <l-row>
+            <ion-icon name="log-out-outline"></ion-icon>
+            <l-spacer variant="horizontal" value={0.25}></l-spacer>
+            <e-text>Logout</e-text>
+          </l-row>
         </e-link>
       </c-card>
     );

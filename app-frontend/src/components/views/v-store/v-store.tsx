@@ -26,15 +26,19 @@ export class VStore {
         <e-text>Digital Library</e-text>
         <l-spacer value={4}></l-spacer>
         <e-link variant="navLink" href="/my-library">
-          {/* <ion-icon name="book-outline"></ion-icon>
-          <l-spacer variant="horizontal" value={0.5}></l-spacer> */}
-          <e-text>My Library</e-text>
+          <l-row>
+            <ion-icon name="book-outline"></ion-icon>
+            <l-spacer variant="horizontal" value={0.5}></l-spacer>
+            <e-text>My Library</e-text>
+          </l-row>
         </e-link>
         <l-spacer value={0.5}></l-spacer>
         <e-link variant="navLink_Active">
-          {/* <ion-icon name="cart-outline"></ion-icon>
-          <l-spacer variant="horizontal" value={0.5}></l-spacer> */}
-          <e-text>Store</e-text>
+          <l-row>
+            <ion-icon name="cart-outline"></ion-icon>
+            <l-spacer variant="horizontal" value={0.5}></l-spacer>
+            <e-text>Store</e-text>
+          </l-row>
         </e-link>
         <l-spacer value={1}></l-spacer>
       </header>
