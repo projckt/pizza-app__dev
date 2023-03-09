@@ -14,7 +14,7 @@ export class AppRoot {
 
   verify_IsUserLogged() {
     state.isUser_Logged = helper_AppRoot_Session_IsUserLogged();
-    if (state.isUser_Logged) {
+    if (helper_AppRoot_Session_IsUserLogged()) {
       helper_AppRoot_Api_GetUserData();
     }
   }
@@ -36,18 +36,6 @@ export class AppRoot {
           <this.Route_LoggedIn url="/reader" component="v-reader"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/payment-success" component="v-payment-success"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/payment-failed" component="v-payment-failed"></this.Route_LoggedIn>
-
-          {/* Discarded Routes */}
-          {/* <stencil-route url="/" component={state.isUser_Logged ? 'v-my-library' : 'v-login'} /> */}
-          {/* <stencil-route url="/checkout" component="v-checkout" /> */}
-          {/* <stencil-route url="/forgot-password" component="v-forgot-password" /> */}
-          {/* <stencil-route url="/login" component="v-login" exact={true} /> */}
-          {/* <stencil-route url="/my-library" component="v-my-library" exact={true} /> */}
-          {/* <stencil-route url="/payment-failed" component="v-payment-failed" exact={true} /> */}
-          {/* <stencil-route url="/payment-success" component="v-payment-success" exact={true} /> */}
-          {/* <stencil-route url="/reader" component="v-reader" /> */}
-          {/* <stencil-route url="/signup" component="v-signup" /> */}
-          {/* <stencil-route url="/store" component="v-store" /> */}
         </stencil-route-switch>
       </stencil-router>
     );
