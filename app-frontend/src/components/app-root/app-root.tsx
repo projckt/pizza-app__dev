@@ -25,19 +25,22 @@ export class AppRoot {
     if (helper_AppRoot_Session_IsUserLogged()) {
       helper_AppRoot_Api_GetUserData();
     }
+    console.log(`state.isUser_Logged: ${state.isUser_Logged}`);
   }
 
   render() {
     return (
       <stencil-router>
         <stencil-route-switch scrollTopOffset={0}>
+          {/* Root Route */}
+          <stencil-route url="/" component="v-root" exact={true} />
+
           {/* LoggedOut Routes */}
           <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>
           <this.Route_LoggedOut url="/signup" component="v-signup"></this.Route_LoggedOut>
           <this.Route_LoggedOut url="/forgot-password" component="v-forgot-password"></this.Route_LoggedOut>
 
           {/* LoggedIn Routes */}
-          <this.Route_LoggedIn url="/" component="v-my-library"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/my-library" component="v-my-library"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/store" component="v-store"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/checkout" component="v-checkout"></this.Route_LoggedIn>
