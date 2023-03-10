@@ -1,4 +1,6 @@
-import { Component, Listen, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Listen, h } from '@stencil/core';
+import { state } from '../../../global/script';
+import { helper_UserControl_Api_Logout } from './helpers';
 
 @Component({
   tag: 'p-user-control',
@@ -6,13 +8,34 @@ import { Component, Listen, h } from '@stencil/core';
   shadow: true,
 })
 export class PUserControl {
+  @Event({
+    eventName: 'event_RouteTo',
+    bubbles: true,
+  })
+  event_RouteTo: EventEmitter;
+
   @Listen('event_LinkClick') handle_LinkClick(e) {
     if ((e.detail.action = 'logout')) {
       this.handle_Logout();
     }
   }
 
-  handle_Logout() {}
+  async handle_Logout() {
+    let { isSuccess_Logout_Submission, message_Logout_Submission, payload_Logout_Submission } = await helper_UserControl_Api_Logout();
+    if (!isSuccess_Logout_Submission) {
+      return alert(message_Logout_Submission);
+    }
+
+    if (!payload_Logout_Submission.success) {
+      return alert(payload_Logout_Submission.message);
+    }
+
+    state.isUser_Logged = false;
+    this.event_RouteTo.emit({
+      route: '/login',
+      data: {},
+    });
+  }
 
   render() {
     return (

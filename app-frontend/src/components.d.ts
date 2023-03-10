@@ -313,6 +313,7 @@ declare namespace LocalJSX {
         "title"?: string;
     }
     interface PUserControl {
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VCheckout {
     }

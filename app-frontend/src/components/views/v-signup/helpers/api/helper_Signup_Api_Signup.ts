@@ -2,7 +2,9 @@ import { interface_SignupInputs } from '../../interfaces';
 import { vars } from '../../../../../global/script';
 
 export const helper_Signup_Api_Signup = async (payload_SignupInputs: interface_SignupInputs) => {
+  let payload_SignupInputs_Submission: any;
   let isSuccess_SignupInputs_Submission: boolean = false;
+
   let url: string = `${vars.api.url}/${vars.api.endpoint.signup}`;
   let options: any = {
     method: 'POST',
@@ -12,7 +14,6 @@ export const helper_Signup_Api_Signup = async (payload_SignupInputs: interface_S
     credentials: 'include',
     body: JSON.stringify(payload_SignupInputs),
   };
-  let payload_SignupInputs_Submission: any;
 
   await fetch(url, options)
     .then(response => response.json())

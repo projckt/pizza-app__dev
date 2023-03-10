@@ -25,7 +25,6 @@ export class AppRoot {
     if (helper_AppRoot_Session_IsUserLogged()) {
       helper_AppRoot_Api_GetUserData();
     }
-    console.log(`state.isUser_Logged: ${state.isUser_Logged}`);
   }
 
   render() {
