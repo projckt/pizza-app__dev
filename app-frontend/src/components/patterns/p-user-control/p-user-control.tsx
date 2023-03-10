@@ -1,5 +1,4 @@
 import { Component, Event, EventEmitter, Listen, h } from '@stencil/core';
-import { state } from '../../../global/script';
 import { helper_UserControl_Api_Logout } from './helpers';
 
 @Component({
@@ -30,7 +29,6 @@ export class PUserControl {
       return alert(payload_Logout_Submission.message);
     }
 
-    state.isUser_Logged = false;
     this.event_RouteTo.emit({
       route: '/login',
       data: {},

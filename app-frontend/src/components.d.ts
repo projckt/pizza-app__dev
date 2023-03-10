@@ -56,8 +56,8 @@ export namespace Components {
     }
     interface PItemDoc {
         "cover": string;
+        "name": string;
         "purpose": string;
-        "title": string;
     }
     interface PUserControl {
     }
@@ -309,8 +309,8 @@ declare namespace LocalJSX {
     }
     interface PItemDoc {
         "cover"?: string;
+        "name"?: string;
         "purpose"?: string;
-        "title"?: string;
     }
     interface PUserControl {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;

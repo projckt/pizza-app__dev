@@ -1,5 +1,6 @@
 import { Component, Event, EventEmitter, Host, h } from '@stencil/core';
-import { state } from '../../../global/script';
+import { helper_AppRoot_Session_IsUserLogged } from '../../app-root/helpers';
+import {} from '../../../global/script/';
 
 @Component({
   tag: 'v-root',
@@ -14,7 +15,7 @@ export class VRoot {
   event_RouteTo: EventEmitter;
 
   componentWillLoad() {
-    if (state.isUser_Logged) {
+    if (helper_AppRoot_Session_IsUserLogged()) {
       this.event_RouteTo.emit({
         route: '/my-library',
         data: {},

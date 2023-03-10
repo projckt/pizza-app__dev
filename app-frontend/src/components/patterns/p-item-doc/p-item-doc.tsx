@@ -7,7 +7,7 @@ import { Component, Host, FunctionalComponent, Prop, h } from '@stencil/core';
 })
 export class PItemDoc {
   @Prop() cover: string;
-  @Prop() title: string;
+  @Prop() name: string;
   @Prop() purpose: string;
 
   ReadControls: FunctionalComponent = () => (
@@ -29,7 +29,7 @@ export class PItemDoc {
       <Host>
         <header></header>
         <footer>
-          <e-text>{this.title}</e-text>
+          <e-text>{this.name}</e-text>
           <l-spacer value={0.5}></l-spacer>
           <l-seperator></l-seperator>
           <l-spacer value={1}></l-spacer>

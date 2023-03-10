@@ -1,5 +1,4 @@
 import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
-import { state } from '../../../global/script';
 import { generate_Signup_Payload, helper_Validate_SignupInputs, helper_Signup_Api_Signup } from './helpers';
 import { interface_SignupInputs } from './interfaces';
 
@@ -55,7 +54,6 @@ export class VSignup {
       return alert(payload_SignupInputs_Submission.message);
     }
 
-    state.isUser_Logged = true;
     this.event_RouteTo.emit({
       route: '/my-library',
       data: {},

@@ -1,7 +1,6 @@
 import { Component, Prop, Listen, h } from '@stencil/core';
 import { RouterHistory, injectHistory } from '@stencil/router';
-import { state } from '../../global/script';
-import { helper_AppRoot_Api_GetUserData, helper_AppRoot_Session_IsUserLogged } from './helpers';
+import { helper_AppRoot_Session_IsUserLogged } from './helpers';
 
 @Component({
   tag: 'app-root',
@@ -14,17 +13,6 @@ export class AppRoot {
   @Listen('event_RouteTo') handle_RouteTo(e) {
     console.log(`routeTo: ${e.detail.route}`);
     this.history.push(e.detail.route, e.detail.data);
-  }
-
-  componentWillLoad() {
-    this.verify_IsUserLogged();
-  }
-
-  verify_IsUserLogged() {
-    state.isUser_Logged = helper_AppRoot_Session_IsUserLogged();
-    if (helper_AppRoot_Session_IsUserLogged()) {
-      helper_AppRoot_Api_GetUserData();
-    }
   }
 
   render() {
@@ -57,7 +45,7 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (state.isUser_Logged) {
+          if (helper_AppRoot_Session_IsUserLogged()) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
           }
           return <stencil-router-redirect url="/login"></stencil-router-redirect>;
@@ -72,7 +60,7 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (!state.isUser_Logged) {
+          if (!helper_AppRoot_Session_IsUserLogged()) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
           }
           return <stencil-router-redirect url="/my-library"></stencil-router-redirect>;

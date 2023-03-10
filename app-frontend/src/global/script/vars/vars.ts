@@ -8,3 +8,14 @@ export const vars = {
     },
   },
 };
+
+// export const vars = {
+//   api: {
+//     url: 'http://localhost:5555',
+//     endpoint: {
+//       login: 'login',
+//       logout: 'logout',
+//       signup: 'signup',
+//     },
+//   },
+// };
