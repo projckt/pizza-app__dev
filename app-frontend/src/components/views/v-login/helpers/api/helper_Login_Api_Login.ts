@@ -2,6 +2,7 @@ import { interface_LoginInputs } from '../../interfaces';
 import { vars } from '../../../../../global/script';
 
 export const helper_Login_Api_Login = async (payload_LoginInputs: interface_LoginInputs) => {
+  let payload_LoginInputs_Submission: any;
   let isSuccess_LoginInputs_Submission: boolean = false;
   let url: string = `${vars.api.url}/${vars.api.endpoint.login}`;
   let options: any = {
@@ -12,7 +13,6 @@ export const helper_Login_Api_Login = async (payload_LoginInputs: interface_Logi
     credentials: 'include',
     body: JSON.stringify(payload_LoginInputs),
   };
-  let payload_LoginInputs_Submission: any;
 
   await fetch(url, options)
     .then(response => response.json())
