@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
+import { Helper_Set_Cookie } from '../../../global/script/helpers';
 import { generate_Signup_Payload, helper_Validate_SignupInputs, helper_Signup_Api_Signup } from './helpers';
 import { interface_SignupInputs } from './interfaces';
 
@@ -53,6 +54,8 @@ export class VSignup {
     if (!payload_SignupInputs_Submission.success) {
       return alert(payload_SignupInputs_Submission.message);
     }
+
+    Helper_Set_Cookie('isLogged', true, 365);
 
     this.event_RouteTo.emit({
       route: '/my-library',

@@ -1,6 +1,6 @@
 import { Component, Prop, Listen, h } from '@stencil/core';
 import { RouterHistory, injectHistory } from '@stencil/router';
-import { helper_AppRoot_Session_IsUserLogged } from './helpers';
+import { Helper_Get_Cookie } from '../../global/script/helpers';
 
 @Component({
   tag: 'app-root',
@@ -15,12 +15,26 @@ export class AppRoot {
     this.history.push(e.detail.route, e.detail.data);
   }
 
+  componentWillLoad() {
+    this.check_IsLogged();
+  }
+
+  check_IsLogged() {
+    let cookie = Helper_Get_Cookie('isLogged');
+
+    if (cookie.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render() {
     return (
       <stencil-router>
         <stencil-route-switch scrollTopOffset={0}>
           {/* Root Route */}
-          <stencil-route url="/" component="v-root" exact={true} />
+          {this.check_IsLogged() ? <stencil-router-redirect url="/my-library"></stencil-router-redirect> : <stencil-router-redirect url="/login"></stencil-router-redirect>}
 
           {/* LoggedOut Routes */}
           <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>
@@ -45,10 +59,11 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (helper_AppRoot_Session_IsUserLogged()) {
+          if (this.check_IsLogged()) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
+          } else {
+            return <stencil-router-redirect url="/login"></stencil-router-redirect>;
           }
-          return <stencil-router-redirect url="/login"></stencil-router-redirect>;
         }}
       />
     );
@@ -60,10 +75,11 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (!helper_AppRoot_Session_IsUserLogged()) {
+          if (!this.check_IsLogged()) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
+          } else {
+            return <stencil-router-redirect url="/my-library"></stencil-router-redirect>;
           }
-          return <stencil-router-redirect url="/my-library"></stencil-router-redirect>;
         }}
       />
     );

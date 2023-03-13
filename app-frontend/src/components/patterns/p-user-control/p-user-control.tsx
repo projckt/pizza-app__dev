@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, Listen, h } from '@stencil/core';
+import { Helper_Clear_Cookie } from '../../../global/script/helpers';
 import { helper_UserControl_Api_Logout } from './helpers';
 
 @Component({
@@ -28,6 +29,8 @@ export class PUserControl {
     if (!payload_Logout_Submission.success) {
       return alert(payload_Logout_Submission.message);
     }
+
+    Helper_Clear_Cookie('isLogged');
 
     this.event_RouteTo.emit({
       route: '/login',

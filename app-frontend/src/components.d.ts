@@ -76,8 +76,6 @@ export namespace Components {
     }
     interface VReader {
     }
-    interface VRoot {
-    }
     interface VSignup {
     }
     interface VStore {
@@ -211,12 +209,6 @@ declare global {
         prototype: HTMLVReaderElement;
         new (): HTMLVReaderElement;
     };
-    interface HTMLVRootElement extends Components.VRoot, HTMLStencilElement {
-    }
-    var HTMLVRootElement: {
-        prototype: HTMLVRootElement;
-        new (): HTMLVRootElement;
-    };
     interface HTMLVSignupElement extends Components.VSignup, HTMLStencilElement {
     }
     var HTMLVSignupElement: {
@@ -251,7 +243,6 @@ declare global {
         "v-payment-failed": HTMLVPaymentFailedElement;
         "v-payment-success": HTMLVPaymentSuccessElement;
         "v-reader": HTMLVReaderElement;
-        "v-root": HTMLVRootElement;
         "v-signup": HTMLVSignupElement;
         "v-store": HTMLVStoreElement;
     }
@@ -331,9 +322,6 @@ declare namespace LocalJSX {
     }
     interface VReader {
     }
-    interface VRoot {
-        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
-    }
     interface VSignup {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
@@ -362,7 +350,6 @@ declare namespace LocalJSX {
         "v-payment-failed": VPaymentFailed;
         "v-payment-success": VPaymentSuccess;
         "v-reader": VReader;
-        "v-root": VRoot;
         "v-signup": VSignup;
         "v-store": VStore;
     }
@@ -392,7 +379,6 @@ declare module "@stencil/core" {
             "v-payment-failed": LocalJSX.VPaymentFailed & JSXBase.HTMLAttributes<HTMLVPaymentFailedElement>;
             "v-payment-success": LocalJSX.VPaymentSuccess & JSXBase.HTMLAttributes<HTMLVPaymentSuccessElement>;
             "v-reader": LocalJSX.VReader & JSXBase.HTMLAttributes<HTMLVReaderElement>;
-            "v-root": LocalJSX.VRoot & JSXBase.HTMLAttributes<HTMLVRootElement>;
             "v-signup": LocalJSX.VSignup & JSXBase.HTMLAttributes<HTMLVSignupElement>;
             "v-store": LocalJSX.VStore & JSXBase.HTMLAttributes<HTMLVStoreElement>;
         }
