@@ -15,7 +15,7 @@ export class PUserControl {
   event_RouteTo: EventEmitter;
 
   @Listen('event_LinkClick') handle_LinkClick(e) {
-    if ((e.detail.action = 'logout')) {
+    if (e.detail.action === 'logout') {
       this.handle_Logout();
     }
   }
@@ -33,6 +33,7 @@ export class PUserControl {
     Helper_Clear_Cookie('isLogged');
 
     this.event_RouteTo.emit({
+      type: 'push',
       route: '/login',
       data: {},
     });
@@ -49,7 +50,7 @@ export class PUserControl {
         <l-spacer value={0.5}></l-spacer>
         <l-seperator></l-seperator>
         <l-spacer value={0.5}></l-spacer>
-        <e-link>
+        <e-link action="settings" event={true}>
           <l-row>
             <ion-icon name="settings-outline"></ion-icon>
             <l-spacer variant="horizontal" value={0.25}></l-spacer>

@@ -309,12 +309,14 @@ declare namespace LocalJSX {
     interface VCheckout {
     }
     interface VForgotPassword {
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VLogin {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VMyLibrary {
         "history"?: RouterHistory;
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VPaymentFailed {
     }
@@ -327,6 +329,7 @@ declare namespace LocalJSX {
     }
     interface VStore {
         "history"?: RouterHistory;
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface IntrinsicElements {
         "app-root": AppRoot;

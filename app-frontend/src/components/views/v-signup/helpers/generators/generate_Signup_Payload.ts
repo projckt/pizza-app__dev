@@ -2,7 +2,7 @@ export const generate_Signup_Payload = (name_First: string, name_Last: string, e
   let payload_SignupInputs = {
     name_First: name_First.trim(),
     name_Last: name_Last.trim(),
-    email: email.trim(),
+    email: email.trim().toLowerCase(),
     password: password.trim(),
   };
 

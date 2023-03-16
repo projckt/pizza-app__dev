@@ -1,4 +1,4 @@
-import { Component, FunctionalComponent, Listen, Prop, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, FunctionalComponent, Listen, Prop, Host, h } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 
 @Component({
@@ -9,9 +9,25 @@ import { RouterHistory } from '@stencil/router';
 export class VMyLibrary {
   @Prop() history: RouterHistory;
 
+  @Event({
+    eventName: 'event_RouteTo',
+    bubbles: true,
+  })
+  event_RouteTo: EventEmitter;
+
   @Listen('buttonClick') handle_ButtonClick(e) {
     if (e.detail.action === 'openReader') {
       this.open_Reader();
+    }
+  }
+
+  @Listen('event_LinkClick') handle_LinkClick(e) {
+    if (e.detail.action === 'store') {
+      this.event_RouteTo.emit({
+        type: 'push',
+        route: '/store',
+        data: {},
+      });
     }
   }
 
@@ -25,7 +41,7 @@ export class VMyLibrary {
         <e-text variant="heading">Aitihya</e-text>
         <e-text>Digital Library</e-text>
         <l-spacer value={4}></l-spacer>
-        <e-link variant="navLink_Active">
+        <e-link variant="navLink_Active" action="myLibrary" event={true}>
           <l-row>
             <ion-icon name="book-outline"></ion-icon>
             <l-spacer variant="horizontal" value={0.5}></l-spacer>
@@ -33,7 +49,7 @@ export class VMyLibrary {
           </l-row>
         </e-link>
         <l-spacer value={0.5}></l-spacer>
-        <e-link variant="navLink" href="/store">
+        <e-link variant="navLink" action="store" event={true}>
           <l-row>
             <ion-icon name="cart-outline"></ion-icon>
             <l-spacer variant="horizontal" value={0.5}></l-spacer>

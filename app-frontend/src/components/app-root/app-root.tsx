@@ -11,8 +11,11 @@ export class AppRoot {
   @Prop() history: RouterHistory;
 
   @Listen('event_RouteTo') handle_RouteTo(e) {
-    console.log(`routeTo: ${e.detail.route}`);
-    this.history.push(e.detail.route, e.detail.data);
+    if (e.detail.type === 'push') {
+      this.history.push(e.detail.route, e.detail.data);
+    } else if (e.detail.type === 'goBack') {
+      this.history.goBack();
+    }
   }
 
   componentWillLoad() {
@@ -34,7 +37,7 @@ export class AppRoot {
       <stencil-router>
         <stencil-route-switch scrollTopOffset={0}>
           {/* Root Route */}
-          {this.check_IsLogged() ? <stencil-router-redirect url="/my-library"></stencil-router-redirect> : <stencil-router-redirect url="/login"></stencil-router-redirect>}
+          <stencil-route url="/" component={this.check_IsLogged() ? 'v-my-library' : 'v-login'} exact={true} />
 
           {/* LoggedOut Routes */}
           <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>

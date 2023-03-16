@@ -20,6 +20,22 @@ export class VSignup {
   })
   event_RouteTo: EventEmitter;
 
+  @Listen('event_LinkClick') handle_LinkClick(e) {
+    if (e.detail.action === 'login') {
+      this.event_RouteTo.emit({
+        type: 'push',
+        route: '/login',
+        data: {},
+      });
+    } else if (e.detail.action === 'forgotPassword') {
+      this.event_RouteTo.emit({
+        type: 'push',
+        route: '/forgot-password',
+        data: {},
+      });
+    }
+  }
+
   @Listen('textInput') handle_TextInput(e) {
     if (e.detail.name === 'name_First') {
       this.name_First = e.detail.value;
@@ -58,6 +74,7 @@ export class VSignup {
     Helper_Set_Cookie('isLogged', true, 365);
 
     this.event_RouteTo.emit({
+      type: 'push',
       route: '/my-library',
       data: {},
     });
@@ -69,7 +86,10 @@ export class VSignup {
         <c-card>
           <e-text variant="display">Sign up</e-text>
           <e-text>
-            Have an account? <e-link href="/login">Login</e-link>
+            Have an account?{' '}
+            <e-link action="login" event={true}>
+              Login
+            </e-link>
           </e-text>
           <l-spacer value={2}></l-spacer>
           <e-input type="text" name="name_First" placeholder="First name"></e-input>
@@ -85,7 +105,9 @@ export class VSignup {
           <l-spacer value={1}></l-spacer>
           <l-row justifyContent="space-between">
             <e-text variant="footnote">
-              <e-link href="/forgot-password">Forgot Password</e-link>
+              <e-link action="forgotPassword" event={true}>
+                Forgot Password
+              </e-link>
             </e-text>
             <e-button action="submit_SignupInputs">Sign up</e-button>
           </l-row>

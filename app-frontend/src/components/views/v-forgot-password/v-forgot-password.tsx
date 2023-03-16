@@ -1,4 +1,6 @@
-import { Component, State, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Listen, State, Host, h } from '@stencil/core';
+import { helper_Validate_SendResetCode_Inputs, generate_SendResetCode_Payload } from './helpers';
+import { interface_SendResetCode_Inputs } from './interfaces';
 
 @Component({
   tag: 'v-forgot-password',
@@ -7,6 +9,45 @@ import { Component, State, Host, h } from '@stencil/core';
 })
 export class VForgotPassword {
   @State() compState: string = 'init';
+
+  private email: string = '';
+
+  @Event({
+    eventName: 'event_RouteTo',
+    bubbles: true,
+  })
+  event_RouteTo: EventEmitter;
+
+  @Listen('textInput') handle_TextInput(e) {
+    if (e.detail.name === 'email') {
+      this.email = e.detail.value;
+    }
+  }
+
+  @Listen('buttonClick') handle_ButtonClick(e) {
+    if (e.detail.action === 'send_ResetCode') {
+      this.handle_Submit_SendResetCode_Inputs();
+    }
+  }
+
+  @Listen('event_LinkClick') handle_LinkClick(e) {
+    if (e.detail.action === 'goBack') {
+      this.event_RouteTo.emit({
+        type: 'goBack',
+      });
+    }
+  }
+
+  async handle_Submit_SendResetCode_Inputs() {
+    let payload_SendResetCode_Inputs: interface_SendResetCode_Inputs = generate_SendResetCode_Payload(this.email);
+
+    let { isValid_SendResetCode_Inputs, message_Validate_SendResetCode_Inputs } = helper_Validate_SendResetCode_Inputs(payload_SendResetCode_Inputs);
+    if (!isValid_SendResetCode_Inputs) {
+      return alert(message_Validate_SendResetCode_Inputs);
+    }
+
+    alert('valid inputs');
+  }
 
   render() {
     return (
@@ -20,9 +61,11 @@ export class VForgotPassword {
           <l-spacer value={2}></l-spacer>
           <l-row justifyContent="space-between">
             <e-text variant="footnote">
-              <e-link href="/login">&lt; Back</e-link>
+              <e-link action="goBack" event={true}>
+                &lt; Back
+              </e-link>
             </e-text>
-            <e-button>Send reset link</e-button>
+            <e-button action="send_ResetCode">Send reset code</e-button>
           </l-row>
         </c-card>
       </Host>
