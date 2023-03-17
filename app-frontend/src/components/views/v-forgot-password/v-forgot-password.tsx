@@ -104,7 +104,6 @@ export class VForgotPassword {
     let { isSuccess_ConfirmPassword_Inputs_Submission, message_ConfirmPassword_Inputs_Submission, payload_ConfirmPassword_Inputs_Submission } = await helper_ConfirmPassword_Api(
       payload_ConfirmPassword_Inputs,
     );
-    console.log(`isSuccess_ConfirmPassword_Inputs_Submission: ${isSuccess_ConfirmPassword_Inputs_Submission}`);
     if (!isSuccess_ConfirmPassword_Inputs_Submission) {
       return alert(`❌ ${message_ConfirmPassword_Inputs_Submission}`);
     }
@@ -127,7 +126,7 @@ export class VForgotPassword {
       <l-spacer value={1}></l-spacer>
       <l-seperator></l-seperator>
       <l-spacer value={1}></l-spacer>
-      <e-text>Enter your email. We will send you a 4-digit reset code</e-text>
+      <e-text>Enter your email. You will receive a 4-digit password reset code</e-text>
       <l-spacer value={2}></l-spacer>
       <e-input type="email" name="email" placeholder="Email"></e-input>
       <l-spacer value={2}></l-spacer>
