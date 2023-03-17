@@ -1,6 +1,6 @@
 import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
 import { Helper_Set_Cookie } from '../../../global/script/helpers';
-import { generate_Login_Payload, helper_Validate_LoginInputs, helper_Login_Api_Login } from './helpers';
+import { generate_Login_Payload, helper_Validate_LoginInputs, helper_Login_Api } from './helpers';
 import { interface_LoginInputs } from './interfaces';
 
 @Component({
@@ -53,16 +53,16 @@ export class VLogin {
 
     let { isValid_LoginInputs, message_Validate_LoginInputs } = helper_Validate_LoginInputs(payload_LoginInputs);
     if (!isValid_LoginInputs) {
-      return alert(message_Validate_LoginInputs);
+      return alert(`❌ ${message_Validate_LoginInputs}`);
     }
 
-    let { isSuccess_LoginInputs_Submission, message_LoginInputs_Submission, payload_LoginInputs_Submission } = await helper_Login_Api_Login(payload_LoginInputs);
+    let { isSuccess_LoginInputs_Submission, message_LoginInputs_Submission, payload_LoginInputs_Submission } = await helper_Login_Api(payload_LoginInputs);
     if (!isSuccess_LoginInputs_Submission) {
-      return alert(message_LoginInputs_Submission);
+      return alert(`❌ ${message_LoginInputs_Submission}`);
     }
 
     if (!payload_LoginInputs_Submission.success) {
-      return alert(payload_LoginInputs_Submission.message);
+      return alert(`❌ ${payload_LoginInputs_Submission.message}`);
     }
 
     Helper_Set_Cookie('isLogged', true, 365);

@@ -1,6 +1,13 @@
 import { Component, Event, EventEmitter, FunctionalComponent, Listen, State, Host, h } from '@stencil/core';
-import { helper_Validate_SendResetCode_Inputs, generate_SendResetCode_Payload } from './helpers';
-import { interface_SendResetCode_Inputs } from './interfaces';
+import {
+  helper_Validate_SendResetCode_Inputs,
+  helper_Validate_ConfirmPassword_Inputs,
+  generate_SendResetCode_Payload,
+  generate_ConfirmPassword_Payload,
+  helper_SendResetCode_Api,
+  helper_ConfirmPassword_Api,
+} from './helpers';
+import { interface_SendResetCode_Inputs, interface_ConfirmPassword_Inputs } from './interfaces';
 
 @Component({
   tag: 'v-forgot-password',
@@ -9,7 +16,7 @@ import { interface_SendResetCode_Inputs } from './interfaces';
 })
 export class VForgotPassword {
   private email: string = '';
-  private code_ResetPassword: string = '';
+  private code_ResetPassword: number = -1;
   private password_New: string = '';
   private password_New_Repeat: string = '';
   private wizard_Steps = ['init', 'confirm'];
@@ -26,15 +33,20 @@ export class VForgotPassword {
   @Listen('textInput') handle_TextInput(e) {
     if (e.detail.name === 'email') {
       this.email = e.detail.value;
-    } else if (e.detail.name === '') {
-    } else if (e.detail.name === '') {
-    } else if (e.detail.name === '') {
+    } else if (e.detail.name === 'code_ResetPassword') {
+      this.code_ResetPassword = e.detail.value;
+    } else if (e.detail.name === 'password_New') {
+      this.password_New = e.detail.value;
+    } else if (e.detail.name === 'password_New_Repeat') {
+      this.password_New_Repeat = e.detail.value;
     }
   }
 
   @Listen('buttonClick') handle_ButtonClick(e) {
     if (e.detail.action === 'send_ResetCode') {
       this.handle_Submit_SendResetCode_Inputs();
+    } else if (e.detail.action === 'confirm_Password') {
+      this.handle_Confirm_Password();
     }
   }
 
@@ -51,15 +63,60 @@ export class VForgotPassword {
     }
   }
 
-  async handle_Submit_SendResetCode_Inputs() {
+  handle_Submit_SendResetCode_Inputs = async () => {
     let payload_SendResetCode_Inputs: interface_SendResetCode_Inputs = generate_SendResetCode_Payload(this.email);
+
     let { isValid_SendResetCode_Inputs, message_Validate_SendResetCode_Inputs } = helper_Validate_SendResetCode_Inputs(payload_SendResetCode_Inputs);
     if (!isValid_SendResetCode_Inputs) {
-      return alert(message_Validate_SendResetCode_Inputs);
+      return alert(`❌ ${message_Validate_SendResetCode_Inputs}`);
     }
+
+    let { isSuccess_SendResetCode_Inputs_Submission, message_SendResetCode_Inputs_Submission, payload_SendResetCode_Inputs_Submission } = await helper_SendResetCode_Api(
+      payload_SendResetCode_Inputs,
+    );
+    if (!isSuccess_SendResetCode_Inputs_Submission) {
+      return alert(`❌ ${message_SendResetCode_Inputs_Submission}`);
+    }
+
+    if (!payload_SendResetCode_Inputs_Submission.success) {
+      return alert(`❌ ${payload_SendResetCode_Inputs_Submission.message}`);
+    }
+
+    alert(`✅ ${payload_SendResetCode_Inputs_Submission.message}`);
+
     this.wizard_CurrentStep = this.wizard_CurrentStep + 1;
     this.state = this.wizard_Steps[this.wizard_CurrentStep];
-  }
+  };
+
+  handle_Confirm_Password = async () => {
+    let payload_ConfirmPassword_Inputs: interface_ConfirmPassword_Inputs = generate_ConfirmPassword_Payload(
+      this.email,
+      this.password_New,
+      this.password_New_Repeat,
+      this.code_ResetPassword,
+    );
+
+    let { isValid_ConfirmPassword_Inputs, message_Validate_ConfirmPassword_Inputs } = helper_Validate_ConfirmPassword_Inputs(payload_ConfirmPassword_Inputs);
+    if (!isValid_ConfirmPassword_Inputs) {
+      return alert(`❌ ${message_Validate_ConfirmPassword_Inputs}`);
+    }
+
+    let { isSuccess_ConfirmPassword_Inputs_Submission, message_ConfirmPassword_Inputs_Submission, payload_ConfirmPassword_Inputs_Submission } = await helper_ConfirmPassword_Api(
+      payload_ConfirmPassword_Inputs,
+    );
+    console.log(`isSuccess_ConfirmPassword_Inputs_Submission: ${isSuccess_ConfirmPassword_Inputs_Submission}`);
+    if (!isSuccess_ConfirmPassword_Inputs_Submission) {
+      return alert(`❌ ${message_ConfirmPassword_Inputs_Submission}`);
+    }
+
+    alert(`✅ ${payload_ConfirmPassword_Inputs_Submission.message}. Proceed to login`);
+
+    this.event_RouteTo.emit({
+      type: 'push',
+      route: '/login',
+      data: {},
+    });
+  };
 
   Init: FunctionalComponent = () => (
     <div>
@@ -98,9 +155,9 @@ export class VForgotPassword {
       <l-spacer value={1}></l-spacer>
       <e-input type="number" name="code_ResetPassword" placeholder="4-digit reset code (check inbox)"></e-input>
       <l-spacer value={2}></l-spacer>
-      <e-input type="text" name="password_New" placeholder="New password (min 8 chars)"></e-input>
+      <e-input type="password" name="password_New" placeholder="New password (min 8 chars)"></e-input>
       <l-spacer value={2}></l-spacer>
-      <e-input type="text" name="password_New_Repeat" placeholder="Repeat new password"></e-input>
+      <e-input type="password" name="password_New_Repeat" placeholder="Repeat new password"></e-input>
       <l-spacer value={2}></l-spacer>
       <l-row justifyContent="space-between">
         <e-text variant="footnote">
@@ -108,7 +165,7 @@ export class VForgotPassword {
             &lt; Back
           </e-link>
         </e-text>
-        <e-button action="save_NewPassword">Confirm</e-button>
+        <e-button action="confirm_Password">Confirm</e-button>
       </l-row>
     </div>
   );

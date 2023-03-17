@@ -1,9 +1,10 @@
 import { interface_LoginInputs } from '../../interfaces';
 import { vars } from '../../../../../global/script';
 
-export const helper_Login_Api_Login = async (payload_LoginInputs: interface_LoginInputs) => {
+export const helper_Login_Api = async (payload_LoginInputs: interface_LoginInputs) => {
   let payload_LoginInputs_Submission: any;
   let isSuccess_LoginInputs_Submission: boolean = false;
+
   let url: string = `${vars.api.url}/${vars.api.endpoint.login}`;
   let options: any = {
     method: 'POST',
@@ -18,7 +19,7 @@ export const helper_Login_Api_Login = async (payload_LoginInputs: interface_Logi
     .then(response => response.json())
     .then(data => {
       payload_LoginInputs_Submission = data;
-      isSuccess_LoginInputs_Submission = true;
+      isSuccess_LoginInputs_Submission = payload_LoginInputs_Submission.success;
     })
     .catch(error => {
       console.log(error);

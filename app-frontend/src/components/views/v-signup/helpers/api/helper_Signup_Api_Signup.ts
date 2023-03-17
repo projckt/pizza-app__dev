@@ -19,7 +19,7 @@ export const helper_Signup_Api_Signup = async (payload_SignupInputs: interface_S
     .then(response => response.json())
     .then(data => {
       payload_SignupInputs_Submission = data;
-      isSuccess_SignupInputs_Submission = true;
+      isSuccess_SignupInputs_Submission = payload_SignupInputs_Submission.success;
     })
     .catch(error => {
       console.log(error);

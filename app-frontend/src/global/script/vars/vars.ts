@@ -5,17 +5,8 @@ export const vars = {
       login: 'login',
       logout: 'logout',
       signup: 'signup',
+      send_PasswordResetCode: 'send-password-reset-code',
+      confirm_Password: 'confirm-password',
     },
   },
 };
-
-// export const vars = {
-//   api: {
-//     url: 'http://localhost:5555',
-//     endpoint: {
-//       login: 'login',
-//       logout: 'logout',
-//       signup: 'signup',
-//     },
-//   },
-// };

@@ -23,11 +23,11 @@ export class PUserControl {
   async handle_Logout() {
     let { isSuccess_Logout_Submission, message_Logout_Submission, payload_Logout_Submission } = await helper_UserControl_Api_Logout();
     if (!isSuccess_Logout_Submission) {
-      return alert(message_Logout_Submission);
+      return alert(`❌ ${message_Logout_Submission}`);
     }
 
     if (!payload_Logout_Submission.success) {
-      return alert(payload_Logout_Submission.message);
+      return alert(`❌ ${payload_Logout_Submission.message}`);
     }
 
     Helper_Clear_Cookie('isLogged');
