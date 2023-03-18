@@ -1,0 +1,11 @@
+.default {
+  display: block;
+  padding: var(--site-padding-default);
+  border-radius: var(--site-border-radius);
+}
+
+.danger {
+  background: var(--red-lightest);
+  color: var(--red-dark);
+  border: 1px solid var(--red-lightest);
+}
