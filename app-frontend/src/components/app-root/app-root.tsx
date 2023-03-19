@@ -1,7 +1,8 @@
 import { Component, Prop, Listen, h } from '@stencil/core';
 import { RouterHistory, injectHistory } from '@stencil/router';
-import { vars } from '../../global/script';
-import { Helper_Check_isCookieSet } from '../../global/script/helpers';
+import { state, vars } from '../../global/script';
+import { helper_Set_AccountDetails } from './helpers';
+import { Helper_Check_isCookieSet, Helper_ApiCall_GetAccountDetails_BySession } from '../../global/script/helpers';
 
 @Component({
   tag: 'app-root',
@@ -18,6 +19,20 @@ export class AppRoot {
       this.history.goBack();
     }
   }
+
+  componentWillLoad() {
+    this.init_GetAccountData();
+  }
+
+  init_GetAccountData = async () => {
+    let { success, message, payload } = await Helper_ApiCall_GetAccountDetails_BySession();
+    if (!success) {
+      this.history.push('/login', {});
+      return alert(`❌ ${message}`);
+    }
+
+    helper_Set_AccountDetails(payload);
+  };
 
   render() {
     return (

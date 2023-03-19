@@ -9,7 +9,7 @@ export const vars = {
       confirm_Password: 'confirm-password',
       reSend_EmailVerificationCode: 'resend-email-verification-code',
       submit_EmailVerificationCode: 'verify-email',
-      user: 'user',
+      get_AccountDetails: 'account-details',
     },
   },
   cookie: {
