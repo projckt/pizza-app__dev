@@ -20,7 +20,7 @@ export class AppRoot {
     }
   }
 
-  @Listen('success_Auth') handle_success_Auth(e) {
+  @Listen('success_Auth') handle_success_Auth() {
     this.init_GetAccountData();
   }
 
