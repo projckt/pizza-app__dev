@@ -1,5 +1,4 @@
 import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
-import { Helper_Set_Cookie } from '../../../global/script/helpers';
 import { generate_Login_Payload, helper_Validate_LoginInputs, helper_Login_Api } from './helpers';
 import { interface_LoginInputs } from './interfaces';
 
@@ -65,7 +64,7 @@ export class VLogin {
       return alert(`❌ ${payload_LoginInputs_Submission.message}`);
     }
 
-    Helper_Set_Cookie('isLogged', true, 365);
+    // work (set isActive_Session state)
 
     this.event_RouteTo.emit({
       type: 'push',

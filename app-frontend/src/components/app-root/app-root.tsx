@@ -1,8 +1,8 @@
 import { Component, Prop, Listen, h } from '@stencil/core';
 import { RouterHistory, injectHistory } from '@stencil/router';
-import { state, vars } from '../../global/script';
+import { state } from '../../global/script';
 import { helper_Set_AccountDetails } from './helpers';
-import { Helper_Check_isCookieSet, Helper_ApiCall_GetAccountDetails_BySession } from '../../global/script/helpers';
+import { Helper_ApiCall_GetAccountDetails_BySession } from '../../global/script/helpers';
 
 @Component({
   tag: 'app-root',
@@ -32,15 +32,18 @@ export class AppRoot {
     }
 
     helper_Set_AccountDetails(payload);
+
+    if (state.isActive_Session) {
+      this.history.push('/login', {});
+    } else {
+      this.history.push('/my-library', {});
+    }
   };
 
   render() {
     return (
       <stencil-router>
         <stencil-route-switch scrollTopOffset={0}>
-          {/* Root Route */}
-          <stencil-route url="/" component={Helper_Check_isCookieSet(vars.cookie.session.isLogged) ? 'v-my-library' : 'v-login'} exact={true} />
-
           {/* LoggedOut Routes */}
           <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>
           <this.Route_LoggedOut url="/signup" component="v-signup"></this.Route_LoggedOut>
@@ -64,7 +67,7 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (Helper_Check_isCookieSet(vars.cookie.session.isLogged)) {
+          if (state.isActive_Session) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
           } else {
             return <stencil-router-redirect url="/login"></stencil-router-redirect>;
@@ -80,7 +83,7 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (!Helper_Check_isCookieSet(vars.cookie.session.isLogged)) {
+          if (!state.isActive_Session) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
           } else {
             return <stencil-router-redirect url="/my-library"></stencil-router-redirect>;
