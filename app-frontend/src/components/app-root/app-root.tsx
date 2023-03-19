@@ -32,7 +32,7 @@ export class AppRoot {
     let { success, message, payload } = await Helper_ApiCall_GetAccountDetails_BySession();
     if (!success) {
       this.history.push('/login', {});
-      return alert(`❌ ${message}`);
+      return console.log(message);
     }
 
     helper_Set_AccountDetails(payload);
