@@ -45,7 +45,7 @@ export class PUserControl {
         <l-row>
           <ion-icon name="person-outline"></ion-icon>
           <l-spacer variant="horizontal" value={0.25}></l-spacer>
-          <e-text>Tuhin</e-text>
+          <e-text>{state.account_FirstName}</e-text>
         </l-row>
         <l-spacer value={0.5}></l-spacer>
         <l-seperator></l-seperator>
