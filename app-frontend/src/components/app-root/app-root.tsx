@@ -1,6 +1,7 @@
 import { Component, Prop, Listen, h } from '@stencil/core';
 import { RouterHistory, injectHistory } from '@stencil/router';
-import { Helper_Get_Cookie } from '../../global/script/helpers';
+import { vars } from '../../global/script';
+import { Helper_Check_isCookieSet } from '../../global/script/helpers';
 
 @Component({
   tag: 'app-root',
@@ -18,26 +19,12 @@ export class AppRoot {
     }
   }
 
-  componentWillLoad() {
-    this.check_IsLogged();
-  }
-
-  check_IsLogged() {
-    let cookie = Helper_Get_Cookie('isLogged');
-
-    if (cookie.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   render() {
     return (
       <stencil-router>
         <stencil-route-switch scrollTopOffset={0}>
           {/* Root Route */}
-          <stencil-route url="/" component={this.check_IsLogged() ? 'v-my-library' : 'v-login'} exact={true} />
+          <stencil-route url="/" component={Helper_Check_isCookieSet(vars.cookie.session.isLogged) ? 'v-my-library' : 'v-login'} exact={true} />
 
           {/* LoggedOut Routes */}
           <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>
@@ -62,7 +49,7 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (this.check_IsLogged()) {
+          if (Helper_Check_isCookieSet(vars.cookie.session.isLogged)) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
           } else {
             return <stencil-router-redirect url="/login"></stencil-router-redirect>;
@@ -78,7 +65,7 @@ export class AppRoot {
       <stencil-route
         {...props}
         routeRender={routeRenderProps => {
-          if (!this.check_IsLogged()) {
+          if (!Helper_Check_isCookieSet(vars.cookie.session.isLogged)) {
             return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
           } else {
             return <stencil-router-redirect url="/my-library"></stencil-router-redirect>;

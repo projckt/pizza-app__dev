@@ -1,8 +1,10 @@
 import { createStore } from '@stencil/store';
 
 export const { state } = createStore({
-  isFetched_UserData: false,
-  user_FirstName: 'Tuhin',
-  user_LastName: 'Bhuyan',
-  user_Email: 'tuhin.bhuyan0@gmail.com',
+  isFetched_AccountData: false,
+
+  account_FirstName: 'Tuhin',
+  account_LastName: 'Bhuyan',
+  account_Email: 'tuhin.bhuyan0@gmail.com',
+  isVerified_AccountEmail: false,
 });

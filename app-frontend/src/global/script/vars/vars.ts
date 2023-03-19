@@ -8,6 +8,13 @@ export const vars = {
       send_PasswordResetCode: 'send-password-reset-code',
       confirm_Password: 'confirm-password',
       reSend_EmailVerificationCode: 'resend-email-verification-code',
+      submit_EmailVerificationCode: 'verify-email',
+      user: 'user',
+    },
+  },
+  cookie: {
+    session: {
+      isLogged: 'isLogged',
     },
   },
 };
