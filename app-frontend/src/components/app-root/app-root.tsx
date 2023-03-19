@@ -20,11 +20,15 @@ export class AppRoot {
     }
   }
 
+  @Listen('success_Auth') handle_success_Auth(e) {
+    this.init_GetAccountData();
+  }
+
   componentWillLoad() {
     this.init_GetAccountData();
   }
 
-  init_GetAccountData = async () => {
+  async init_GetAccountData() {
     let { success, message, payload } = await Helper_ApiCall_GetAccountDetails_BySession();
     if (!success) {
       this.history.push('/login', {});
@@ -38,7 +42,7 @@ export class AppRoot {
     } else {
       this.history.push('/my-library', {});
     }
-  };
+  }
 
   render() {
     return (

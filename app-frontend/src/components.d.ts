@@ -326,6 +326,7 @@ declare namespace LocalJSX {
     }
     interface VLogin {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
+        "onSuccess_Auth"?: (event: CustomEvent<any>) => void;
     }
     interface VMyLibrary {
         "history"?: RouterHistory;
@@ -339,6 +340,7 @@ declare namespace LocalJSX {
     }
     interface VSignup {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
+        "onSuccess_Auth"?: (event: CustomEvent<any>) => void;
     }
     interface VStore {
         "history"?: RouterHistory;

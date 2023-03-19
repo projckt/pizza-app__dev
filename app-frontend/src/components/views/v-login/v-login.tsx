@@ -17,6 +17,12 @@ export class VLogin {
   })
   event_RouteTo: EventEmitter;
 
+  @Event({
+    eventName: 'success_Auth',
+    bubbles: true,
+  })
+  success_Auth: EventEmitter;
+
   @Listen('event_LinkClick') handle_LinkClick(e) {
     if (e.detail.action === 'signup') {
       this.event_RouteTo.emit({
@@ -64,13 +70,7 @@ export class VLogin {
       return alert(`❌ ${payload_LoginInputs_Submission.message}`);
     }
 
-    // work (set isActive_Session state)
-
-    this.event_RouteTo.emit({
-      type: 'push',
-      route: '/my-library',
-      data: {},
-    });
+    this.success_Auth.emit();
   }
 
   render() {
