@@ -10,7 +10,7 @@
   box-sizing: border-box;
   width: 20%;
   height: 100vh;
-  padding: 2em;
+  padding: 1em;
   position: fixed;
   border-right: 1px solid var(--grey-lightest);
 }

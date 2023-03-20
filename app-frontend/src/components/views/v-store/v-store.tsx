@@ -122,7 +122,7 @@ export class VStore {
         <e-link variant="navLink" action="myLibrary" event={true}>
           <l-row>
             <ion-icon name="book-outline"></ion-icon>
-            <l-spacer variant="horizontal" value={0.5}></l-spacer>
+            <l-spacer variant="horizontal" value={0.25}></l-spacer>
             <e-text>My Library</e-text>
           </l-row>
         </e-link>
@@ -130,7 +130,7 @@ export class VStore {
         <e-link variant="navLink_Active" action="store" event={true}>
           <l-row>
             <ion-icon name="cart-outline"></ion-icon>
-            <l-spacer variant="horizontal" value={0.5}></l-spacer>
+            <l-spacer variant="horizontal" value={0.25}></l-spacer>
             <e-text>Store</e-text>
           </l-row>
         </e-link>

@@ -4,6 +4,6 @@
 body {
   font-size: var(--site-font-size--body);
   color: var(--grey-dark);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: var(--site-line-height);
 }
