@@ -4,9 +4,9 @@ const PORT = 2222;
 
 (async () => {
   app.get("/*", (req, res) => {
-    let joinedPath: string = path.join(__dirname, "/www/index.html");
+    let path_Joined: string = path.join(__dirname, "/www/index.html");
 
-    res.sendFile(joinedPath, (err) => {
+    res.sendFile(path_Joined, (err) => {
       if (err) {
         res.status(500).send(err);
       }
