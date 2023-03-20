@@ -1,7 +1,10 @@
 ## app-frontend
 
-- Change `name` in package.json
+- Change `name` and `description` in package.json
+- Change `<title></title>` and `<meta name="Description">` in index.html
+- Change `name` and `short_name` in manifest.json
 
 ## app-backend
 
+- Change `name` and `description` in package.json
 - Change `PORT` in index.ts

@@ -1,7 +1,7 @@
 {
   "name": "app-server",
   "version": "0.0.1",
-  "description": "Server the app",
+  "description": "Serves the app frontend",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
