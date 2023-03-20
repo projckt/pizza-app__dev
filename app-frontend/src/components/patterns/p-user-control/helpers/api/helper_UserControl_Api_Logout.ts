@@ -1,10 +1,10 @@
-import { vars } from '../../../../../global/script';
+import { Vars } from '../../../../../global/script';
 
 export const helper_UserControl_Api_Logout = async () => {
   let payload_Logout_Submission: any;
   let isSuccess_Logout_Submission: boolean = false;
 
-  let url: string = `${vars.api.url}/${vars.api.endpoint.logout}`;
+  let url: string = `${Vars.api.url}/${Vars.api.endpoint.logout}`;
   let options: any = {
     method: 'POST',
     headers: {

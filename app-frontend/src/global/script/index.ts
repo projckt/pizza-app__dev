@@ -2,4 +2,4 @@
 export { state } from './store/store';
 
 // Vars
-export { vars } from './vars/vars';
+export { Vars } from './vars/Vars';

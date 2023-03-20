@@ -1,4 +1,4 @@
-export const vars = {
+export const Vars = {
   api: {
     url: document.domain === 'localhost' ? 'http://localhost:5555' : 'https://api.slimdl.com',
     endpoint: {

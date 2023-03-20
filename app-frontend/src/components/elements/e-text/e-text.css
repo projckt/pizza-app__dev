@@ -4,7 +4,7 @@ h3,
 p {
   margin: 0;
   padding: 0;
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
 .text--display {
@@ -13,6 +13,7 @@ p {
 
 .text--footnote {
   font-size: 0.8em;
+  color: var(--grey-medium);
 }
 
 .text--success {

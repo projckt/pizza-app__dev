@@ -1,11 +1,11 @@
 import { interface_SendResetCode_Inputs } from '../../interfaces';
-import { vars } from '../../../../../global/script';
+import { Vars } from '../../../../../global/script';
 
 export const helper_SendResetCode_Api = async (payload_SendResetCode_Inputs: interface_SendResetCode_Inputs) => {
   let payload_SendResetCode_Inputs_Submission: any;
   let isSuccess_SendResetCode_Inputs_Submission: boolean = false;
 
-  let url: string = `${vars.api.url}/${vars.api.endpoint.send_PasswordResetCode}`;
+  let url: string = `${Vars.api.url}/${Vars.api.endpoint.send_PasswordResetCode}`;
   let options: any = {
     method: 'POST',
     headers: {

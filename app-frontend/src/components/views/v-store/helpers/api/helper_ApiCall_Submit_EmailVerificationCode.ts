@@ -1,10 +1,10 @@
 import { interface_Submit_EmailVerificationCode_Inputs } from '../../interfaces';
-import { vars } from '../../../../../global/script';
+import { Vars } from '../../../../../global/script';
 
 export const helper_ApiCall_Submit_EmailVerificationCode = async (payload_Submit_EmailVerificationCode: interface_Submit_EmailVerificationCode_Inputs) => {
   let backendPayload_Submit_EmailVerificationCode: any;
 
-  let url: string = `${vars.api.url}/${vars.api.endpoint.submit_EmailVerificationCode}`;
+  let url: string = `${Vars.api.url}/${Vars.api.endpoint.submit_EmailVerificationCode}`;
   let options: any = {
     method: 'POST',
     headers: {

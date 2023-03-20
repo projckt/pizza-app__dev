@@ -1,10 +1,10 @@
 import { interface_ReSend_EmailVerificationCode_Inputs } from '../../interfaces';
-import { vars } from '../../../../../global/script';
+import { Vars } from '../../../../../global/script';
 
 export const helper_ApiCall_ReSend_EmailVerificationCode = async (payload_ReSend_EmailVerificationCode: interface_ReSend_EmailVerificationCode_Inputs) => {
   let backendPayload_ReSend_EmailVerificationCode: any;
 
-  let url: string = `${vars.api.url}/${vars.api.endpoint.reSend_EmailVerificationCode}`;
+  let url: string = `${Vars.api.url}/${Vars.api.endpoint.reSend_EmailVerificationCode}`;
   let options: any = {
     method: 'POST',
     headers: {

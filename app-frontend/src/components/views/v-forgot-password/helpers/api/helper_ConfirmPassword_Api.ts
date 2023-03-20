@@ -1,11 +1,11 @@
 import { interface_ConfirmPassword_Inputs } from '../../interfaces';
-import { vars } from '../../../../../global/script';
+import { Vars } from '../../../../../global/script';
 
 export const helper_ConfirmPassword_Api = async (payload_ConfirmPassword_Inputs: interface_ConfirmPassword_Inputs) => {
   let payload_ConfirmPassword_Inputs_Submission: any;
   let isSuccess_ConfirmPassword_Inputs_Submission: boolean = false;
 
-  let url: string = `${vars.api.url}/${vars.api.endpoint.confirm_Password}`;
+  let url: string = `${Vars.api.url}/${Vars.api.endpoint.confirm_Password}`;
   let options: any = {
     method: 'POST',
     headers: {
