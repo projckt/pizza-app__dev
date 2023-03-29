@@ -24,12 +24,13 @@ export class AppRoot {
     this.init_GetAccountData();
   }
 
-  componentWillLoad() {
+  componentDidLoad() {
     this.init_GetAccountData();
   }
 
   async init_GetAccountData() {
     let { success, message, payload } = await Helper_ApiCall_GetAccountDetails_BySession();
+
     if (!success) {
       this.history.push('/login', {});
       return console.log(message);
