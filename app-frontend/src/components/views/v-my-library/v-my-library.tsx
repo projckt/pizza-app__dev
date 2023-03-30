@@ -158,7 +158,11 @@ export class VMyLibrary {
         <p-item-doc purpose="read" cover="" title="Vol 1, Issue V33"></p-item-doc>
       </p-gallery> */}
       <e-text>
-        Your library is empty. Please visit <e-link href="/store">our store</e-link> to buy journals
+        Your library is empty. Please visit{' '}
+        <e-link action="store" event={true}>
+          our store
+        </e-link>{' '}
+        to buy journals
       </e-text>
     </div>
   );
