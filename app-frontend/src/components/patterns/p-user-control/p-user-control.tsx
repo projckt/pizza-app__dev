@@ -21,16 +21,16 @@ export class PUserControl {
   }
 
   async handle_Logout() {
-    let { isSuccess_Logout_Submission, message_Logout_Submission, payload_Logout_Submission } = await helper_UserControl_Api_Logout();
-    if (!isSuccess_Logout_Submission) {
-      return alert(`❌ ${message_Logout_Submission}`);
+    let { success, message, payload } = await helper_UserControl_Api_Logout();
+    if (!success) {
+      return alert(`❌ ${message}`);
     }
 
-    if (!payload_Logout_Submission.success) {
-      return alert(`❌ ${payload_Logout_Submission.message}`);
+    if (!payload.success) {
+      return alert(`❌ ${payload.message}`);
     }
 
-    state.isActive_Session = payload_Logout_Submission.isActive_Session;
+    state.isActive_Session = payload.isActive_Session;
 
     this.event_RouteTo.emit({
       type: 'push',

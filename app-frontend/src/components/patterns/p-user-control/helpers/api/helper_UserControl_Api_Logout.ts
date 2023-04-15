@@ -24,8 +24,8 @@ export const helper_UserControl_Api_Logout = async () => {
     });
 
   if (!isSuccess_Logout_Submission) {
-    return { isSuccess_Logout_Submission: false, message_Logout_Submission: 'Logout failed', payload_Logout_Submission: {} };
+    return { success: false, message: payload_Logout_Submission.message, payload: {} };
   } else {
-    return { isSuccess_Logout_Submission: true, message_Logout_Submission: 'Logout successful', payload_Logout_Submission: payload_Logout_Submission };
+    return { success: true, message: payload_Logout_Submission.message, payload: payload_Logout_Submission };
   }
 };

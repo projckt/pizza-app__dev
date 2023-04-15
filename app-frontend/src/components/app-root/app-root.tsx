@@ -39,9 +39,9 @@ export class AppRoot {
     helper_Set_AccountDetails(payload);
 
     if (state.isActive_Session) {
-      this.history.push('/login', {});
-    } else {
       this.history.push('/my-library', {});
+    } else {
+      this.history.push('/login', {});
     }
   }
 

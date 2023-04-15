@@ -84,8 +84,6 @@ export namespace Components {
     interface VStore {
         "history": RouterHistory;
     }
-    interface VTest {
-    }
 }
 declare global {
     interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
@@ -232,12 +230,6 @@ declare global {
         prototype: HTMLVStoreElement;
         new (): HTMLVStoreElement;
     };
-    interface HTMLVTestElement extends Components.VTest, HTMLStencilElement {
-    }
-    var HTMLVTestElement: {
-        prototype: HTMLVTestElement;
-        new (): HTMLVTestElement;
-    };
     interface HTMLElementTagNameMap {
         "app-root": HTMLAppRootElement;
         "c-banner": HTMLCBannerElement;
@@ -263,7 +255,6 @@ declare global {
         "v-reader": HTMLVReaderElement;
         "v-signup": HTMLVSignupElement;
         "v-store": HTMLVStoreElement;
-        "v-test": HTMLVTestElement;
     }
 }
 declare namespace LocalJSX {
@@ -355,8 +346,6 @@ declare namespace LocalJSX {
         "history"?: RouterHistory;
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
-    interface VTest {
-    }
     interface IntrinsicElements {
         "app-root": AppRoot;
         "c-banner": CBanner;
@@ -382,7 +371,6 @@ declare namespace LocalJSX {
         "v-reader": VReader;
         "v-signup": VSignup;
         "v-store": VStore;
-        "v-test": VTest;
     }
 }
 export { LocalJSX as JSX };
@@ -413,7 +401,6 @@ declare module "@stencil/core" {
             "v-reader": LocalJSX.VReader & JSXBase.HTMLAttributes<HTMLVReaderElement>;
             "v-signup": LocalJSX.VSignup & JSXBase.HTMLAttributes<HTMLVSignupElement>;
             "v-store": LocalJSX.VStore & JSXBase.HTMLAttributes<HTMLVStoreElement>;
-            "v-test": LocalJSX.VTest & JSXBase.HTMLAttributes<HTMLVTestElement>;
         }
     }
 }
