@@ -26,8 +26,12 @@ export const helper_Login_Api = async (payload_LoginInputs: interface_LoginInput
     });
 
   if (!isSuccess_LoginInputs_Submission) {
-    return { isSuccess_LoginInputs_Submission: false, message_LoginInputs_Submission: 'Login failed', payload_LoginInputs_Submission: {} };
+    return { isSuccess_LoginInputs_Submission: false, message_LoginInputs_Submission: payload_LoginInputs_Submission.message, payload_LoginInputs_Submission: {} };
   } else {
-    return { isSuccess_LoginInputs_Submission: true, message_LoginInputs_Submission: 'Login successful', payload_LoginInputs_Submission: payload_LoginInputs_Submission };
+    return {
+      isSuccess_LoginInputs_Submission: true,
+      message_LoginInputs_Submission: payload_LoginInputs_Submission.message,
+      payload_LoginInputs_Submission: payload_LoginInputs_Submission,
+    };
   }
 };

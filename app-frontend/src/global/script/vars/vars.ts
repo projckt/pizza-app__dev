@@ -2,14 +2,15 @@ export const Vars = {
   api: {
     url: document.domain === 'localhost' ? 'http://localhost:5555' : 'https://api.slimdl.com',
     endpoint: {
+      confirm_Password: 'confirm-password',
+      get_AccountDetails: 'account-details',
       login: 'login',
       logout: 'logout',
-      signup: 'signup',
-      send_PasswordResetCode: 'send-password-reset-code',
-      confirm_Password: 'confirm-password',
       reSend_EmailVerificationCode: 'resend-email-verification-code',
+      send_PasswordResetCode: 'send-password-reset-code',
+      signup: 'signup',
       submit_EmailVerificationCode: 'verify-email',
-      get_AccountDetails: 'account-details',
+      test: 'test',
     },
   },
   cookie: {
