@@ -58,9 +58,10 @@ export namespace Components {
     interface PGallery {
     }
     interface PItemDoc {
-        "cover": string;
-        "name": string;
-        "purpose": string;
+        "action": string;
+        "isSkel": boolean;
+        "sub_Title": string;
+        "title": string;
     }
     interface PUserControl {
     }
@@ -312,9 +313,10 @@ declare namespace LocalJSX {
     interface PGallery {
     }
     interface PItemDoc {
-        "cover"?: string;
-        "name"?: string;
-        "purpose"?: string;
+        "action"?: string;
+        "isSkel"?: boolean;
+        "sub_Title"?: string;
+        "title"?: string;
     }
     interface PUserControl {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;

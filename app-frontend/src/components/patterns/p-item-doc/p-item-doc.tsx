@@ -6,9 +6,10 @@ import { Component, Host, FunctionalComponent, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class PItemDoc {
-  @Prop() cover: string;
-  @Prop() name: string;
-  @Prop() purpose: string;
+  @Prop() title: string;
+  @Prop() sub_Title: string;
+  @Prop() action: string;
+  @Prop() isSkel: boolean = false;
 
   ReadControls: FunctionalComponent = () => (
     <l-row justifyContent="space-between">
@@ -24,18 +25,21 @@ export class PItemDoc {
     </l-row>
   );
 
+  ui_Skel: FunctionalComponent = () => <div class="item-doc--skel"></div>;
+
+  ui_Default: FunctionalComponent = () => (
+    <div>
+      <header>
+        <span>
+          <e-text variant="subHeading">{this.title}</e-text>
+          <e-text>{this.sub_Title}</e-text>
+        </span>
+      </header>
+      <footer>{this.action === 'buy' ? <this.BuyControls></this.BuyControls> : <this.ReadControls></this.ReadControls>}</footer>
+    </div>
+  );
+
   render() {
-    return (
-      <Host>
-        <header></header>
-        <footer>
-          <e-text>{this.name}</e-text>
-          <l-spacer value={0.5}></l-spacer>
-          <l-seperator></l-seperator>
-          <l-spacer value={1}></l-spacer>
-          {this.purpose === 'buy' ? <this.BuyControls></this.BuyControls> : <this.ReadControls></this.ReadControls>}
-        </footer>
-      </Host>
-    );
+    return <Host>{this.isSkel ? <this.ui_Skel></this.ui_Skel> : <this.ui_Default></this.ui_Default>}</Host>;
   }
 }

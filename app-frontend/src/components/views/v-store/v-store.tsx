@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, FunctionalComponent, Listen, Prop, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, FunctionalComponent, Listen, Prop, State, Host, h } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import { interface_ReSend_EmailVerificationCode_Inputs, interface_Submit_EmailVerificationCode_Inputs } from './interfaces';
 import { generate_ReSend_EmailVerificationCode_Payload, generate_Submit_EmailVerificationCode_Payload } from './helpers';
@@ -18,7 +18,10 @@ import {
 export class VStore {
   @Prop() history: RouterHistory;
 
+  @State() isFetched_ViewData: boolean = false;
+
   private code_EmailVerification: number = 0;
+  private data_Documents: any = [];
 
   @Event({
     eventName: 'event_RouteTo',
@@ -146,18 +149,37 @@ export class VStore {
     <div class="right-panel">
       {!state.isVerified_AccountEmail && <this.Banner_EmailVerification></this.Banner_EmailVerification>}
       <l-spacer value={2}></l-spacer>
-      {/* <e-text>Store - Buy new journals</e-text>
+      <e-text>Store - Buy journals</e-text>
       <l-spacer value={1}></l-spacer>
       <l-seperator></l-seperator>
       <l-spacer value={2}></l-spacer>
-      <p-gallery>
-        <p-item-doc purpose="buy" cover="" title="kjebrkvejbrkvbalejbrlvajblrvalwjrblvjbrv"></p-item-doc>
-        <p-item-doc purpose="buy" cover="" title="kvjrnkvjkaejbr"></p-item-doc>
-        <p-item-doc purpose="buy" cover="" title="kjebrkvejbrkvbalejbrlvajblrvalwjrblvjbrv 3"></p-item-doc>
-        <p-item-doc purpose="buy" cover="" title="kvjrnkvjkaejbr"></p-item-doc>
-        <p-item-doc purpose="buy" cover="" title="Vol 1, Issue V33"></p-item-doc>
-      </p-gallery> */}
-      <e-text>Journals will be uploaded soon</e-text>
+      {this.isFetched_ViewData ? <this.ui_Gallery></this.ui_Gallery> : <this.ui_Skel></this.ui_Skel>}
+    </div>
+  );
+
+  ui_Skel: FunctionalComponent = () => (
+    <p-gallery>
+      <p-item-doc isSkel={true}></p-item-doc>
+      <p-item-doc isSkel={true}></p-item-doc>
+      <p-item-doc isSkel={true}></p-item-doc>
+      <p-item-doc isSkel={true}></p-item-doc>
+    </p-gallery>
+  );
+
+  ui_Gallery: FunctionalComponent = () => (
+    <div>
+      {this.data_Documents.length > 0 ? (
+        <p-gallery>
+          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
+          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
+          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
+          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
+          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
+          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
+        </p-gallery>
+      ) : (
+        <e-text>The publisher has not put up any journals for sale</e-text>
+      )}
     </div>
   );
 
