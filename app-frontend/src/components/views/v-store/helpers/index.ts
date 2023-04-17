@@ -1,6 +1,7 @@
 // Api Calls
 export { helper_ApiCall_ReSend_EmailVerificationCode } from './api/helper_ApiCall_ReSend_EmailVerificationCode';
 export { helper_ApiCall_Submit_EmailVerificationCode } from './api/helper_ApiCall_Submit_EmailVerificationCode';
+export { helper_ApiCall_GetAll_Documents } from './api/helper_ApiCall_GetAll_Documents';
 
 // Generate
 export { generate_ReSend_EmailVerificationCode_Payload } from './generators/generate_ReSend_EmailVerificationCode_Payload';

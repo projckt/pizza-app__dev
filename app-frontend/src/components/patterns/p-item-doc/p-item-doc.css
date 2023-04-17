@@ -13,7 +13,7 @@ header {
 }
 
 footer {
-  padding: var(--site-padding-default);
+  padding: 0 var(--site-padding-default);
   border: 1px solid var(--grey-lightest);
   border-radius: 0 0 var(--site-border-radius) var(--site-border-radius);
   word-wrap: break-word;

@@ -6,9 +6,13 @@ import { Component, Host, FunctionalComponent, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class PItemDoc {
-  @Prop() title: string;
-  @Prop() sub_Title: string;
-  @Prop() action: string;
+  @Prop() id: string = '';
+  @Prop() title: string = '';
+  @Prop() sub_Title: string = '';
+  @Prop() description: string = '';
+  @Prop() currency: string = '';
+  @Prop() action: string = '';
+  @Prop() price: number = 0;
   @Prop() isSkel: boolean = false;
 
   ReadControls: FunctionalComponent = () => (
@@ -19,10 +23,27 @@ export class PItemDoc {
   );
 
   BuyControls: FunctionalComponent = () => (
-    <l-row justifyContent="space-between">
-      <e-link>Read Abstract</e-link>
-      <e-button action="goToCheckout">Buy</e-button>
-    </l-row>
+    <div>
+      <l-spacer value={0.5}></l-spacer>
+      <l-row justifyContent="space-between">
+        <div>
+          <e-text>{this.description}</e-text>
+          <e-text variant="footnote">
+            <e-link>Read Abstract</e-link>
+          </e-text>
+        </div>
+        <div>
+          <e-text variant="subHeading">
+            {this.currency}
+            {this.price}
+          </e-text>
+          <e-button action="goToCheckout" value={this.id}>
+            Buy
+          </e-button>
+        </div>
+      </l-row>
+      <l-spacer value={1}></l-spacer>
+    </div>
   );
 
   ui_Skel: FunctionalComponent = () => <div class="item-doc--skel"></div>;

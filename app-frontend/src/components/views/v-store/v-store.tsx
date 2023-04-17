@@ -8,6 +8,7 @@ import {
   helper_ApiCall_ReSend_EmailVerificationCode,
   helper_Validate_Submit_EmailVerificationCode_Inputs,
   helper_ApiCall_Submit_EmailVerificationCode,
+  helper_ApiCall_GetAll_Documents,
 } from './helpers';
 
 @Component({
@@ -58,11 +59,26 @@ export class VStore {
     this.history.push(`/checkout`, {});
   }
 
+  componentDidLoad() {
+    this.fetch_ViewData();
+  }
+
   handle_Input_EmailVerification_Code() {
     let length_Code_EmailVerification: number = this.code_EmailVerification.toString().length;
     if (length_Code_EmailVerification === 4) {
       this.handle_Submit_EmailVerification_Code();
     }
+  }
+
+  async fetch_ViewData() {
+    let { success, message, payload } = await helper_ApiCall_GetAll_Documents();
+
+    if (!success) {
+      return alert(`❌ ${message}`);
+    }
+
+    this.data_Documents = payload;
+    this.isFetched_ViewData = true;
   }
 
   async handle_Submit_EmailVerification_Code() {
@@ -170,12 +186,17 @@ export class VStore {
     <div>
       {this.data_Documents.length > 0 ? (
         <p-gallery>
-          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
-          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
-          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
-          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
-          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
-          <p-item-doc action="buy" title="Aitihya - The Heritage" sub_Title="Vol XIII, Issue 2"></p-item-doc>
+          {this.data_Documents.map(document => (
+            <p-item-doc
+              action="buy"
+              id={document.id}
+              title={document.title}
+              sub_Title={document.sub_Title}
+              description={document.description}
+              currency={document.currency}
+              price={document.price}
+            ></p-item-doc>
+          ))}
         </p-gallery>
       ) : (
         <e-text>The publisher has not put up any journals for sale</e-text>

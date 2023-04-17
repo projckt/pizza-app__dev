@@ -3,6 +3,7 @@ export const Vars = {
     url: document.domain === 'localhost' ? 'http://localhost:5555' : 'https://api.slimdl.com',
     endpoint: {
       confirm_Password: 'confirm-password',
+      documents: 'documents',
       get_AccountDetails: 'account-details',
       login: 'login',
       logout: 'logout',

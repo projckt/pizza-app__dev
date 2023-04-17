@@ -59,7 +59,11 @@ export namespace Components {
     }
     interface PItemDoc {
         "action": string;
+        "currency": string;
+        "description": string;
+        "id": string;
         "isSkel": boolean;
+        "price": number;
         "sub_Title": string;
         "title": string;
     }
@@ -314,7 +318,11 @@ declare namespace LocalJSX {
     }
     interface PItemDoc {
         "action"?: string;
+        "currency"?: string;
+        "description"?: string;
+        "id"?: string;
         "isSkel"?: boolean;
+        "price"?: number;
         "sub_Title"?: string;
         "title"?: string;
     }
