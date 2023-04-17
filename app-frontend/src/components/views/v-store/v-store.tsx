@@ -32,7 +32,11 @@ export class VStore {
 
   @Listen('buttonClick') handle_ButtonClick(e) {
     if (e.detail.action === 'goToCheckout') {
-      this.route_ToCheckout();
+      this.event_RouteTo.emit({
+        type: 'push',
+        route: '/checkout',
+        data: e.detail.value,
+      });
     } else if (e.detail.action === 'action_ReSend_EmailVerificationCode') {
       this.handle_Submit_ReSend_EmailVerificationCode();
     }
@@ -53,10 +57,6 @@ export class VStore {
       this.code_EmailVerification = e.detail.value;
       this.handle_Input_EmailVerification_Code();
     }
-  }
-
-  route_ToCheckout() {
-    this.history.push(`/checkout`, {});
   }
 
   componentDidLoad() {
@@ -165,7 +165,7 @@ export class VStore {
     <div class="right-panel">
       {!state.isVerified_AccountEmail && <this.Banner_EmailVerification></this.Banner_EmailVerification>}
       <l-spacer value={2}></l-spacer>
-      <e-text>Store - Buy journals</e-text>
+      <e-text variant="subHeading">Store - Buy journals</e-text>
       <l-spacer value={1}></l-spacer>
       <l-seperator></l-seperator>
       <l-spacer value={2}></l-spacer>

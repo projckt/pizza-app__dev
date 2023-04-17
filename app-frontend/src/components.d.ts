@@ -70,6 +70,7 @@ export namespace Components {
     interface PUserControl {
     }
     interface VCheckout {
+        "history": RouterHistory;
     }
     interface VForgotPassword {
     }
@@ -330,6 +331,8 @@ declare namespace LocalJSX {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VCheckout {
+        "history"?: RouterHistory;
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VForgotPassword {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;

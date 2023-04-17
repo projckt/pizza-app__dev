@@ -9,7 +9,4 @@ export const helper_Set_AccountDetails = payload_AccountDetails => {
   state.isPublisher = payload_AccountDetails.isPublisher;
   state.host = payload_AccountDetails.host;
   state.origin = payload_AccountDetails.origin;
-
-  console.log(`host   : ${state.host}`);
-  console.log(`origin : ${state.origin}`);
 };
