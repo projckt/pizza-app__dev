@@ -21,6 +21,7 @@ export namespace Components {
     }
     interface EButton {
         "action": string;
+        "size": string;
         "value": any;
         "variant": string;
     }
@@ -66,6 +67,16 @@ export namespace Components {
         "price": number;
         "sub_Title": string;
         "title": string;
+    }
+    interface PPublication {
+        "description": string;
+        "id": string;
+        "isSkel": boolean;
+        "sub_Title": string;
+        "title": string;
+        "url_Cover": string;
+        "url_Sample": string;
+        "url_Toc": string;
     }
     interface PUserControl {
     }
@@ -176,6 +187,12 @@ declare global {
         prototype: HTMLPItemDocElement;
         new (): HTMLPItemDocElement;
     };
+    interface HTMLPPublicationElement extends Components.PPublication, HTMLStencilElement {
+    }
+    var HTMLPPublicationElement: {
+        prototype: HTMLPPublicationElement;
+        new (): HTMLPPublicationElement;
+    };
     interface HTMLPUserControlElement extends Components.PUserControl, HTMLStencilElement {
     }
     var HTMLPUserControlElement: {
@@ -251,6 +268,7 @@ declare global {
         "l-spacer": HTMLLSpacerElement;
         "p-gallery": HTMLPGalleryElement;
         "p-item-doc": HTMLPItemDocElement;
+        "p-publication": HTMLPPublicationElement;
         "p-user-control": HTMLPUserControlElement;
         "v-checkout": HTMLVCheckoutElement;
         "v-forgot-password": HTMLVForgotPasswordElement;
@@ -279,6 +297,7 @@ declare namespace LocalJSX {
     interface EButton {
         "action"?: string;
         "onButtonClick"?: (event: CustomEvent<any>) => void;
+        "size"?: string;
         "value"?: any;
         "variant"?: string;
     }
@@ -327,6 +346,16 @@ declare namespace LocalJSX {
         "sub_Title"?: string;
         "title"?: string;
     }
+    interface PPublication {
+        "description"?: string;
+        "id"?: string;
+        "isSkel"?: boolean;
+        "sub_Title"?: string;
+        "title"?: string;
+        "url_Cover"?: string;
+        "url_Sample"?: string;
+        "url_Toc"?: string;
+    }
     interface PUserControl {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
@@ -374,6 +403,7 @@ declare namespace LocalJSX {
         "l-spacer": LSpacer;
         "p-gallery": PGallery;
         "p-item-doc": PItemDoc;
+        "p-publication": PPublication;
         "p-user-control": PUserControl;
         "v-checkout": VCheckout;
         "v-forgot-password": VForgotPassword;
@@ -404,6 +434,7 @@ declare module "@stencil/core" {
             "l-spacer": LocalJSX.LSpacer & JSXBase.HTMLAttributes<HTMLLSpacerElement>;
             "p-gallery": LocalJSX.PGallery & JSXBase.HTMLAttributes<HTMLPGalleryElement>;
             "p-item-doc": LocalJSX.PItemDoc & JSXBase.HTMLAttributes<HTMLPItemDocElement>;
+            "p-publication": LocalJSX.PPublication & JSXBase.HTMLAttributes<HTMLPPublicationElement>;
             "p-user-control": LocalJSX.PUserControl & JSXBase.HTMLAttributes<HTMLPUserControlElement>;
             "v-checkout": LocalJSX.VCheckout & JSXBase.HTMLAttributes<HTMLVCheckoutElement>;
             "v-forgot-password": LocalJSX.VForgotPassword & JSXBase.HTMLAttributes<HTMLVForgotPasswordElement>;

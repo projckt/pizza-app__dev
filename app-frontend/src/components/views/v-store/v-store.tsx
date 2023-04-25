@@ -8,7 +8,7 @@ import {
   helper_ApiCall_ReSend_EmailVerificationCode,
   helper_Validate_Submit_EmailVerificationCode_Inputs,
   helper_ApiCall_Submit_EmailVerificationCode,
-  helper_ApiCall_GetAll_Documents,
+  helper_ApiCall_Get_Publications,
 } from './helpers';
 
 @Component({
@@ -71,7 +71,7 @@ export class VStore {
   }
 
   async fetch_ViewData() {
-    let { success, message, payload } = await helper_ApiCall_GetAll_Documents();
+    let { success, message, payload } = await helper_ApiCall_Get_Publications();
 
     if (!success) {
       return alert(`❌ ${message}`);
@@ -187,15 +187,15 @@ export class VStore {
       {this.data_Documents.length > 0 ? (
         <p-gallery>
           {this.data_Documents.map(document => (
-            <p-item-doc
-              action="buy"
+            <p-publication
               id={document.id}
               title={document.title}
               sub_Title={document.sub_Title}
               description={document.description}
-              currency={document.currency}
-              price={document.price}
-            ></p-item-doc>
+              url_Sample={document.url_Sample}
+              url_Toc={document.url_Toc}
+              url_Cover={document.url_Cover}
+            ></p-publication>
           ))}
         </p-gallery>
       ) : (

@@ -29,7 +29,7 @@ export class PItemDoc {
         <div>
           <e-text>{this.description}</e-text>
           <e-text variant="footnote">
-            <e-link>Read Abstract</e-link>
+            <e-link>Read Abstracts</e-link>
           </e-text>
         </div>
         <div>

@@ -9,6 +9,7 @@ export class EButton {
   @Prop() action: string;
   @Prop() value: any;
   @Prop() variant: string = 'primary';
+  @Prop() size: string = 'default';
 
   @Event({
     eventName: 'buttonClick',
@@ -33,6 +34,10 @@ export class EButton {
   generate_StyleClasses() {
     if (this.variant === 'primary') {
       this.styleClasses = `${this.styleClasses} primary`;
+    }
+
+    if (this.size === 'wide') {
+      this.styleClasses = `${this.styleClasses} wide`;
     }
   }
 

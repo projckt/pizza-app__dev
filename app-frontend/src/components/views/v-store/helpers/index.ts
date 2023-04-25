@@ -2,6 +2,7 @@
 export { helper_ApiCall_ReSend_EmailVerificationCode } from './api/helper_ApiCall_ReSend_EmailVerificationCode';
 export { helper_ApiCall_Submit_EmailVerificationCode } from './api/helper_ApiCall_Submit_EmailVerificationCode';
 export { helper_ApiCall_GetAll_Documents } from './api/helper_ApiCall_GetAll_Documents';
+export { helper_ApiCall_Get_Publications } from './api/helper_ApiCall_Get_Publications';
 
 // Generate
 export { generate_ReSend_EmailVerificationCode_Payload } from './generators/generate_ReSend_EmailVerificationCode_Payload';

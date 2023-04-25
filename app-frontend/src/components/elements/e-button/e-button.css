@@ -8,6 +8,7 @@ button:hover {
   cursor: pointer;
 }
 
+/* Variant */
 .primary {
   font-weight: 600;
   padding: 0.5em 1em;
@@ -15,11 +16,15 @@ button:hover {
   color: white;
   border-radius: 0.25em;
 }
-
 .primary:hover {
   background: var(--blue-dark);
 }
-
 .primary:active {
   background: var(--blue-darkest);
+}
+
+/* Block */
+.wide {
+  display: block;
+  width: 100%;
 }

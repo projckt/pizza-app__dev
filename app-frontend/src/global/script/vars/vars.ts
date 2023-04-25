@@ -12,6 +12,9 @@ export const Vars = {
       signup: 'signup',
       submit_EmailVerificationCode: 'verify-email',
       test: 'test',
+      publications: {
+        all: 'publications',
+      },
     },
   },
   cookie: {
