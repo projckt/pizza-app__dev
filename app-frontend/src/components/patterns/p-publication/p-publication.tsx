@@ -14,6 +14,18 @@ export class PPublication {
   @Prop() url_Toc: string = '';
   @Prop() url_Cover: string = '';
   @Prop() isSkel: boolean = false;
+  @Prop() documents: any;
+
+  private parsed_Documents: any;
+
+  componentWillLoad() {
+    this.parse_DocumentsString();
+  }
+
+  parse_DocumentsString() {
+    this.parsed_Documents = JSON.parse(this.documents);
+    console.log(this.parsed_Documents);
+  }
 
   BuyControls: FunctionalComponent = () => (
     <footer>
@@ -36,11 +48,12 @@ export class PPublication {
       <l-seperator></l-seperator>
       <l-spacer value={1}></l-spacer>
       <l-row justifyContent="space-between">
-        <select>
+        <e-select></e-select>
+        {/* <select>
           <option selected>Full edition</option>
           <option>Article 1</option>
           <option>Article 2</option>
-        </select>
+        </select> */}
         <e-text>$10</e-text>
       </l-row>
       <l-spacer value={1}></l-spacer>

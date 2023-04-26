@@ -22,7 +22,7 @@ export class VStore {
   @State() isFetched_ViewData: boolean = false;
 
   private code_EmailVerification: number = 0;
-  private data_Documents: any = [];
+  private data_Publications: any = [];
 
   @Event({
     eventName: 'event_RouteTo',
@@ -77,7 +77,7 @@ export class VStore {
       return alert(`❌ ${message}`);
     }
 
-    this.data_Documents = payload;
+    this.data_Publications = payload;
     this.isFetched_ViewData = true;
   }
 
@@ -184,17 +184,18 @@ export class VStore {
 
   ui_Gallery: FunctionalComponent = () => (
     <div>
-      {this.data_Documents.length > 0 ? (
+      {this.data_Publications.length > 0 ? (
         <p-gallery>
-          {this.data_Documents.map(document => (
+          {this.data_Publications.map(publication => (
             <p-publication
-              id={document.id}
-              title={document.title}
-              sub_Title={document.sub_Title}
-              description={document.description}
-              url_Sample={document.url_Sample}
-              url_Toc={document.url_Toc}
-              url_Cover={document.url_Cover}
+              id={publication.id}
+              title={publication.title}
+              sub_Title={publication.sub_title}
+              description={publication.description}
+              url_Sample={publication.url_sample}
+              url_Toc={publication.url_toc}
+              url_Cover={publication.url_Ccver}
+              documents={JSON.stringify(publication.documents)}
             ></p-publication>
           ))}
         </p-gallery>

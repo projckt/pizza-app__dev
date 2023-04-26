@@ -42,6 +42,9 @@ export namespace Components {
         "value": any;
         "variant": string;
     }
+    interface ESelect {
+        "options": any;
+    }
     interface EText {
         "theme": string;
         "variant": string;
@@ -70,6 +73,7 @@ export namespace Components {
     }
     interface PPublication {
         "description": string;
+        "documents": any;
         "id": string;
         "isSkel": boolean;
         "sub_Title": string;
@@ -150,6 +154,12 @@ declare global {
     var HTMLELinkElement: {
         prototype: HTMLELinkElement;
         new (): HTMLELinkElement;
+    };
+    interface HTMLESelectElement extends Components.ESelect, HTMLStencilElement {
+    }
+    var HTMLESelectElement: {
+        prototype: HTMLESelectElement;
+        new (): HTMLESelectElement;
     };
     interface HTMLETextElement extends Components.EText, HTMLStencilElement {
     }
@@ -262,6 +272,7 @@ declare global {
         "e-button": HTMLEButtonElement;
         "e-input": HTMLEInputElement;
         "e-link": HTMLELinkElement;
+        "e-select": HTMLESelectElement;
         "e-text": HTMLETextElement;
         "l-row": HTMLLRowElement;
         "l-seperator": HTMLLSeperatorElement;
@@ -320,6 +331,9 @@ declare namespace LocalJSX {
         "value"?: any;
         "variant"?: string;
     }
+    interface ESelect {
+        "options"?: any;
+    }
     interface EText {
         "theme"?: string;
         "variant"?: string;
@@ -348,6 +362,7 @@ declare namespace LocalJSX {
     }
     interface PPublication {
         "description"?: string;
+        "documents"?: any;
         "id"?: string;
         "isSkel"?: boolean;
         "sub_Title"?: string;
@@ -397,6 +412,7 @@ declare namespace LocalJSX {
         "e-button": EButton;
         "e-input": EInput;
         "e-link": ELink;
+        "e-select": ESelect;
         "e-text": EText;
         "l-row": LRow;
         "l-seperator": LSeperator;
@@ -428,6 +444,7 @@ declare module "@stencil/core" {
             "e-button": LocalJSX.EButton & JSXBase.HTMLAttributes<HTMLEButtonElement>;
             "e-input": LocalJSX.EInput & JSXBase.HTMLAttributes<HTMLEInputElement>;
             "e-link": LocalJSX.ELink & JSXBase.HTMLAttributes<HTMLELinkElement>;
+            "e-select": LocalJSX.ESelect & JSXBase.HTMLAttributes<HTMLESelectElement>;
             "e-text": LocalJSX.EText & JSXBase.HTMLAttributes<HTMLETextElement>;
             "l-row": LocalJSX.LRow & JSXBase.HTMLAttributes<HTMLLRowElement>;
             "l-seperator": LocalJSX.LSeperator & JSXBase.HTMLAttributes<HTMLLSeperatorElement>;
