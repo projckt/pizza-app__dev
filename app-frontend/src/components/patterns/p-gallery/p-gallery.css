@@ -1,6 +1,6 @@
 :host {
   display: flex;
   flex-wrap: wrap;
-  row-gap: 3em;
-  column-gap: 3em;
+  row-gap: 2em;
+  column-gap: 2em;
 }

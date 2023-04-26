@@ -9,4 +9,5 @@ export const { state } = createStore({
   isPublisher: false,
   host: '',
   origin: '',
+  code_Country: 'IN',
 });

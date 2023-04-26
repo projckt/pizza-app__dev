@@ -1,4 +1,5 @@
-import { Component, Host, FunctionalComponent, Prop, h } from '@stencil/core';
+import { Component, Host, State, FunctionalComponent, Prop, Listen, h } from '@stencil/core';
+import { Helper_Generate_Document_Price } from '../../../global/script/helpers';
 
 @Component({
   tag: 'p-publication',
@@ -6,6 +7,12 @@ import { Component, Host, FunctionalComponent, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class PPublication {
+  @Listen('event_selectInput') handle_SelectInput(e) {
+    if (e.detail.name === 'select_Document') {
+      this.price_Display = Helper_Generate_Document_Price(JSON.parse(this.documents), e.detail.value);
+    }
+  }
+
   @Prop() id: string = '';
   @Prop() title: string = '';
   @Prop() sub_Title: string = '';
@@ -16,16 +23,7 @@ export class PPublication {
   @Prop() isSkel: boolean = false;
   @Prop() documents: any;
 
-  private parsed_Documents: any;
-
-  componentWillLoad() {
-    this.parse_DocumentsString();
-  }
-
-  parse_DocumentsString() {
-    this.parsed_Documents = JSON.parse(this.documents);
-    console.log(this.parsed_Documents);
-  }
+  @State() price_Display: string;
 
   BuyControls: FunctionalComponent = () => (
     <footer>
@@ -48,13 +46,8 @@ export class PPublication {
       <l-seperator></l-seperator>
       <l-spacer value={1}></l-spacer>
       <l-row justifyContent="space-between">
-        <e-select></e-select>
-        {/* <select>
-          <option selected>Full edition</option>
-          <option>Article 1</option>
-          <option>Article 2</option>
-        </select> */}
-        <e-text>$10</e-text>
+        <e-select options={this.documents} name="select_Document"></e-select>
+        <e-text>{this.price_Display}</e-text>
       </l-row>
       <l-spacer value={1}></l-spacer>
       <e-button action="goToCheckout" value={this.id} size="wide">

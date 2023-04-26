@@ -43,6 +43,7 @@ export namespace Components {
         "variant": string;
     }
     interface ESelect {
+        "name": string;
         "options": any;
     }
     interface EText {
@@ -332,6 +333,8 @@ declare namespace LocalJSX {
         "variant"?: string;
     }
     interface ESelect {
+        "name"?: string;
+        "onEvent_selectInput"?: (event: CustomEvent<any>) => void;
         "options"?: any;
     }
     interface EText {
