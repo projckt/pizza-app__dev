@@ -10,6 +10,7 @@ export class PPublication {
   @Listen('event_selectInput') handle_SelectInput(e) {
     if (e.detail.name === 'select_Document') {
       this.price_Active_Document = Helper_Generate_Document_Price(JSON.parse(this.documents), e.detail.value);
+      this.id_Active_Document = e.detail.value;
     }
   }
 
@@ -51,7 +52,7 @@ export class PPublication {
         <e-text>{this.price_Active_Document}</e-text>
       </l-row>
       <l-spacer value={1}></l-spacer>
-      <e-button action="goToCheckout" value={this.id_Publication} size="wide">
+      <e-button action="goToCheckout" value={this.id_Active_Document} size="wide">
         Buy
       </e-button>
       <l-spacer value={1}></l-spacer>

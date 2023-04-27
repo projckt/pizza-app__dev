@@ -24,6 +24,14 @@ export class VCheckout {
     }
   }
 
+  componentWillLoad() {}
+
+  componentDidLoad() {
+    this.fetch_ViewData();
+  }
+
+  async fetch_ViewData() {}
+
   ui_Skel_Lines: FunctionalComponent = () => (
     <div>
       <l-spacer value={1}></l-spacer>
@@ -48,6 +56,7 @@ export class VCheckout {
       <l-spacer value={1.5}></l-spacer>
     </div>
   );
+
   ui_Summary: FunctionalComponent = () => (
     <table>
       <tr>
@@ -94,7 +103,7 @@ export class VCheckout {
                 &lt; Back
               </e-link>
             </e-text>
-            <e-button>Pay</e-button>
+            <e-button>Confirm & pay</e-button>
           </l-row>
         </c-card>
       </Host>
