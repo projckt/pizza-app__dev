@@ -3,7 +3,7 @@ import { Vars } from '../../../../../global/script';
 export const helper_ApiCall_GetAll_Documents = async () => {
   let backendPayload_GetAll_Documents: any;
 
-  let url: string = `${Vars.api.url}/${Vars.api.endpoint.documents}`;
+  let url: string = `${Vars.api.url}/${Vars.api.endpoint.document.all}`;
   let options: any = {
     method: 'GET',
     headers: {

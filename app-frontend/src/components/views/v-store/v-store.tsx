@@ -18,7 +18,6 @@ import {
 })
 export class VStore {
   @Prop() history: RouterHistory;
-
   @State() isFetched_ViewData: boolean = false;
 
   private code_EmailVerification: number = 0;
