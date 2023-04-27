@@ -175,10 +175,10 @@ export class VStore {
 
   ui_Skel: FunctionalComponent = () => (
     <p-gallery>
-      <p-item-doc isSkel={true}></p-item-doc>
-      <p-item-doc isSkel={true}></p-item-doc>
-      <p-item-doc isSkel={true}></p-item-doc>
-      <p-item-doc isSkel={true}></p-item-doc>
+      <p-publication isSkel={true}></p-publication>
+      <p-publication isSkel={true}></p-publication>
+      <p-publication isSkel={true}></p-publication>
+      <p-publication isSkel={true}></p-publication>
     </p-gallery>
   );
 
@@ -188,19 +188,19 @@ export class VStore {
         <p-gallery>
           {this.data_Publications.map(publication => (
             <p-publication
-              id={publication.id}
-              title={publication.title}
-              sub_Title={publication.sub_title}
+              id_Publication={publication.id}
+              heading={publication.title}
+              sub_Heading={publication.sub_title}
               description={publication.description}
               url_Sample={publication.url_sample}
               url_Toc={publication.url_toc}
-              url_Cover={publication.url_Ccver}
+              url_Cover={publication.url_Cover}
               documents={JSON.stringify(publication.documents)}
             ></p-publication>
           ))}
         </p-gallery>
       ) : (
-        <e-text>The publisher has not put up any journals for sale</e-text>
+        <e-text>There are no publications on sale</e-text>
       )}
     </div>
   );

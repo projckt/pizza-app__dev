@@ -9,13 +9,13 @@ import { Helper_Generate_Document_Price } from '../../../global/script/helpers';
 export class PPublication {
   @Listen('event_selectInput') handle_SelectInput(e) {
     if (e.detail.name === 'select_Document') {
-      this.price_Display = Helper_Generate_Document_Price(JSON.parse(this.documents), e.detail.value);
+      this.price_Active_Document = Helper_Generate_Document_Price(JSON.parse(this.documents), e.detail.value);
     }
   }
 
-  @Prop() id: string = '';
-  @Prop() title: string = '';
-  @Prop() sub_Title: string = '';
+  @Prop() id_Publication: string = '';
+  @Prop() heading: string = '';
+  @Prop() sub_Heading: string = '';
   @Prop() description: string = '';
   @Prop() url_Sample: string = '';
   @Prop() url_Toc: string = '';
@@ -23,7 +23,8 @@ export class PPublication {
   @Prop() isSkel: boolean = false;
   @Prop() documents: any;
 
-  @State() price_Display: string;
+  @State() price_Active_Document: string;
+  @State() id_Active_Document: string;
 
   BuyControls: FunctionalComponent = () => (
     <footer>
@@ -47,10 +48,10 @@ export class PPublication {
       <l-spacer value={1}></l-spacer>
       <l-row justifyContent="space-between">
         <e-select options={this.documents} name="select_Document"></e-select>
-        <e-text>{this.price_Display}</e-text>
+        <e-text>{this.price_Active_Document}</e-text>
       </l-row>
       <l-spacer value={1}></l-spacer>
-      <e-button action="goToCheckout" value={this.id} size="wide">
+      <e-button action="goToCheckout" value={this.id_Publication} size="wide">
         Buy
       </e-button>
       <l-spacer value={1}></l-spacer>
@@ -63,8 +64,8 @@ export class PPublication {
     <div>
       <header>
         <span>
-          <e-text variant="subHeading">{this.title}</e-text>
-          <e-text>{this.sub_Title}</e-text>
+          <e-text variant="subHeading">{this.heading}</e-text>
+          <e-text>{this.sub_Heading}</e-text>
         </span>
       </header>
       <this.BuyControls></this.BuyControls>

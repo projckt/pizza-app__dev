@@ -146,17 +146,6 @@ export class VMyLibrary {
     <div class="right-panel">
       {!state.isVerified_AccountEmail && <this.Banner_EmailVerification></this.Banner_EmailVerification>}
       <l-spacer value={2}></l-spacer>
-      {/* <e-text>My library</e-text>
-      <l-spacer value={1}></l-spacer>
-      <l-seperator></l-seperator>
-      <l-spacer value={2}></l-spacer>
-      <p-gallery>
-        <p-item-doc action="read" cover="" title="kjebrkvejbrkvbalejbrlvajblrvalwjrblvjbrv"></p-item-doc>
-        <p-item-doc action="read" cover="" title="kvjrnkvjkaejbr"></p-item-doc>
-        <p-item-doc action="read" cover="" title="kjebrkvejbrkvbalejbrlvajblrvalwjrblvjbrv 3"></p-item-doc>
-        <p-item-doc action="read" cover="" title="kvjrnkvjkaejbr"></p-item-doc>
-        <p-item-doc action="read" cover="" title="Vol 1, Issue V33"></p-item-doc>
-      </p-gallery> */}
       <e-text>
         Your library is empty. Please visit{' '}
         <e-link action="store" event={true}>

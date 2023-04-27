@@ -62,23 +62,13 @@ export namespace Components {
     }
     interface PGallery {
     }
-    interface PItemDoc {
-        "action": string;
-        "currency": string;
-        "description": string;
-        "id": string;
-        "isSkel": boolean;
-        "price": number;
-        "sub_Title": string;
-        "title": string;
-    }
     interface PPublication {
         "description": string;
         "documents": any;
-        "id": string;
+        "heading": string;
+        "id_Publication": string;
         "isSkel": boolean;
-        "sub_Title": string;
-        "title": string;
+        "sub_Heading": string;
         "url_Cover": string;
         "url_Sample": string;
         "url_Toc": string;
@@ -192,12 +182,6 @@ declare global {
         prototype: HTMLPGalleryElement;
         new (): HTMLPGalleryElement;
     };
-    interface HTMLPItemDocElement extends Components.PItemDoc, HTMLStencilElement {
-    }
-    var HTMLPItemDocElement: {
-        prototype: HTMLPItemDocElement;
-        new (): HTMLPItemDocElement;
-    };
     interface HTMLPPublicationElement extends Components.PPublication, HTMLStencilElement {
     }
     var HTMLPPublicationElement: {
@@ -279,7 +263,6 @@ declare global {
         "l-seperator": HTMLLSeperatorElement;
         "l-spacer": HTMLLSpacerElement;
         "p-gallery": HTMLPGalleryElement;
-        "p-item-doc": HTMLPItemDocElement;
         "p-publication": HTMLPPublicationElement;
         "p-user-control": HTMLPUserControlElement;
         "v-checkout": HTMLVCheckoutElement;
@@ -353,23 +336,13 @@ declare namespace LocalJSX {
     }
     interface PGallery {
     }
-    interface PItemDoc {
-        "action"?: string;
-        "currency"?: string;
-        "description"?: string;
-        "id"?: string;
-        "isSkel"?: boolean;
-        "price"?: number;
-        "sub_Title"?: string;
-        "title"?: string;
-    }
     interface PPublication {
         "description"?: string;
         "documents"?: any;
-        "id"?: string;
+        "heading"?: string;
+        "id_Publication"?: string;
         "isSkel"?: boolean;
-        "sub_Title"?: string;
-        "title"?: string;
+        "sub_Heading"?: string;
         "url_Cover"?: string;
         "url_Sample"?: string;
         "url_Toc"?: string;
@@ -421,7 +394,6 @@ declare namespace LocalJSX {
         "l-seperator": LSeperator;
         "l-spacer": LSpacer;
         "p-gallery": PGallery;
-        "p-item-doc": PItemDoc;
         "p-publication": PPublication;
         "p-user-control": PUserControl;
         "v-checkout": VCheckout;
@@ -453,7 +425,6 @@ declare module "@stencil/core" {
             "l-seperator": LocalJSX.LSeperator & JSXBase.HTMLAttributes<HTMLLSeperatorElement>;
             "l-spacer": LocalJSX.LSpacer & JSXBase.HTMLAttributes<HTMLLSpacerElement>;
             "p-gallery": LocalJSX.PGallery & JSXBase.HTMLAttributes<HTMLPGalleryElement>;
-            "p-item-doc": LocalJSX.PItemDoc & JSXBase.HTMLAttributes<HTMLPItemDocElement>;
             "p-publication": LocalJSX.PPublication & JSXBase.HTMLAttributes<HTMLPPublicationElement>;
             "p-user-control": LocalJSX.PUserControl & JSXBase.HTMLAttributes<HTMLPUserControlElement>;
             "v-checkout": LocalJSX.VCheckout & JSXBase.HTMLAttributes<HTMLVCheckoutElement>;
