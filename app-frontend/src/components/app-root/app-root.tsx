@@ -21,14 +21,14 @@ export class AppRoot {
   }
 
   @Listen('success_Auth') handle_success_Auth() {
-    this.init_GetAccountData();
+    this.fetch_AccountData();
   }
 
   componentDidLoad() {
-    this.init_GetAccountData();
+    this.fetch_AccountData();
   }
 
-  async init_GetAccountData() {
+  async fetch_AccountData() {
     let { success, message, payload } = await Helper_ApiCall_GetAccountDetails_BySession();
 
     if (!success) {
