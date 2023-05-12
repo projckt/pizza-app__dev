@@ -23,3 +23,7 @@ p {
 .text--danger {
   color: var(--red-dark);
 }
+
+.text--light {
+  color: var(--grey-light);
+}

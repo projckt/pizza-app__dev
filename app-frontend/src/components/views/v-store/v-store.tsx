@@ -97,6 +97,7 @@ export class VStore {
       return alert(`❌ ${message}`);
     }
 
+    state.isVerified_AccountEmail = true;
     alert(`✅ ${message}`);
   }
 
@@ -114,7 +115,6 @@ export class VStore {
       return alert(`❌ ${message}`);
     }
 
-    state.isVerified_AccountEmail = true;
     alert(`✅ ${message}`);
   }
 
@@ -164,7 +164,9 @@ export class VStore {
     <div class="right-panel">
       {!state.isVerified_AccountEmail && <this.Banner_EmailVerification></this.Banner_EmailVerification>}
       <l-spacer value={2}></l-spacer>
-      <e-text variant="subHeading">Store - Buy journals</e-text>
+      <e-text variant="subHeading" theme="light">
+        Store - Buy journals
+      </e-text>
       <l-spacer value={1}></l-spacer>
       <l-seperator></l-seperator>
       <l-spacer value={2}></l-spacer>

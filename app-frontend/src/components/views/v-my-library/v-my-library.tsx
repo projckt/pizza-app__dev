@@ -146,6 +146,12 @@ export class VMyLibrary {
     <div class="right-panel">
       {!state.isVerified_AccountEmail && <this.Banner_EmailVerification></this.Banner_EmailVerification>}
       <l-spacer value={2}></l-spacer>
+      <e-text variant="subHeading" theme="light">
+        My library
+      </e-text>
+      <l-spacer value={1}></l-spacer>
+      <l-seperator></l-seperator>
+      <l-spacer value={2}></l-spacer>
       <e-text>
         Your library is empty. Please visit{' '}
         <e-link action="store" event={true}>
