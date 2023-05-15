@@ -21,6 +21,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "joi": "^17.8.3"
+    "joi": "^17.8.3",
+    "stripe": "^12.5.0"
   }
 }
