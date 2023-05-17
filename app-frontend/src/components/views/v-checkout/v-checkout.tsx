@@ -26,6 +26,12 @@ export class VCheckout {
     }
   }
 
+  @Listen('buttonClick') handle_ButtonClick(e) {
+    if (e.detail.action === 'action_Create_CheckoutSession') {
+      console.log('lel');
+    }
+  }
+
   private data_Document: any;
   private name_Publication: string = '';
   private name_Document: string = '';
@@ -57,6 +63,8 @@ export class VCheckout {
 
     this.isFetched_ViewData = true;
   }
+
+  async create_Checkout_Session() {}
 
   init_ViewData() {
     this.name_Publication = this.data_Document.publication.title;
@@ -138,7 +146,7 @@ export class VCheckout {
                 &lt; Back
               </e-link>
             </e-text>
-            <e-button>Confirm & pay</e-button>
+            <e-button action="action_Create_CheckoutSession">Confirm & pay</e-button>
           </l-row>
         </c-card>
       </Host>

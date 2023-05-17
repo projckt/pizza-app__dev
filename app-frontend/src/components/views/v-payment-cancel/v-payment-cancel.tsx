@@ -1,11 +1,11 @@
 import { Component, Host, h } from '@stencil/core';
 
 @Component({
-  tag: 'v-payment-failed',
-  styleUrl: 'v-payment-failed.css',
+  tag: 'v-payment-cancel',
+  styleUrl: 'v-payment-cancel.css',
   shadow: true,
 })
-export class VPaymentFailed {
+export class VPaymentCancel {
   render() {
     return (
       <Host>

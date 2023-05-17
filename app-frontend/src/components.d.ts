@@ -85,9 +85,9 @@ export namespace Components {
     interface VMyLibrary {
         "history": RouterHistory;
     }
-    interface VPaymentFailed {
+    interface VPaymentCancel {
     }
-    interface VPaymentSuccess {
+    interface VPaymentHandle {
     }
     interface VReader {
     }
@@ -218,17 +218,17 @@ declare global {
         prototype: HTMLVMyLibraryElement;
         new (): HTMLVMyLibraryElement;
     };
-    interface HTMLVPaymentFailedElement extends Components.VPaymentFailed, HTMLStencilElement {
+    interface HTMLVPaymentCancelElement extends Components.VPaymentCancel, HTMLStencilElement {
     }
-    var HTMLVPaymentFailedElement: {
-        prototype: HTMLVPaymentFailedElement;
-        new (): HTMLVPaymentFailedElement;
+    var HTMLVPaymentCancelElement: {
+        prototype: HTMLVPaymentCancelElement;
+        new (): HTMLVPaymentCancelElement;
     };
-    interface HTMLVPaymentSuccessElement extends Components.VPaymentSuccess, HTMLStencilElement {
+    interface HTMLVPaymentHandleElement extends Components.VPaymentHandle, HTMLStencilElement {
     }
-    var HTMLVPaymentSuccessElement: {
-        prototype: HTMLVPaymentSuccessElement;
-        new (): HTMLVPaymentSuccessElement;
+    var HTMLVPaymentHandleElement: {
+        prototype: HTMLVPaymentHandleElement;
+        new (): HTMLVPaymentHandleElement;
     };
     interface HTMLVReaderElement extends Components.VReader, HTMLStencilElement {
     }
@@ -269,8 +269,8 @@ declare global {
         "v-forgot-password": HTMLVForgotPasswordElement;
         "v-login": HTMLVLoginElement;
         "v-my-library": HTMLVMyLibraryElement;
-        "v-payment-failed": HTMLVPaymentFailedElement;
-        "v-payment-success": HTMLVPaymentSuccessElement;
+        "v-payment-cancel": HTMLVPaymentCancelElement;
+        "v-payment-handle": HTMLVPaymentHandleElement;
         "v-reader": HTMLVReaderElement;
         "v-signup": HTMLVSignupElement;
         "v-store": HTMLVStoreElement;
@@ -365,9 +365,9 @@ declare namespace LocalJSX {
         "history"?: RouterHistory;
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
-    interface VPaymentFailed {
+    interface VPaymentCancel {
     }
-    interface VPaymentSuccess {
+    interface VPaymentHandle {
     }
     interface VReader {
     }
@@ -400,8 +400,8 @@ declare namespace LocalJSX {
         "v-forgot-password": VForgotPassword;
         "v-login": VLogin;
         "v-my-library": VMyLibrary;
-        "v-payment-failed": VPaymentFailed;
-        "v-payment-success": VPaymentSuccess;
+        "v-payment-cancel": VPaymentCancel;
+        "v-payment-handle": VPaymentHandle;
         "v-reader": VReader;
         "v-signup": VSignup;
         "v-store": VStore;
@@ -431,8 +431,8 @@ declare module "@stencil/core" {
             "v-forgot-password": LocalJSX.VForgotPassword & JSXBase.HTMLAttributes<HTMLVForgotPasswordElement>;
             "v-login": LocalJSX.VLogin & JSXBase.HTMLAttributes<HTMLVLoginElement>;
             "v-my-library": LocalJSX.VMyLibrary & JSXBase.HTMLAttributes<HTMLVMyLibraryElement>;
-            "v-payment-failed": LocalJSX.VPaymentFailed & JSXBase.HTMLAttributes<HTMLVPaymentFailedElement>;
-            "v-payment-success": LocalJSX.VPaymentSuccess & JSXBase.HTMLAttributes<HTMLVPaymentSuccessElement>;
+            "v-payment-cancel": LocalJSX.VPaymentCancel & JSXBase.HTMLAttributes<HTMLVPaymentCancelElement>;
+            "v-payment-handle": LocalJSX.VPaymentHandle & JSXBase.HTMLAttributes<HTMLVPaymentHandleElement>;
             "v-reader": LocalJSX.VReader & JSXBase.HTMLAttributes<HTMLVReaderElement>;
             "v-signup": LocalJSX.VSignup & JSXBase.HTMLAttributes<HTMLVSignupElement>;
             "v-store": LocalJSX.VStore & JSXBase.HTMLAttributes<HTMLVStoreElement>;

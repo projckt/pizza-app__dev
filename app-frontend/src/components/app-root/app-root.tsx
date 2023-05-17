@@ -59,8 +59,8 @@ export class AppRoot {
           <this.Route_LoggedIn url="/store" component="v-store"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/checkout" component="v-checkout"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/reader" component="v-reader"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/payment-success" component="v-payment-success"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/payment-failed" component="v-payment-failed"></this.Route_LoggedIn>
+          <this.Route_LoggedIn url="/payment-cancel" component="v-payment-cancel"></this.Route_LoggedIn>
+          <this.Route_LoggedIn url="/payment-handle" component="v-payment-handle"></this.Route_LoggedIn>
         </stencil-route-switch>
       </stencil-router>
     );

@@ -1,18 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
-import { VPaymentSuccess } from '../v-payment-success';
+import { VPaymentHandle } from '../v-payment-handle';
 
-describe('v-payment-success', () => {
+describe('v-payment-handle', () => {
   it('renders', async () => {
     const page = await newSpecPage({
-      components: [VPaymentSuccess],
-      html: `<v-payment-success></v-payment-success>`,
+      components: [VPaymentHandle],
+      html: `<v-payment-handle></v-payment-handle>`,
     });
     expect(page.root).toEqualHtml(`
-      <v-payment-success>
+      <v-payment-handle>
         <mock:shadow-root>
           <slot></slot>
         </mock:shadow-root>
-      </v-payment-success>
+      </v-payment-handle>
     `);
   });
 });
