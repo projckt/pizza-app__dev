@@ -18,6 +18,9 @@ export const Vars = {
       publications: {
         all: 'publications',
       },
+      stripe: {
+        create_Checkout_Session: 'stripe-create-checkout-session',
+      },
     },
   },
   cookie: {

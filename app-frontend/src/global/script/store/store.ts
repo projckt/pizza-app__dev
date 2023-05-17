@@ -10,4 +10,5 @@ export const { state } = createStore({
   host: '',
   origin: '',
   code_Country: 'IN',
+  currency: 'inr',
 });

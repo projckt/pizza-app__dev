@@ -1,7 +1,14 @@
 import { Component, Event, EventEmitter, Prop, FunctionalComponent, Listen, State, Host, h } from '@stencil/core';
 import { RouterHistory, injectHistory } from '@stencil/router';
-import { helper_ApiCall_Get_Document, helper_Generate_DocumentDetails_Payload } from './helpers';
+import {
+  helper_ApiCall_Get_Document,
+  helper_Generate_DocumentDetails_Payload,
+  helper_Generate_Create_Stripe_CheckoutSession_Payload,
+  helper_ApiCall_Create_Stripe_CheckoutSession,
+} from './helpers';
 import { state } from '../../../global/script';
+
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   tag: 'v-checkout',
@@ -28,7 +35,7 @@ export class VCheckout {
 
   @Listen('buttonClick') handle_ButtonClick(e) {
     if (e.detail.action === 'action_Create_CheckoutSession') {
-      console.log('lel');
+      this.create_Checkout_Session();
     }
   }
 
@@ -36,6 +43,8 @@ export class VCheckout {
   private name_Publication: string = '';
   private name_Document: string = '';
   private price_Document: string = '';
+  private stripe_Key_Public: string = '';
+  private stripe: any;
 
   componentWillLoad() {
     if (!this.history.location.state) {
@@ -60,15 +69,15 @@ export class VCheckout {
 
     this.data_Document = payload;
     this.init_ViewData();
+    this.init_Stripe();
 
     this.isFetched_ViewData = true;
   }
 
-  async create_Checkout_Session() {}
-
   init_ViewData() {
-    this.name_Publication = this.data_Document.publication.title;
-    this.name_Document = this.data_Document.title;
+    this.name_Publication = this.data_Document.name_Publication;
+    this.name_Document = this.data_Document.name_Document;
+    this.stripe_Key_Public = this.data_Document.stripe_Key_Public;
 
     if (state.code_Country === 'IN') {
       this.price_Document = '₹';
@@ -77,6 +86,23 @@ export class VCheckout {
       this.price_Document = '$';
       this.price_Document = this.price_Document + this.data_Document.price_usd;
     }
+  }
+
+  async init_Stripe() {
+    this.stripe = await loadStripe(this.stripe_Key_Public!);
+  }
+
+  async create_Checkout_Session() {
+    let payload_Create_Stripe_CheckoutSession: any = helper_Generate_Create_Stripe_CheckoutSession_Payload(this.history.location.state, state.currency);
+    let { success, message, payload } = await helper_ApiCall_Create_Stripe_CheckoutSession(payload_Create_Stripe_CheckoutSession);
+    if (!success) {
+      return alert(`❌ ${message}`);
+    }
+
+    const { error } = await this.stripe!.redirectToCheckout({
+      sessionId: payload,
+    });
+    console.warn(error.message);
   }
 
   ui_Skel_Lines: FunctionalComponent = () => (
