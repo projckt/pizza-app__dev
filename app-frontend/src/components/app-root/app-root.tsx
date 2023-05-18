@@ -24,6 +24,8 @@ export class AppRoot {
     this.fetch_AccountData();
   }
 
+  componentWillLoad() {}
+
   componentDidLoad() {
     this.fetch_AccountData();
   }
@@ -38,11 +40,11 @@ export class AppRoot {
 
     helper_Set_AccountDetails(payload);
 
-    if (state.isActive_Session) {
-      this.history.push('/my-library', {});
-    } else {
-      this.history.push('/login', {});
-    }
+    // if (state.isActive_Session) {
+    //   this.history.push('/my-library', {});
+    // } else {
+    //   this.history.push('/login', {});
+    // }
   }
 
   render() {
@@ -59,8 +61,9 @@ export class AppRoot {
           <this.Route_LoggedIn url="/store" component="v-store"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/checkout" component="v-checkout"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/reader" component="v-reader"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/payment-cancel" component="v-payment-cancel"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/payment-handle" component="v-payment-handle"></this.Route_LoggedIn>
+
+          <stencil-route url="/payment-cancel" component="v-payment-cancel" />
+          <stencil-route url="/payment-handle/:id_Session" component="v-payment-handle" />
         </stencil-route-switch>
       </stencil-router>
     );

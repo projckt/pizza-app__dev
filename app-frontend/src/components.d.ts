@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { RouterHistory } from "@stencil/router";
+import { MatchResults, RouterHistory } from "@stencil/router";
 export namespace Components {
     interface AppRoot {
         "history": RouterHistory;
@@ -88,6 +88,8 @@ export namespace Components {
     interface VPaymentCancel {
     }
     interface VPaymentHandle {
+        "history": RouterHistory;
+        "match": MatchResults;
     }
     interface VReader {
     }
@@ -366,8 +368,12 @@ declare namespace LocalJSX {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VPaymentCancel {
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VPaymentHandle {
+        "history"?: RouterHistory;
+        "match"?: MatchResults;
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VReader {
     }

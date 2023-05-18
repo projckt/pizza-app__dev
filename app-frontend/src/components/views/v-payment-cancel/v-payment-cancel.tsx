@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
 
 @Component({
   tag: 'v-payment-cancel',
@@ -6,6 +6,22 @@ import { Component, Host, h } from '@stencil/core';
   shadow: true,
 })
 export class VPaymentCancel {
+  @Event({
+    eventName: 'event_RouteTo',
+    bubbles: true,
+  })
+  event_RouteTo: EventEmitter;
+
+  @Listen('event_LinkClick') handle_LinkClick(e) {
+    if (e.detail.action === 'store') {
+      this.event_RouteTo.emit({
+        type: 'push',
+        route: '/store',
+        data: {},
+      });
+    }
+  }
+
   render() {
     return (
       <Host>
@@ -20,6 +36,9 @@ export class VPaymentCancel {
           </e-text>
           <e-link href="mailto:aitihya.webmaster@gmail.com">
             <strong>aitihya.webmaster@gmail.com</strong>
+          </e-link>
+          <e-link action="store" event={true}>
+            <strong>Go to store</strong>
           </e-link>
         </c-card>
       </Host>

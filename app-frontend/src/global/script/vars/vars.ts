@@ -20,6 +20,7 @@ export const Vars = {
       },
       stripe: {
         create_Checkout_Session: 'stripe-create-checkout-session',
+        check_Session: 'stripe-check-session',
       },
     },
   },
