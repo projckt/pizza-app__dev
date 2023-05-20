@@ -1,7 +1,7 @@
 import { Component, Prop, Listen, h } from '@stencil/core';
 import { RouterHistory, injectHistory } from '@stencil/router';
 import { state } from '../../global/script';
-import { helper_Set_AccountDetails } from './helpers';
+import { helper_Set_AccountDetails, helper_Check_If_AccountDetails_In_LocalStorage, helper_Set_AccountDetails_In_LocalStorage } from './helpers';
 import { Helper_ApiCall_GetAccountDetails_BySession } from '../../global/script/helpers';
 
 @Component({
@@ -24,10 +24,21 @@ export class AppRoot {
     this.fetch_AccountData();
   }
 
-  componentWillLoad() {}
+  private isFetched_AccountData: boolean = false;
+
+  componentWillLoad() {
+    let { success, message, payload } = helper_Check_If_AccountDetails_In_LocalStorage();
+    console.log(message);
+    if (success) {
+      helper_Set_AccountDetails(payload);
+      this.isFetched_AccountData = true;
+    }
+  }
 
   componentDidLoad() {
-    this.fetch_AccountData();
+    if (!this.isFetched_AccountData) {
+      this.fetch_AccountData();
+    }
   }
 
   async fetch_AccountData() {
@@ -39,18 +50,15 @@ export class AppRoot {
     }
 
     helper_Set_AccountDetails(payload);
-
-    // if (state.isActive_Session) {
-    //   this.history.push('/my-library', {});
-    // } else {
-    //   this.history.push('/login', {});
-    // }
+    helper_Set_AccountDetails_In_LocalStorage(payload);
   }
 
   render() {
     return (
       <stencil-router>
         <stencil-route-switch scrollTopOffset={0}>
+          {/* <stencil-route url="/" component="v-login" /> */}
+
           {/* LoggedOut Routes */}
           <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>
           <this.Route_LoggedOut url="/signup" component="v-signup"></this.Route_LoggedOut>
@@ -61,9 +69,11 @@ export class AppRoot {
           <this.Route_LoggedIn url="/store" component="v-store"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/checkout" component="v-checkout"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/reader" component="v-reader"></this.Route_LoggedIn>
+          <this.Route_LoggedIn url="/payment-cancel" component="v-payment-cancel"></this.Route_LoggedIn>
+          <this.Route_LoggedIn url="/payment-handle/:id_Session" component="v-payment-handle"></this.Route_LoggedIn>
 
-          <stencil-route url="/payment-cancel" component="v-payment-cancel" />
-          <stencil-route url="/payment-handle/:id_Session" component="v-payment-handle" />
+          {/* <stencil-route url="/payment-cancel" component="v-payment-cancel" />
+          <stencil-route url="/payment-handle/:id_Session" component="v-payment-handle" /> */}
         </stencil-route-switch>
       </stencil-router>
     );
