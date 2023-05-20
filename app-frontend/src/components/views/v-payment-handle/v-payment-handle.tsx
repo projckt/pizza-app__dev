@@ -26,13 +26,22 @@ export class VPaymentHandle {
   @Prop() match: MatchResults;
   @Prop() history: RouterHistory;
 
-  private is_Session: string;
+  private id_Session: string;
 
   componentWillLoad() {
     if (this.match.params.id_Session) {
-      this.is_Session = this.match.params.id_Session.trim();
+      this.id_Session = this.match.params.id_Session.trim();
     }
-    console.log(`this.is_Session: ${this.is_Session}`);
+  }
+
+  componentDidLoad() {
+    setTimeout(() => {
+      this.fetch_Session_Details();
+    }, 5000);
+  }
+
+  async fetch_Session_Details() {
+    console.log(`fetching session details: ${this.id_Session}`);
   }
 
   render() {

@@ -162,7 +162,12 @@ export class VStore {
 
   RightPanel: FunctionalComponent = () => (
     <div class="right-panel">
-      {!state.isVerified_AccountEmail && <this.Banner_EmailVerification></this.Banner_EmailVerification>}
+      {!state.isVerified_AccountEmail && (
+        <div>
+          <l-spacer value={2}></l-spacer>
+          <this.Banner_EmailVerification></this.Banner_EmailVerification>
+        </div>
+      )}
       <l-spacer value={2}></l-spacer>
       <e-text variant="subHeading" theme="light">
         Store - Buy journals
