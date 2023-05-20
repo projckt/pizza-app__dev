@@ -73,6 +73,7 @@ export class VStore {
     let { success, message, payload } = await helper_ApiCall_Get_Publications();
 
     if (!success) {
+      this.isFetched_ViewData = true;
       return alert(`❌ ${message}`);
     }
 
