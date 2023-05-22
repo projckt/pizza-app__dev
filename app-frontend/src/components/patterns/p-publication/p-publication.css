@@ -1,22 +1,7 @@
 :host {
-  width: 35%;
-}
-
-header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 250px;
-  background: var(--grey-dark);
-  border-radius: var(--site-border-radius) var(--site-border-radius) 0 0;
-  color: white;
-}
-
-footer {
-  padding: 0 var(--site-padding-default);
-  border: 1px solid var(--grey-lightest);
-  border-radius: 0 0 var(--site-border-radius) var(--site-border-radius);
-  word-wrap: break-word;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .item-doc--skel {
@@ -26,6 +11,14 @@ footer {
   background-image: linear-gradient(90deg, #f4f4f4 0px, rgba(229, 229, 229, 0.8) 40%, #f4f4f4 100%);
   background-size: 200%;
   animation: skel-shine 1s infinite ease-out;
+}
+
+.publication--info {
+  width: 45%;
+}
+
+.publication--pricing {
+  width: 25%;
 }
 
 @keyframes skel-shine {

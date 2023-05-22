@@ -42,6 +42,10 @@ export namespace Components {
         "value": any;
         "variant": string;
     }
+    interface EList {
+    }
+    interface EListItem {
+    }
     interface ESelect {
         "name": string;
         "options": any;
@@ -51,6 +55,7 @@ export namespace Components {
         "variant": string;
     }
     interface LRow {
+        "align": string;
         "justifyContent": string;
         "variant": string;
     }
@@ -147,6 +152,18 @@ declare global {
     var HTMLELinkElement: {
         prototype: HTMLELinkElement;
         new (): HTMLELinkElement;
+    };
+    interface HTMLEListElement extends Components.EList, HTMLStencilElement {
+    }
+    var HTMLEListElement: {
+        prototype: HTMLEListElement;
+        new (): HTMLEListElement;
+    };
+    interface HTMLEListItemElement extends Components.EListItem, HTMLStencilElement {
+    }
+    var HTMLEListItemElement: {
+        prototype: HTMLEListItemElement;
+        new (): HTMLEListItemElement;
     };
     interface HTMLESelectElement extends Components.ESelect, HTMLStencilElement {
     }
@@ -259,6 +276,8 @@ declare global {
         "e-button": HTMLEButtonElement;
         "e-input": HTMLEInputElement;
         "e-link": HTMLELinkElement;
+        "e-list": HTMLEListElement;
+        "e-list-item": HTMLEListItemElement;
         "e-select": HTMLESelectElement;
         "e-text": HTMLETextElement;
         "l-row": HTMLLRowElement;
@@ -317,6 +336,10 @@ declare namespace LocalJSX {
         "value"?: any;
         "variant"?: string;
     }
+    interface EList {
+    }
+    interface EListItem {
+    }
     interface ESelect {
         "name"?: string;
         "onEvent_selectInput"?: (event: CustomEvent<any>) => void;
@@ -327,6 +350,7 @@ declare namespace LocalJSX {
         "variant"?: string;
     }
     interface LRow {
+        "align"?: string;
         "justifyContent"?: string;
         "variant"?: string;
     }
@@ -394,6 +418,8 @@ declare namespace LocalJSX {
         "e-button": EButton;
         "e-input": EInput;
         "e-link": ELink;
+        "e-list": EList;
+        "e-list-item": EListItem;
         "e-select": ESelect;
         "e-text": EText;
         "l-row": LRow;
@@ -425,6 +451,8 @@ declare module "@stencil/core" {
             "e-button": LocalJSX.EButton & JSXBase.HTMLAttributes<HTMLEButtonElement>;
             "e-input": LocalJSX.EInput & JSXBase.HTMLAttributes<HTMLEInputElement>;
             "e-link": LocalJSX.ELink & JSXBase.HTMLAttributes<HTMLELinkElement>;
+            "e-list": LocalJSX.EList & JSXBase.HTMLAttributes<HTMLEListElement>;
+            "e-list-item": LocalJSX.EListItem & JSXBase.HTMLAttributes<HTMLEListItemElement>;
             "e-select": LocalJSX.ESelect & JSXBase.HTMLAttributes<HTMLESelectElement>;
             "e-text": LocalJSX.EText & JSXBase.HTMLAttributes<HTMLETextElement>;
             "l-row": LocalJSX.LRow & JSXBase.HTMLAttributes<HTMLLRowElement>;

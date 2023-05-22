@@ -27,50 +27,43 @@ export class PPublication {
   @State() price_Active_Document: string;
   @State() id_Active_Document: string;
 
-  BuyControls: FunctionalComponent = () => (
-    <footer>
-      <l-spacer value={0.75}></l-spacer>
-      <e-text>{this.description}</e-text>
-      <l-row>
-        <e-text variant="footnote">
-          <e-link>Contents</e-link>
-        </e-text>
-        <l-spacer variant="horizontal" value={0.5}></l-spacer>
-        <e-text variant="footnote">
-          <e-link>Abstracts</e-link>
-        </e-text>
-        <l-spacer variant="horizontal" value={0.5}></l-spacer>
-        <e-text variant="footnote">
-          <e-link>Cover</e-link>
-        </e-text>
-      </l-row>
-      <l-spacer value={0.75}></l-spacer>
-      <l-seperator></l-seperator>
-      <l-spacer value={1}></l-spacer>
-      <l-row justifyContent="space-between">
-        <e-select options={this.documents} name="select_Document"></e-select>
-        <e-text>{this.price_Active_Document}</e-text>
-      </l-row>
-      <l-spacer value={1}></l-spacer>
-      <e-button action="goToCheckout" value={this.id_Active_Document} size="wide">
-        Buy
-      </e-button>
-      <l-spacer value={1}></l-spacer>
-    </footer>
-  );
-
   ui_Skel: FunctionalComponent = () => <div class="item-doc--skel"></div>;
 
   ui_Default: FunctionalComponent = () => (
-    <div>
-      <header>
-        <span>
-          <e-text variant="subHeading">{this.heading}</e-text>
-          <e-text>{this.sub_Heading}</e-text>
-        </span>
-      </header>
-      <this.BuyControls></this.BuyControls>
-    </div>
+    <l-row justifyContent="space-between" align="baseline">
+      <div class="publication--info">
+        <e-text>
+          {this.heading}, {this.sub_Heading}
+        </e-text>
+        <l-row>
+          <e-text>
+            <e-link>Contents</e-link>
+          </e-text>
+          <l-spacer variant="horizontal" value={0.5}></l-spacer>
+          <e-text>
+            <e-link>Abstracts</e-link>
+          </e-text>
+          <l-spacer variant="horizontal" value={0.5}></l-spacer>
+          <e-text>
+            <e-link>Cover</e-link>
+          </e-text>
+        </l-row>
+        <l-spacer value={0.5}></l-spacer>
+        <e-text variant="footnote">{this.description}</e-text>
+      </div>
+      <div class="publication--pricing">
+        <l-row justifyContent="space-between">
+          <e-select options={this.documents} name="select_Document"></e-select>
+        </l-row>
+        <l-spacer value={1}></l-spacer>
+        <l-row justifyContent="space-between">
+          <e-text>{this.price_Active_Document}</e-text>
+          <e-button action="goToCheckout" value={this.id_Active_Document} size="wide">
+            Buy
+          </e-button>
+        </l-row>
+      </div>
+    </l-row>
   );
 
   render() {

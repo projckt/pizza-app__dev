@@ -192,20 +192,22 @@ export class VStore {
   ui_Gallery: FunctionalComponent = () => (
     <div>
       {this.data_Publications.length > 0 ? (
-        <p-gallery>
+        <e-list>
           {this.data_Publications.map(publication => (
-            <p-publication
-              id_Publication={publication.id}
-              heading={publication.title}
-              sub_Heading={publication.edition}
-              description={publication.description}
-              url_Sample={publication.url_sample}
-              url_Toc={publication.url_toc}
-              url_Cover={publication.url_Cover}
-              documents={JSON.stringify(publication.documents)}
-            ></p-publication>
+            <e-list-item>
+              <p-publication
+                id_Publication={publication.id}
+                heading={publication.title}
+                sub_Heading={publication.edition}
+                description={publication.description}
+                url_Sample={publication.url_sample}
+                url_Toc={publication.url_toc}
+                url_Cover={publication.url_Cover}
+                documents={JSON.stringify(publication.documents)}
+              ></p-publication>
+            </e-list-item>
           ))}
-        </p-gallery>
+        </e-list>
       ) : (
         <e-text>There are no publications on sale</e-text>
       )}
