@@ -1,5 +1,4 @@
 import { Component, Host, State, FunctionalComponent, Prop, Listen, h } from '@stencil/core';
-import { Helper_Generate_Document_Price } from '../../../global/script/helpers';
 
 @Component({
   tag: 'p-publication',
@@ -9,7 +8,6 @@ import { Helper_Generate_Document_Price } from '../../../global/script/helpers';
 export class PPublication {
   @Listen('event_selectInput') handle_SelectInput(e) {
     if (e.detail.name === 'select_Document') {
-      this.price_Active_Document = Helper_Generate_Document_Price(JSON.parse(this.documents), e.detail.value);
       this.id_Active_Document = e.detail.value;
     }
   }

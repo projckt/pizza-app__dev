@@ -78,14 +78,6 @@ export class VCheckout {
     this.name_Publication = this.data_Document.name_Publication;
     this.name_Document = this.data_Document.name_Document;
     this.stripe_Key_Public = this.data_Document.stripe_Key_Public;
-
-    if (state.code_Country === 'IN') {
-      this.price_Document = '₹';
-      this.price_Document = this.price_Document + this.data_Document.price_inr;
-    } else {
-      this.price_Document = '$';
-      this.price_Document = this.price_Document + this.data_Document.price_usd;
-    }
   }
 
   async init_Stripe() {
@@ -93,7 +85,7 @@ export class VCheckout {
   }
 
   async create_Checkout_Session() {
-    let payload_Create_Stripe_CheckoutSession: any = helper_Generate_Create_Stripe_CheckoutSession_Payload(this.history.location.state, state.currency);
+    let payload_Create_Stripe_CheckoutSession: any = helper_Generate_Create_Stripe_CheckoutSession_Payload(this.history.location.state);
     let { success, message, payload } = await helper_ApiCall_Create_Stripe_CheckoutSession(payload_Create_Stripe_CheckoutSession);
     if (!success) {
       return alert(`❌ ${message}`);
