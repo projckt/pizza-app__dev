@@ -7,4 +7,5 @@ export const { state } = createStore({
   account_Email: '',
   isVerified_AccountEmail: false,
   isPublisher: false,
+  current_Location: 'IN',
 });

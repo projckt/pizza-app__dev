@@ -27,8 +27,7 @@ export class AppRoot {
   private isFetched_AccountData: boolean = false;
 
   componentWillLoad() {
-    let { success, message, payload } = helper_Check_If_AccountDetails_In_LocalStorage();
-    console.log(message);
+    let { success, payload } = helper_Check_If_AccountDetails_In_LocalStorage();
     if (success) {
       helper_Set_AccountDetails(payload);
       this.isFetched_AccountData = true;

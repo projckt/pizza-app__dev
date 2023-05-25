@@ -25,6 +25,18 @@ export class PPublication {
   @State() price_Active_Document: string;
   @State() id_Active_Document: string;
 
+  componentWillLoad() {
+    if (this.documents) {
+      this.generate_Price_Active_Document();
+    }
+  }
+
+  generate_Price_Active_Document() {
+    let parsed_Documents: any = JSON.parse(this.documents);
+    this.price_Active_Document = `${parsed_Documents[0].currency}${parsed_Documents[0].price}`;
+    this.id_Active_Document = parsed_Documents[0].id;
+  }
+
   ui_Skel: FunctionalComponent = () => <div class="item-doc--skel"></div>;
 
   ui_Default: FunctionalComponent = () => (
