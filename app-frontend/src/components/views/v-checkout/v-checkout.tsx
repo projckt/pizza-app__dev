@@ -71,7 +71,13 @@ export class VCheckout {
     let payload_Get_Document_Inputs: any = helper_Generate_DocumentDetails_Payload(this.id_Document);
     let { success, message, payload } = await helper_ApiCall_Document_Checkout(payload_Get_Document_Inputs);
     if (!success) {
-      return alert(`❌ ${message}`);
+      alert(`❌ ${message}`);
+      this.event_RouteTo.emit({
+        type: 'push',
+        route: '/store',
+        data: {},
+      });
+      return;
     }
 
     this.data_Document = payload;
