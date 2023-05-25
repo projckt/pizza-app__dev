@@ -33,8 +33,7 @@ export class VStore {
     if (e.detail.action === 'goToCheckout') {
       this.event_RouteTo.emit({
         type: 'push',
-        route: '/checkout',
-        data: e.detail.value,
+        route: `/checkout/${e.detail.value}`,
       });
     } else if (e.detail.action === 'action_ReSend_EmailVerificationCode') {
       this.handle_Submit_ReSend_EmailVerificationCode();

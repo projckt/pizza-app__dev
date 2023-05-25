@@ -1,12 +1,12 @@
 import { Component, Event, EventEmitter, Prop, FunctionalComponent, Listen, State, Host, h } from '@stencil/core';
-import { RouterHistory, injectHistory } from '@stencil/router';
+import { MatchResults, RouterHistory, injectHistory } from '@stencil/router';
+
 import {
-  helper_ApiCall_Get_Document,
+  helper_ApiCall_Document_Checkout,
   helper_Generate_DocumentDetails_Payload,
   helper_Generate_Create_Stripe_CheckoutSession_Payload,
   helper_ApiCall_Create_Stripe_CheckoutSession,
 } from './helpers';
-import { state } from '../../../global/script';
 
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -16,6 +16,7 @@ import { loadStripe } from '@stripe/stripe-js';
   shadow: true,
 })
 export class VCheckout {
+  @Prop() match: MatchResults;
   @Prop() history: RouterHistory;
   @State() isFetched_ViewData: boolean = false;
 
@@ -40,20 +41,26 @@ export class VCheckout {
   }
 
   private data_Document: any;
-  private name_Publication: string = '';
-  private name_Document: string = '';
-  private price_Document: string = '';
+  private id_Document: string = '';
+  private title_Publication: string = '';
+  private edition_Publication: string = '';
+  private title_Document: string = '';
+  private price_Currency: string = '';
+  private price_Value: number = 0;
+  private fee_Processing_Gateway: number = 0;
   private stripe_Key_Public: string = '';
   private stripe: any;
 
   componentWillLoad() {
-    if (!this.history.location.state) {
+    if (!this.match.params.id_Document) {
       this.event_RouteTo.emit({
         type: 'push',
         route: '/store',
         data: {},
       });
     }
+
+    this.id_Document = this.match.params.id_Document.trim();
   }
 
   componentDidLoad() {
@@ -61,8 +68,8 @@ export class VCheckout {
   }
 
   async fetch_ViewData() {
-    let payload_Get_Document_Inputs: any = helper_Generate_DocumentDetails_Payload(this.history.location.state);
-    let { success, message, payload } = await helper_ApiCall_Get_Document(payload_Get_Document_Inputs);
+    let payload_Get_Document_Inputs: any = helper_Generate_DocumentDetails_Payload(this.id_Document);
+    let { success, message, payload } = await helper_ApiCall_Document_Checkout(payload_Get_Document_Inputs);
     if (!success) {
       return alert(`❌ ${message}`);
     }
@@ -75,9 +82,16 @@ export class VCheckout {
   }
 
   init_ViewData() {
-    this.name_Publication = this.data_Document.name_Publication;
-    this.name_Document = this.data_Document.name_Document;
-    this.stripe_Key_Public = this.data_Document.stripe_Key_Public;
+    this.title_Document = this.data_Document.title_Document;
+
+    this.title_Publication = this.data_Document.title_Publication;
+    this.edition_Publication = this.data_Document.edition_Publication;
+
+    this.price_Currency = this.data_Document.price.currency;
+    this.price_Value = this.data_Document.price.value;
+
+    this.fee_Processing_Gateway = this.data_Document.gateway.processing_fee;
+    this.stripe_Key_Public = this.data_Document.gateway.stripe_Key_Public;
   }
 
   async init_Stripe() {
@@ -111,30 +125,46 @@ export class VCheckout {
 
   ui_Details: FunctionalComponent = () => (
     <div>
-      <e-text variant="subHeading">{this.name_Publication}</e-text>
-      <e-text>{this.name_Document}</e-text>
+      <e-text variant="subHeading">{this.title_Publication}</e-text>
+      <e-text>{this.edition_Publication}</e-text>
+      <l-spacer value={0.5}></l-spacer>
+      <l-seperator></l-seperator>
     </div>
   );
 
   ui_Summary: FunctionalComponent = () => (
-    <table>
-      <tr>
-        <td>Item cost</td>
-        <td>{this.price_Document}</td>
-      </tr>
-      <tr>
-        <td>Processing fees</td>
-        <td>{this.price_Document[0]}0</td>
-      </tr>
-      <tr>
-        <td>
-          <strong>Grand total</strong>
-        </td>
-        <td>
-          <strong>{this.price_Document}</strong>
-        </td>
-      </tr>
-    </table>
+    <div>
+      <e-text variant="subHeading">Item:</e-text>
+      <e-text>{this.title_Document}</e-text>
+      <l-spacer value={1}></l-spacer>
+      <table>
+        <tr>
+          <td>Item cost</td>
+          <td>
+            {this.price_Currency}
+            {this.price_Value}
+          </td>
+        </tr>
+        <tr>
+          <td>Processing fees</td>
+          <td>
+            {this.price_Currency}
+            {this.fee_Processing_Gateway}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Grand total</strong>
+          </td>
+          <td>
+            <strong>
+              {this.price_Currency}
+              {this.price_Value + this.fee_Processing_Gateway}
+            </strong>
+          </td>
+        </tr>
+      </table>
+    </div>
   );
 
   render() {

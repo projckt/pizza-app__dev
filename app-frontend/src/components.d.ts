@@ -82,6 +82,7 @@ export namespace Components {
     }
     interface VCheckout {
         "history": RouterHistory;
+        "match": MatchResults;
     }
     interface VForgotPassword {
     }
@@ -378,6 +379,7 @@ declare namespace LocalJSX {
     }
     interface VCheckout {
         "history"?: RouterHistory;
+        "match"?: MatchResults;
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VForgotPassword {

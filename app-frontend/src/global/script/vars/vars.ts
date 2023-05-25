@@ -7,6 +7,7 @@ export const Vars = {
         all: 'documents',
         single: 'document',
         price: 'document-price',
+        checkout: 'document-checkout',
       },
       get_AccountDetails: 'account-details',
       login: 'login',
