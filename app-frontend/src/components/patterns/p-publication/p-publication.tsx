@@ -1,4 +1,6 @@
 import { Component, Host, State, FunctionalComponent, Prop, Listen, h } from '@stencil/core';
+import { helper_Generate_Payload_To_Fetch_DocumentPrice, helper_ApiCall_Fetch_DocumentPrice } from './helpers';
+import { interface_Fetch_DocumentPrice_Payload } from './interfaces';
 
 @Component({
   tag: 'p-publication',
@@ -8,7 +10,9 @@ import { Component, Host, State, FunctionalComponent, Prop, Listen, h } from '@s
 export class PPublication {
   @Listen('event_selectInput') handle_SelectInput(e) {
     if (e.detail.name === 'select_Document') {
-      this.id_Active_Document = e.detail.value;
+      if (this.isLoaded) {
+        this.fetch_DocumentPrice(e.detail.value);
+      }
     }
   }
 
@@ -25,10 +29,28 @@ export class PPublication {
   @State() price_Active_Document: string;
   @State() id_Active_Document: string;
 
+  private isLoaded: boolean = false;
+
   componentWillLoad() {
     if (this.documents) {
       this.generate_Price_Active_Document();
     }
+  }
+
+  componentDidLoad() {
+    this.isLoaded = true;
+  }
+
+  async fetch_DocumentPrice(id_Document: string) {
+    let payload_To_Fetch_DocumentPrice: interface_Fetch_DocumentPrice_Payload = helper_Generate_Payload_To_Fetch_DocumentPrice(id_Document);
+    let { success, message, payload } = await helper_ApiCall_Fetch_DocumentPrice(payload_To_Fetch_DocumentPrice);
+
+    if (!success) {
+      return alert(`❌ ${message}`);
+    }
+
+    this.id_Active_Document = payload.id;
+    this.price_Active_Document = `${payload.currency}${payload.price}`;
   }
 
   generate_Price_Active_Document() {
