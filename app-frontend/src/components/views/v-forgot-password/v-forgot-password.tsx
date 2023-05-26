@@ -68,21 +68,21 @@ export class VForgotPassword {
 
     let { isValid_SendResetCode_Inputs, message_Validate_SendResetCode_Inputs } = helper_Validate_SendResetCode_Inputs(payload_SendResetCode_Inputs);
     if (!isValid_SendResetCode_Inputs) {
-      return alert(`❌ ${message_Validate_SendResetCode_Inputs}`);
+      return alert(message_Validate_SendResetCode_Inputs);
     }
 
     let { isSuccess_SendResetCode_Inputs_Submission, message_SendResetCode_Inputs_Submission, payload_SendResetCode_Inputs_Submission } = await helper_SendResetCode_Api(
       payload_SendResetCode_Inputs,
     );
     if (!isSuccess_SendResetCode_Inputs_Submission) {
-      return alert(`❌ ${message_SendResetCode_Inputs_Submission}`);
+      return alert(message_SendResetCode_Inputs_Submission);
     }
 
     if (!payload_SendResetCode_Inputs_Submission.success) {
-      return alert(`❌ ${payload_SendResetCode_Inputs_Submission.message}`);
+      return alert(payload_SendResetCode_Inputs_Submission);
     }
 
-    alert(`✅ ${payload_SendResetCode_Inputs_Submission.message}`);
+    alert(payload_SendResetCode_Inputs_Submission.message);
 
     this.wizard_CurrentStep = this.wizard_CurrentStep + 1;
     this.state = this.wizard_Steps[this.wizard_CurrentStep];
@@ -98,17 +98,17 @@ export class VForgotPassword {
 
     let { isValid_ConfirmPassword_Inputs, message_Validate_ConfirmPassword_Inputs } = helper_Validate_ConfirmPassword_Inputs(payload_ConfirmPassword_Inputs);
     if (!isValid_ConfirmPassword_Inputs) {
-      return alert(`❌ ${message_Validate_ConfirmPassword_Inputs}`);
+      return alert(message_Validate_ConfirmPassword_Inputs);
     }
 
     let { isSuccess_ConfirmPassword_Inputs_Submission, message_ConfirmPassword_Inputs_Submission, payload_ConfirmPassword_Inputs_Submission } = await helper_ConfirmPassword_Api(
       payload_ConfirmPassword_Inputs,
     );
     if (!isSuccess_ConfirmPassword_Inputs_Submission) {
-      return alert(`❌ ${message_ConfirmPassword_Inputs_Submission}`);
+      return alert(message_ConfirmPassword_Inputs_Submission);
     }
 
-    alert(`✅ ${payload_ConfirmPassword_Inputs_Submission.message}. Proceed to login`);
+    alert(`${payload_ConfirmPassword_Inputs_Submission.message}. Proceed to login`);
 
     this.event_RouteTo.emit({
       type: 'push',

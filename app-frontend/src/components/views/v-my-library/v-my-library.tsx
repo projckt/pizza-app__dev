@@ -61,15 +61,15 @@ export class VMyLibrary {
     let { isValid_ReSend_EmailVerificationCode_Inputs, message_Validate_ReSend_EmailVerificationCode_Inputs } =
       helper_Validate_ReSend_EmailVerificationCode_Inputs(payload_ReSend_EmailVerificationCode_Inputs);
     if (!isValid_ReSend_EmailVerificationCode_Inputs) {
-      return alert(`❌ ${message_Validate_ReSend_EmailVerificationCode_Inputs}`);
+      return alert(message_Validate_ReSend_EmailVerificationCode_Inputs);
     }
 
     let { success, message } = await helper_ApiCall_ReSend_EmailVerificationCode(payload_ReSend_EmailVerificationCode_Inputs);
     if (!success) {
-      return alert(`❌ ${message}`);
+      return alert(message);
     }
 
-    alert(`✅ ${message}`);
+    alert(message);
   }
 
   handle_Input_EmailVerification_Code() {
@@ -88,16 +88,16 @@ export class VMyLibrary {
     let { isValid_Submit_EmailVerificationCode_Inputs, message_Validate_Submit_EmailVerificationCode_Inputs } =
       helper_Validate_Submit_EmailVerificationCode_Inputs(payload_Submit_EmailVerificationCode_Inputs);
     if (!isValid_Submit_EmailVerificationCode_Inputs) {
-      return alert(`❌ ${message_Validate_Submit_EmailVerificationCode_Inputs}`);
+      return alert(message_Validate_Submit_EmailVerificationCode_Inputs);
     }
 
     let { success, message } = await helper_ApiCall_Submit_EmailVerificationCode(payload_Submit_EmailVerificationCode_Inputs);
     if (!success) {
-      return alert(`❌ ${message}`);
+      return alert(message);
     }
 
     state.isVerified_AccountEmail = true;
-    alert(`✅ ${message}`);
+    alert(message);
   }
 
   Banner_EmailVerification: FunctionalComponent = () => (

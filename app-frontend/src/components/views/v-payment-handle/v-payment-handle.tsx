@@ -1,6 +1,8 @@
 import { Component, Event, EventEmitter, State, Host, Listen, Prop, h, FunctionalComponent } from '@stencil/core';
 import { MatchResults, RouterHistory, injectHistory } from '@stencil/router';
 
+import { helper_Generate_Stripe_SessionCheck_Payload, helper_ApiCall_Stripe_SessionCheck } from './helpers';
+
 @Component({
   tag: 'v-payment-handle',
   styleUrl: 'v-payment-handle.css',
@@ -34,18 +36,23 @@ export class VPaymentHandle {
     if (this.match.params.id_Session) {
       this.id_Session = this.match.params.id_Session.trim();
     }
-
-    console.log(this.id_Session);
   }
 
   componentDidLoad() {
     setTimeout(() => {
-      this.fetch_Session_Details();
+      this.fetch_ViewData();
     }, 5000);
   }
 
-  async fetch_Session_Details() {
-    console.log(`fetching session details: ${this.id_Session}`);
+  async fetch_ViewData() {
+    let payload_Stripe_SessionCheck: any = helper_Generate_Stripe_SessionCheck_Payload(this.id_Session);
+    let { success, message } = await helper_ApiCall_Stripe_SessionCheck(payload_Stripe_SessionCheck);
+
+    if (!success) {
+      return alert(message);
+    }
+
+    this.isFetched_ViewData = true;
   }
 
   UI_Skel: FunctionalComponent = () => (

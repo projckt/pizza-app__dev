@@ -46,7 +46,7 @@ export class PPublication {
     let { success, message, payload } = await helper_ApiCall_Fetch_DocumentPrice(payload_To_Fetch_DocumentPrice);
 
     if (!success) {
-      return alert(`❌ ${message}`);
+      return alert(message);
     }
 
     this.id_Active_Document = payload.id;

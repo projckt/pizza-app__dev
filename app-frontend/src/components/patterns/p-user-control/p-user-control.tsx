@@ -24,11 +24,11 @@ export class PUserControl {
   async handle_Logout() {
     let { success, message, payload } = await helper_UserControl_Api_Logout();
     if (!success) {
-      return alert(`❌ ${message}`);
+      return alert(message);
     }
 
     if (!payload.success) {
-      return alert(`❌ ${payload.message}`);
+      return alert(payload.message);
     }
 
     helper_Clear_AccountDetails_In_LocalStorage();

@@ -71,7 +71,7 @@ export class VCheckout {
     let payload_Get_Document_Inputs: any = helper_Generate_DocumentDetails_Payload(this.id_Document);
     let { success, message, payload } = await helper_ApiCall_Document_Checkout(payload_Get_Document_Inputs);
     if (!success) {
-      alert(`❌ ${message}`);
+      alert(message);
       this.event_RouteTo.emit({
         type: 'push',
         route: '/store',
@@ -108,7 +108,7 @@ export class VCheckout {
     let payload_Create_Stripe_CheckoutSession: any = helper_Generate_Create_Stripe_CheckoutSession_Payload(this.id_Document);
     let { success, message, payload } = await helper_ApiCall_Create_Stripe_CheckoutSession(payload_Create_Stripe_CheckoutSession);
     if (!success) {
-      return alert(`❌ ${message}`);
+      return alert(message);
     }
 
     const { error } = await this.stripe!.redirectToCheckout({

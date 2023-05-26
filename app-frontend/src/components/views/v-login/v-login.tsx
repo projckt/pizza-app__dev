@@ -58,16 +58,16 @@ export class VLogin {
 
     let { isValid_LoginInputs, message_Validate_LoginInputs } = helper_Validate_LoginInputs(payload_LoginInputs);
     if (!isValid_LoginInputs) {
-      return alert(`❌ ${message_Validate_LoginInputs}`);
+      return alert(message_Validate_LoginInputs);
     }
 
     let { isSuccess_LoginInputs_Submission, message_LoginInputs_Submission, payload_LoginInputs_Submission } = await helper_Login_Api(payload_LoginInputs);
     if (!isSuccess_LoginInputs_Submission) {
-      return alert(`❌ ${message_LoginInputs_Submission}`);
+      return alert(message_LoginInputs_Submission);
     }
 
     if (!payload_LoginInputs_Submission.success) {
-      return alert(`❌ ${payload_LoginInputs_Submission.message}`);
+      return alert(payload_LoginInputs_Submission.message);
     }
 
     this.success_Auth.emit();
