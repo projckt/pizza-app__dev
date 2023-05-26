@@ -37,6 +37,7 @@ export class VPaymentCancel {
           <e-link href="mailto:aitihya.webmaster@gmail.com">
             <strong>aitihya.webmaster@gmail.com</strong>
           </e-link>
+          <l-spacer value={1}></l-spacer>
           <e-link action="store" event={true}>
             <strong>Go to store</strong>
           </e-link>
