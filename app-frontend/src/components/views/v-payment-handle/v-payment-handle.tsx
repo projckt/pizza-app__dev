@@ -41,7 +41,7 @@ export class VPaymentHandle {
   componentDidLoad() {
     setTimeout(() => {
       this.fetch_ViewData();
-    }, 5000);
+    }, 4000);
   }
 
   async fetch_ViewData() {
@@ -57,6 +57,9 @@ export class VPaymentHandle {
 
   UI_Skel: FunctionalComponent = () => (
     <c-card>
+      <e-text>
+        <strong>Confirming payment..</strong>
+      </e-text>
       <div class="skel__line"></div>
       <div class="skel__line"></div>
       <div class="skel__line"></div>
