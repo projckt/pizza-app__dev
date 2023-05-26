@@ -105,7 +105,7 @@ export class VCheckout {
   }
 
   async create_Checkout_Session() {
-    let payload_Create_Stripe_CheckoutSession: any = helper_Generate_Create_Stripe_CheckoutSession_Payload(this.history.location.state);
+    let payload_Create_Stripe_CheckoutSession: any = helper_Generate_Create_Stripe_CheckoutSession_Payload(this.id_Document);
     let { success, message, payload } = await helper_ApiCall_Create_Stripe_CheckoutSession(payload_Create_Stripe_CheckoutSession);
     if (!success) {
       return alert(`❌ ${message}`);
@@ -114,6 +114,7 @@ export class VCheckout {
     const { error } = await this.stripe!.redirectToCheckout({
       sessionId: payload,
     });
+
     console.warn(error.message);
   }
 
