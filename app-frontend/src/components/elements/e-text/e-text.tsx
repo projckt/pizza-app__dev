@@ -12,10 +12,10 @@ export class EText {
   private styleClasses: string;
 
   componentWillLoad() {
-    this.render_StyleClasses();
+    this.generate_StyleClasses();
   }
 
-  render_StyleClasses() {
+  generate_StyleClasses() {
     this.styleClasses = this.styleClasses + ` text--${this.variant}`;
     this.styleClasses = this.styleClasses + ` text--${this.theme}`;
   }

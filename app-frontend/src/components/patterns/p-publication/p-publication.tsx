@@ -59,7 +59,24 @@ export class PPublication {
     this.id_Active_Document = parsed_Documents[0].id;
   }
 
-  ui_Skel: FunctionalComponent = () => <div class="item-doc--skel"></div>;
+  ui_Skel: FunctionalComponent = () => (
+    <div>
+      <l-row justifyContent="space-between">
+        <div>
+          <div class="skel-item skel-item-300"></div>
+          <l-spacer value={1}></l-spacer>
+          <div class="skel-item skel-item-300"></div>
+          <l-spacer value={1.5}></l-spacer>
+          <div class="skel-item skel-item-200"></div>
+        </div>
+        <div>
+          <div class="skel-item skel-item-150"></div>
+          <l-spacer value={1}></l-spacer>
+          <div class="skel-item skel-item-200"></div>
+        </div>
+      </l-row>
+    </div>
+  );
 
   ui_Default: FunctionalComponent = () => (
     <l-row justifyContent="space-between" align="baseline">

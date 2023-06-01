@@ -180,12 +180,17 @@ export class VStore {
   );
 
   ui_Skel: FunctionalComponent = () => (
-    <p-gallery>
-      <p-publication isSkel={true}></p-publication>
-      <p-publication isSkel={true}></p-publication>
-      <p-publication isSkel={true}></p-publication>
-      <p-publication isSkel={true}></p-publication>
-    </p-gallery>
+    <e-list>
+      <e-list-item>
+        <p-publication isSkel={true}></p-publication>
+      </e-list-item>
+      <e-list-item>
+        <p-publication isSkel={true}></p-publication>
+      </e-list-item>
+      <e-list-item>
+        <p-publication isSkel={true}></p-publication>
+      </e-list-item>
+    </e-list>
   );
 
   ui_Gallery: FunctionalComponent = () =>
