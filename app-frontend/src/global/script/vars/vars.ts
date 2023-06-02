@@ -20,6 +20,9 @@ export const Vars = {
       publications: {
         all: 'publications',
       },
+      readings: {
+        all: 'readings',
+      },
       stripe: {
         create_Checkout_Session: 'stripe-create-checkout-session',
         check_Session: 'stripe-check-session',

@@ -78,6 +78,12 @@ export namespace Components {
         "url_Sample": string;
         "url_Toc": string;
     }
+    interface PReading {
+        "document": string;
+        "edition": string;
+        "id": string;
+        "title": string;
+    }
     interface PUserControl {
     }
     interface VCheckout {
@@ -208,6 +214,12 @@ declare global {
         prototype: HTMLPPublicationElement;
         new (): HTMLPPublicationElement;
     };
+    interface HTMLPReadingElement extends Components.PReading, HTMLStencilElement {
+    }
+    var HTMLPReadingElement: {
+        prototype: HTMLPReadingElement;
+        new (): HTMLPReadingElement;
+    };
     interface HTMLPUserControlElement extends Components.PUserControl, HTMLStencilElement {
     }
     var HTMLPUserControlElement: {
@@ -286,6 +298,7 @@ declare global {
         "l-spacer": HTMLLSpacerElement;
         "p-gallery": HTMLPGalleryElement;
         "p-publication": HTMLPPublicationElement;
+        "p-reading": HTMLPReadingElement;
         "p-user-control": HTMLPUserControlElement;
         "v-checkout": HTMLVCheckoutElement;
         "v-forgot-password": HTMLVForgotPasswordElement;
@@ -374,6 +387,12 @@ declare namespace LocalJSX {
         "url_Sample"?: string;
         "url_Toc"?: string;
     }
+    interface PReading {
+        "document"?: string;
+        "edition"?: string;
+        "id"?: string;
+        "title"?: string;
+    }
     interface PUserControl {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
@@ -429,6 +448,7 @@ declare namespace LocalJSX {
         "l-spacer": LSpacer;
         "p-gallery": PGallery;
         "p-publication": PPublication;
+        "p-reading": PReading;
         "p-user-control": PUserControl;
         "v-checkout": VCheckout;
         "v-forgot-password": VForgotPassword;
@@ -462,6 +482,7 @@ declare module "@stencil/core" {
             "l-spacer": LocalJSX.LSpacer & JSXBase.HTMLAttributes<HTMLLSpacerElement>;
             "p-gallery": LocalJSX.PGallery & JSXBase.HTMLAttributes<HTMLPGalleryElement>;
             "p-publication": LocalJSX.PPublication & JSXBase.HTMLAttributes<HTMLPPublicationElement>;
+            "p-reading": LocalJSX.PReading & JSXBase.HTMLAttributes<HTMLPReadingElement>;
             "p-user-control": LocalJSX.PUserControl & JSXBase.HTMLAttributes<HTMLPUserControlElement>;
             "v-checkout": LocalJSX.VCheckout & JSXBase.HTMLAttributes<HTMLVCheckoutElement>;
             "v-forgot-password": LocalJSX.VForgotPassword & JSXBase.HTMLAttributes<HTMLVForgotPasswordElement>;

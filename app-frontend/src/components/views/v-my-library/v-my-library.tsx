@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, FunctionalComponent, Listen, Prop, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, FunctionalComponent, Listen, Prop, State, Host, h } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 import { interface_ReSend_EmailVerificationCode_Inputs, interface_Submit_EmailVerificationCode_Inputs } from './interfaces';
 import { generate_ReSend_EmailVerificationCode_Payload, generate_Submit_EmailVerificationCode_Payload } from './helpers';
@@ -8,6 +8,7 @@ import {
   helper_ApiCall_ReSend_EmailVerificationCode,
   helper_Validate_Submit_EmailVerificationCode_Inputs,
   helper_ApiCall_Submit_EmailVerificationCode,
+  helper_ApiCall_Get_Readings,
 } from './helpers';
 
 @Component({
@@ -17,8 +18,10 @@ import {
 })
 export class VMyLibrary {
   @Prop() history: RouterHistory;
+  @State() isFetched_ViewData: boolean = false;
 
   private code_EmailVerification: number = 0;
+  private data_Readings: any = [];
 
   @Event({
     eventName: 'event_RouteTo',
@@ -49,6 +52,22 @@ export class VMyLibrary {
       this.code_EmailVerification = e.detail.value;
       this.handle_Input_EmailVerification_Code();
     }
+  }
+
+  componentDidLoad() {
+    this.fetch_ViewData();
+  }
+
+  async fetch_ViewData() {
+    let { success, message, payload } = await helper_ApiCall_Get_Readings();
+
+    if (!success) {
+      this.isFetched_ViewData = true;
+      return alert(message);
+    }
+
+    this.data_Readings = payload;
+    this.isFetched_ViewData = true;
   }
 
   open_Reader() {
@@ -157,6 +176,34 @@ export class VMyLibrary {
       <l-spacer value={1}></l-spacer>
       <l-seperator></l-seperator>
       <l-spacer value={2}></l-spacer>
+      {this.isFetched_ViewData ? <this.ui_Gallery></this.ui_Gallery> : <this.ui_Skel></this.ui_Skel>}
+    </div>
+  );
+
+  ui_Skel: FunctionalComponent = () => (
+    <e-list>
+      <e-list-item>
+        <p-publication isSkel={true}></p-publication>
+      </e-list-item>
+      <e-list-item>
+        <p-publication isSkel={true}></p-publication>
+      </e-list-item>
+      <e-list-item>
+        <p-publication isSkel={true}></p-publication>
+      </e-list-item>
+    </e-list>
+  );
+
+  ui_Gallery: FunctionalComponent = () =>
+    this.data_Readings.length > 0 ? (
+      <e-list>
+        {this.data_Readings.map(reading => (
+          <e-list-item>
+            <p-reading id={reading.id} title={reading.publication.title} edition={reading.publication.edition} document={reading.title}></p-reading>
+          </e-list-item>
+        ))}
+      </e-list>
+    ) : (
       <e-text>
         Your library is empty. Please visit{' '}
         <e-link action="store" event={true}>
@@ -164,8 +211,7 @@ export class VMyLibrary {
         </e-link>{' '}
         to buy journals
       </e-text>
-    </div>
-  );
+    );
 
   render() {
     return (
