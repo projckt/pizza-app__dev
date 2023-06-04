@@ -30,8 +30,11 @@ export class VMyLibrary {
   event_RouteTo: EventEmitter;
 
   @Listen('buttonClick') handle_ButtonClick(e) {
-    if (e.detail.action === 'openReader') {
-      this.open_Reader();
+    if (e.detail.action === 'goToReader') {
+      this.event_RouteTo.emit({
+        type: 'push',
+        route: `/reader/${e.detail.value}`,
+      });
     } else if (e.detail.action === 'action_ReSend_EmailVerificationCode') {
       this.handle_Submit_ReSend_EmailVerificationCode();
     }
@@ -68,10 +71,6 @@ export class VMyLibrary {
 
     this.data_Readings = payload;
     this.isFetched_ViewData = true;
-  }
-
-  open_Reader() {
-    this.history.push(`/reader`, {});
   }
 
   async handle_Submit_ReSend_EmailVerificationCode() {

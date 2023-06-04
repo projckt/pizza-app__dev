@@ -104,6 +104,8 @@ export namespace Components {
         "match": MatchResults;
     }
     interface VReader {
+        "history": RouterHistory;
+        "match": MatchResults;
     }
     interface VSignup {
     }
@@ -421,6 +423,9 @@ declare namespace LocalJSX {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VReader {
+        "history"?: RouterHistory;
+        "match"?: MatchResults;
+        "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
     interface VSignup {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;

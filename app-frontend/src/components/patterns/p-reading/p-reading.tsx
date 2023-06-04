@@ -21,7 +21,7 @@ export class PReading {
         <div class="row-item__2">
           <e-text>{this.document}</e-text>
         </div>
-        <e-button action="goToCheckout" size="wide">
+        <e-button action="goToReader" value={this.id} size="wide">
           Read
         </e-button>
       </Host>

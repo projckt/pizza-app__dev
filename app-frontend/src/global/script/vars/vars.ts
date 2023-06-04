@@ -22,6 +22,7 @@ export const Vars = {
       },
       readings: {
         all: 'readings',
+        single: 'reading',
       },
       stripe: {
         create_Checkout_Session: 'stripe-create-checkout-session',

@@ -33,9 +33,15 @@ export class VPaymentHandle {
   private id_Session: string;
 
   componentWillLoad() {
-    if (this.match.params.id_Session) {
-      this.id_Session = this.match.params.id_Session.trim();
+    if (!this.match.params.id_Session) {
+      this.event_RouteTo.emit({
+        type: 'push',
+        route: '/store',
+        data: {},
+      });
     }
+
+    this.id_Session = this.match.params.id_Session.trim();
   }
 
   componentDidLoad() {
