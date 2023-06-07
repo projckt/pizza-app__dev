@@ -2,10 +2,27 @@
   display: block;
   width: 100%;
   height: 100vh;
-  background: #121212;
+  background: var(--site-bg-color);
+}
+
+.reader--panel {
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.8);
+  width: 20%;
+  height: 95vh;
+  padding: 0 1em;
+}
+
+.reader--panel footer {
+  display: flex;
+  align-items: center;
 }
 
 embed {
-  width: 100%;
+  width: 80%;
   height: 100vh;
+  margin-left: 20%;
 }

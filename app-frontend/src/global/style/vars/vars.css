@@ -1,4 +1,6 @@
 :root {
+  --site-bg-color: #121212;
+
   --site-font-size--display: 28px;
   --site-font-size--heading: 24px;
   --site-font-size--subHeading: 20px;

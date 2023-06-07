@@ -10,6 +10,7 @@ export class EButton {
   @Prop() value: any;
   @Prop() variant: string = 'primary';
   @Prop() size: string = 'default';
+  @Prop() disabled: boolean = false;
 
   @Event({
     eventName: 'buttonClick',
@@ -34,6 +35,8 @@ export class EButton {
   generate_StyleClasses() {
     if (this.variant === 'primary') {
       this.styleClasses = `${this.styleClasses} primary`;
+    } else if (this.variant === 'reader') {
+      this.styleClasses = `${this.styleClasses} reader`;
     }
 
     if (this.size === 'wide') {
@@ -43,7 +46,7 @@ export class EButton {
 
   render() {
     return (
-      <button class={this.styleClasses} onClick={e => this.handle_ButtonClick(e)}>
+      <button class={this.styleClasses} onClick={e => this.handle_ButtonClick(e)} disabled={this.disabled}>
         <slot />
       </button>
     );

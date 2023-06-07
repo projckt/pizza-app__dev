@@ -8,6 +8,10 @@ button:hover {
   cursor: pointer;
 }
 
+button:disabled {
+  opacity: 0.3;
+}
+
 /* Variant */
 .primary {
   font-weight: 600;
@@ -21,6 +25,20 @@ button:hover {
 }
 .primary:active {
   background: var(--blue-darkest);
+}
+
+.reader {
+  font-weight: 600;
+  padding: 0.5em 1em;
+  background: var(--site-bg-color);
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 0.25em;
+}
+.reader:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.reader:active {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Block */

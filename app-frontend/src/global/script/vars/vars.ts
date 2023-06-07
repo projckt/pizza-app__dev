@@ -24,6 +24,9 @@ export const Vars = {
         all: 'readings',
         single: 'reading',
       },
+      page: {
+        single: 'page',
+      },
       stripe: {
         create_Checkout_Session: 'stripe-create-checkout-session',
         check_Session: 'stripe-check-session',

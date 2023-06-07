@@ -1,5 +1,5 @@
 // API
-export { helper_ApiCall_Get_Reading } from './api/helper_ApiCall_Get_Reading';
+export { helper_ApiCall_Get_Page } from './api/helper_ApiCall_Get_Page';
 
 // Generators
-export { helper_Generate_GetReading_Payload } from './generators/helper_Generate_GetReading_Payload';
+export { helper_Generate_Get_Page_Payload } from './generators/helper_Generate_Get_Page_Payload';
