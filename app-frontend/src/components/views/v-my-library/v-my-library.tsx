@@ -8,7 +8,7 @@ import {
   helper_ApiCall_ReSend_EmailVerificationCode,
   helper_Validate_Submit_EmailVerificationCode_Inputs,
   helper_ApiCall_Submit_EmailVerificationCode,
-  helper_ApiCall_Get_Readings,
+  helper_ApiCall_Get_Library,
 } from './helpers';
 
 @Component({
@@ -62,7 +62,7 @@ export class VMyLibrary {
   }
 
   async fetch_ViewData() {
-    let { success, message, payload } = await helper_ApiCall_Get_Readings();
+    let { success, message, payload } = await helper_ApiCall_Get_Library();
 
     if (!success) {
       this.isFetched_ViewData = true;

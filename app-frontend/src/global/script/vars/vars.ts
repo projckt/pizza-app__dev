@@ -20,7 +20,7 @@ export const Vars = {
       publications: {
         all: 'publications',
       },
-      readings: {
+      library: {
         all: 'readings',
         single: 'reading',
       },
