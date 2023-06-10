@@ -3,7 +3,7 @@ import { Vars } from '../../../../../global/script';
 export const helper_ApiCall_Get_Library = async () => {
   let backendPayload_Get_Library: any;
 
-  let url: string = `${Vars.api.url}/${Vars.api.endpoint.library.all}`;
+  let url: string = `${Vars.api.url}/${Vars.api.endpoint.library}`;
   let options: any = {
     method: 'GET',
     headers: {
