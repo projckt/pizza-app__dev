@@ -203,8 +203,8 @@ export class VStore {
               heading={publication.title}
               sub_Heading={publication.edition}
               description={publication.description}
-              url_Sample={publication.url_sample}
-              url_Toc={publication.url_toc}
+              url_Sample={publication.url_Sample}
+              url_Toc={publication.url_Toc}
               url_Cover={publication.url_Cover}
               documents={JSON.stringify(publication.documents)}
             ></p-publication>

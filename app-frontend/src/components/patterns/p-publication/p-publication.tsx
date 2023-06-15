@@ -86,15 +86,21 @@ export class PPublication {
         </e-text>
         <l-row>
           <e-text>
-            <e-link>Contents</e-link>
+            <e-link href={this.url_Toc} target="_blank">
+              Contents
+            </e-link>
           </e-text>
           <l-spacer variant="horizontal" value={0.5}></l-spacer>
           <e-text>
-            <e-link>Abstracts</e-link>
+            <e-link href={this.url_Sample} target="_blank">
+              Abstracts
+            </e-link>
           </e-text>
           <l-spacer variant="horizontal" value={0.5}></l-spacer>
           <e-text>
-            <e-link>Cover</e-link>
+            <e-link href={this.url_Cover} target="_blank">
+              Cover
+            </e-link>
           </e-text>
         </l-row>
         <l-spacer value={0.5}></l-spacer>
