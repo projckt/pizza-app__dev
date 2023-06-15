@@ -170,7 +170,11 @@ export class VStore {
       )}
       <l-spacer value={2}></l-spacer>
       <e-text variant="subHeading" theme="light">
-        Store - Buy journals
+        <l-row>
+          <ion-icon name="cart"></ion-icon>
+          <l-spacer variant="horizontal" value={0.25}></l-spacer>
+          Store
+        </l-row>
       </e-text>
       <l-spacer value={1}></l-spacer>
       <l-seperator></l-seperator>

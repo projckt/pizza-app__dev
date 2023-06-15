@@ -5,7 +5,7 @@
   background: var(--site-bg-color);
 }
 
-.reader--panel {
+/* .reader--panel {
   display: flex;
   position: fixed;
   justify-content: space-between;
@@ -25,4 +25,34 @@ embed {
   width: 80%;
   height: 100vh;
   margin-left: 20%;
+} */
+
+.ui__reader {
+  height: 100vh;
+}
+
+.ui__reader__left-panel {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 20%;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ui__reader__left-panel footer {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.ui__reader__right-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  /* background: pink; */
 }
