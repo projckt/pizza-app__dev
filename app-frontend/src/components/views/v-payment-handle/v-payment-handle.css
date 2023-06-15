@@ -7,6 +7,13 @@
   align-items: center;
 }
 
+.text--success {
+  font-family: 'PT Serif', serif;
+  color: var(--green-dark);
+  margin: 0;
+  padding: 0;
+}
+
 .skel__line {
   height: 10px;
   width: 500px;

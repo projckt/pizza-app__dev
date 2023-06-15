@@ -26,9 +26,10 @@ export class VPaymentCancel {
     return (
       <Host>
         <c-card>
-          <e-text variant="display" theme="danger">
+          {/* <e-text variant="display" theme="danger">
             Payment Failed
-          </e-text>
+          </e-text> */}
+          <h1 class="text--danger">Payment Failed</h1>
           <l-spacer value={1}></l-spacer>
           <e-text>
             Please try purchasing again. If money was deducted <br />

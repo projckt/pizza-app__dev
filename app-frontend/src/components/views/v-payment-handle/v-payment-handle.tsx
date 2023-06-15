@@ -31,6 +31,7 @@ export class VPaymentHandle {
   @State() isFetched_ViewData: boolean = false;
 
   private id_Session: string;
+  private title_Purchase: string;
 
   componentWillLoad() {
     if (!this.match.params.id_Session) {
@@ -47,16 +48,18 @@ export class VPaymentHandle {
   componentDidLoad() {
     setTimeout(() => {
       this.fetch_ViewData();
-    }, 4000);
+    }, 3000);
   }
 
   async fetch_ViewData() {
     let payload_Stripe_SessionCheck: any = helper_Generate_Stripe_SessionCheck_Payload(this.id_Session);
-    let { success, message } = await helper_ApiCall_Stripe_SessionCheck(payload_Stripe_SessionCheck);
+    let { success, message, payload } = await helper_ApiCall_Stripe_SessionCheck(payload_Stripe_SessionCheck);
 
     if (!success) {
       return alert(message);
     }
+
+    this.title_Purchase = payload.title_Purchase;
 
     this.isFetched_ViewData = true;
   }
@@ -74,12 +77,13 @@ export class VPaymentHandle {
 
   UI_Default: FunctionalComponent = () => (
     <c-card>
-      <e-text variant="display" theme="success">
+      {/* <e-text variant="display" theme="success">
         Payment Successful
-      </e-text>
+      </e-text> */}
+      <h1 class="text--success">Payment Successful</h1>
       <l-spacer value={1}></l-spacer>
       <e-text>
-        Thank you for purchasing <strong>Aitihya, the Heritage - Vol XVIII, Issue 2</strong>
+        Thank you for purchasing <strong>{this.title_Purchase}</strong>
       </e-text>
       <e-text>It has been added to your library.</e-text>
       <l-spacer value={1}></l-spacer>

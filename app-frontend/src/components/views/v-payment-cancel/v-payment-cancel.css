@@ -6,3 +6,10 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.text--danger {
+  font-family: 'PT Serif', serif;
+  color: var(--red-dark);
+  margin: 0;
+  padding: 0;
+}
