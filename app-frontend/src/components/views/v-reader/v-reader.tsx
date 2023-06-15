@@ -3,6 +3,9 @@ import { MatchResults, RouterHistory, injectHistory } from '@stencil/router';
 
 // import { helper_Generate_Get_Page_Payload, helper_ApiCall_Get_Page } from './helpers';
 
+import io from 'socket.io-client';
+import { Vars } from '../../../global/script';
+
 @Component({
   tag: 'v-reader',
   styleUrl: 'v-reader.css',
@@ -35,6 +38,7 @@ export class VReader {
   private url_Document: string = '';
   private name_Publication: string = '';
   private edition_Publication: string = '';
+  private socket: any;
 
   componentWillLoad() {
     if (!this.match.params.id_Document) {
@@ -45,13 +49,15 @@ export class VReader {
       });
     }
     this.id_Document = this.match.params.id_Document.trim();
-
-    console.log('lel');
   }
 
-  // componentDidLoad() {
-  //   this.fetch_Page();
-  // }
+  componentDidLoad() {
+    this.socket = io(Vars.api.url);
+  }
+
+  disconnectedCallback() {
+    this.socket.disconnect();
+  }
 
   async fetch_Page() {
     // let payload_Get_Page: any = helper_Generate_Get_Page_Payload(this.id_Document, this.no_Page);
