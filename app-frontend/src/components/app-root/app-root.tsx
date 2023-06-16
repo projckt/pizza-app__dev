@@ -1,6 +1,6 @@
 import { Component, Prop, Listen, h } from '@stencil/core';
 import { RouterHistory, injectHistory } from '@stencil/router';
-import { state } from '../../global/script';
+import { state, IO, init_Socket } from '../../global/script';
 import { helper_Set_AccountDetails, helper_Check_If_AccountDetails_In_LocalStorage, helper_Set_AccountDetails_In_LocalStorage } from './helpers';
 import { Helper_ApiCall_GetAccountDetails_BySession } from '../../global/script/helpers';
 
@@ -38,6 +38,11 @@ export class AppRoot {
     if (!this.isFetched_AccountData) {
       this.fetch_AccountData();
     }
+    init_Socket();
+  }
+
+  disconnectedCallback() {
+    IO.disconnect();
   }
 
   async fetch_AccountData() {

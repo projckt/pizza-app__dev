@@ -12,6 +12,7 @@ export const Vars = {
       get_AccountDetails: 'account-details',
       login: 'login',
       logout: 'logout',
+      reader: 'reader',
       reSend_EmailVerificationCode: 'resend-email-verification-code',
       send_PasswordResetCode: 'send-password-reset-code',
       signup: 'signup',
