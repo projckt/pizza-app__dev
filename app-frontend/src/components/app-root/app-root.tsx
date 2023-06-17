@@ -38,7 +38,6 @@ export class AppRoot {
     if (!this.isFetched_AccountData) {
       this.fetch_AccountData();
     }
-    init_Socket();
   }
 
   disconnectedCallback() {
@@ -55,6 +54,8 @@ export class AppRoot {
 
     helper_Set_AccountDetails(payload);
     helper_Set_AccountDetails_In_LocalStorage(payload);
+
+    init_Socket();
   }
 
   render() {
