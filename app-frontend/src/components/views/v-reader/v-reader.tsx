@@ -1,7 +1,7 @@
 import { Component, Event, EventEmitter, Prop, State, h, Host, Listen, FunctionalComponent } from '@stencil/core';
 import { MatchResults, RouterHistory, injectHistory } from '@stencil/router';
 
-import { helper_Generate_Get_Reader_Payload, helper_ApiCall_Get_Reader } from './helpers';
+import { helper_Generate_Reader_Init_Payload, helper_ApiCall_Reader_Init_Payload } from './helpers';
 
 import { IO } from '../../../global/script';
 
@@ -14,7 +14,7 @@ export class VReader {
   @Listen('buttonClick') handle_ButtonClick(e) {
     if (e.detail.action === 'fetch_Page') {
       this.no_Page = e.detail.value;
-      this.isFetched_PdfFile = false;
+      this.isFetched_ReaderData = false;
       // this.fetchReader
     }
   }
@@ -27,16 +27,20 @@ export class VReader {
   })
   event_RouteTo: EventEmitter;
 
-  @State() isFetched_PdfFile: boolean = false;
+  @State() isFetched_ReaderData: boolean = false;
   @State() no_Page: number = 1;
 
   el_Canvas!: HTMLCanvasElement;
   el_WebViewer!: HTMLDivElement;
 
   private id_Document: string = '';
-  private url_Document: string = '';
-  private name_Publication: string = '';
+  private title_Publication: string = '';
   private edition_Publication: string = '';
+  private title_Document: string = '';
+  private count_Document_Pages: number = 0;
+  private toc: any;
+  private base64Str_Page: string = '';
+
   private timer_CheckSocket: any;
 
   componentWillLoad() {
@@ -50,36 +54,40 @@ export class VReader {
     this.id_Document = this.match.params.id_Document.trim();
   }
 
+  // componentDidLoad() {
+  //   if (IO) {
+  //     if (IO.id) {
+  //       this.init_Reader();
+  //     } else {
+  //       this.check_IfExists_Socket();
+  //     }
+  //   } else {
+  //     this.check_IfExists_Socket();
+  //   }
+  // }
+
+  // check_IfExists_Socket() {
+  //   this.timer_CheckSocket = setInterval(() => {
+  //     if (IO) {
+  //       if (IO.id) {
+  //         clearInterval(this.timer_CheckSocket);
+  //         this.init_Reader();
+  //       } else {
+  //         console.log('checking if socket established');
+  //       }
+  //     } else {
+  //       console.log('checking if socket established');
+  //     }
+  //   }, 100);
+  // }
+
   componentDidLoad() {
-    if (IO) {
-      if (IO.id) {
-        this.fetch_Reader();
-      } else {
-        this.check_IfExists_Socket();
-      }
-    } else {
-      this.check_IfExists_Socket();
-    }
+    this.init_Reader();
   }
 
-  check_IfExists_Socket() {
-    this.timer_CheckSocket = setInterval(() => {
-      if (IO) {
-        if (IO.id) {
-          clearInterval(this.timer_CheckSocket);
-          this.fetch_Reader();
-        } else {
-          console.log('checking if socket established');
-        }
-      } else {
-        console.log('checking if socket established');
-      }
-    }, 100);
-  }
-
-  async fetch_Reader() {
-    let payload_Get_Reader: any = helper_Generate_Get_Reader_Payload(this.id_Document, this.no_Page, IO.id);
-    let { success, message, payload } = await helper_ApiCall_Get_Reader(payload_Get_Reader);
+  async init_Reader() {
+    let payload_Init_Reader: any = helper_Generate_Reader_Init_Payload(this.id_Document, this.no_Page, IO.id);
+    let { success, message, payload } = await helper_ApiCall_Reader_Init_Payload(payload_Init_Reader);
 
     if (!success) {
       alert(message);
@@ -90,16 +98,13 @@ export class VReader {
       });
     }
 
-    this.url_Document = payload.url_Page;
-
-    if (!this.name_Publication) {
-      this.name_Publication = payload.name_Publication;
-    }
-    if (!this.edition_Publication) {
-      this.edition_Publication = payload.edition_Publication;
-    }
-
-    this.isFetched_PdfFile = true;
+    this.title_Publication = payload.title_Publication;
+    this.edition_Publication = payload.edition_Publication;
+    this.title_Document = payload.title_Document;
+    this.toc = payload.toc;
+    this.count_Document_Pages = payload.count_Document_Pages;
+    this.base64Str_Page = payload.base64Str_Page;
+    this.isFetched_ReaderData = true;
   }
 
   // UI_Reader: FunctionalComponent = () => (
@@ -130,6 +135,32 @@ export class VReader {
 
   UI_Reader_LeftPanel: FunctionalComponent = () => (
     <div class="ui__reader ui__reader__left-panel">
+      <header>
+        <e-text>
+          <strong>{this.title_Publication}</strong>
+        </e-text>
+        <e-text>{this.edition_Publication}</e-text>
+      </header>
+      <div class="toc">
+        {this.isFetched_ReaderData && (
+          <e-list>
+            {this.toc.map(item =>
+              item.type.toLowerCase() === 'section' ? (
+                <div class="toc__section">
+                  <e-text>{item.title}</e-text>
+                </div>
+              ) : (
+                <e-list-item>
+                  <e-link action="logout" event={true} value={item.page}>
+                    <e-text>{item.title}</e-text>
+                    <e-text variant="footnote">{item.author.toUpperCase()}</e-text>
+                  </e-link>
+                </e-list-item>
+              ),
+            )}
+          </e-list>
+        )}
+      </div>
       <footer>
         <e-button action="fetch_Page" value={this.no_Page - 1} variant="reader" disabled={this.no_Page > 1 ? false : true}>
           &lt;
@@ -147,8 +178,9 @@ export class VReader {
   render() {
     return (
       <Host>
-        <this.UI_Reader_LeftPanel></this.UI_Reader_LeftPanel>
-        <this.UI_Reader_RightPanel></this.UI_Reader_RightPanel>
+        <embed src={this.isFetched_ReaderData && `data:application/pdf;base64,${this.base64Str_Page}#toolbar=0&navpanes=0&scrollbar=0`} type="application/pdf"></embed>
+        {/* <this.UI_Reader_LeftPanel></this.UI_Reader_LeftPanel>
+        <this.UI_Reader_RightPanel></this.UI_Reader_RightPanel> */}
       </Host>
     );
   }

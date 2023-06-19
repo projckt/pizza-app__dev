@@ -1,5 +1,5 @@
 // API
-export { helper_ApiCall_Get_Reader } from './api/helper_ApiCall_Get_Reader';
+export { helper_ApiCall_Reader_Init_Payload } from './api/helper_ApiCall_Reader_Init_Payload';
 
 // Generators
-export { helper_Generate_Get_Reader_Payload } from './generators/helper_Generate_Get_Reader_Payload';
+export { helper_Generate_Reader_Init_Payload } from './generators/helper_Generate_Reader_Init_Payload';
