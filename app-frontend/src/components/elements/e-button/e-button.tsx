@@ -33,15 +33,7 @@ export class EButton {
   }
 
   generate_StyleClasses() {
-    if (this.variant === 'primary') {
-      this.styleClasses = `${this.styleClasses} primary`;
-    } else if (this.variant === 'reader') {
-      this.styleClasses = `${this.styleClasses} reader`;
-    }
-
-    if (this.size === 'wide') {
-      this.styleClasses = `${this.styleClasses} wide`;
-    }
+    this.styleClasses = `${this.variant} ${this.size}`;
   }
 
   render() {

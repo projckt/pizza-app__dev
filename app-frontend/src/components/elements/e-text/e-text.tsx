@@ -16,8 +16,7 @@ export class EText {
   }
 
   generate_StyleClasses() {
-    this.styleClasses = this.styleClasses + ` text--${this.variant}`;
-    this.styleClasses = this.styleClasses + ` text--${this.theme}`;
+    this.styleClasses = `${this.variant} ${this.theme}`;
   }
 
   render() {

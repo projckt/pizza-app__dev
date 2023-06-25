@@ -7,23 +7,23 @@ p {
   line-height: 1.6;
 }
 
-.text--display {
+.display {
   font-family: 'PT Serif', serif;
 }
 
-.text--footnote {
+.footnote {
   font-size: 0.8em;
   color: var(--grey-medium);
 }
 
-.text--success {
+.success {
   color: var(--green-dark);
 }
 
-.text--danger {
+.danger {
   color: var(--red-dark);
 }
 
-.text--light {
-  color: var(--grey-light);
+.light {
+  color: rgba(255, 255, 255, 0.3);
 }

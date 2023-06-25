@@ -16,6 +16,48 @@ export class VReader {
       this.no_Page = e.detail.value;
       this.isFetched_ReaderData = false;
       // this.fetchReader
+    } else if (e.detail.action === 'action_GoBack') {
+      this.event_RouteTo.emit({
+        type: 'goBack',
+      });
+    } else if (e.detail.action === 'action_OpenToc') {
+      this.isOpen_Toc = true;
+    } else if (e.detail.action === 'action_CloseToc') {
+      this.isOpen_Toc = false;
+    } else if (e.detail.action === 'action_OpenHelp') {
+      this.isOpen_Help = true;
+    } else if (e.detail.action === 'action_CloseHelp') {
+      this.isOpen_Help = false;
+    } else if (e.detail.action === 'action_PrevPage') {
+      console.log('prev page');
+    } else if (e.detail.action === 'action_NextPage') {
+      console.log('next page');
+    } else if (e.detail.action === 'action_ZoomOut') {
+      console.log('zoom out');
+    } else if (e.detail.action === 'action_ZoomIn') {
+      console.log('zoom in');
+    }
+  }
+
+  @Listen('click', { target: 'window' })
+  handle_Click(e) {
+    if (!this.isVisible_ReaderUi) {
+      this.show_ReaderUi();
+    }
+  }
+
+  @Listen('keydown', { target: 'window' })
+  handleKeyDown(ev: KeyboardEvent) {
+    if (ev.key === 'ArrowDown') {
+      console.log('Zoom out');
+    } else if (ev.key === 'ArrowUp') {
+      console.log('Zoom in');
+    } else if (ev.key === 'ArrowLeft') {
+      console.log('Prev page');
+    } else if (ev.key === 'ArrowRight') {
+      console.log('Next page');
+    } else if (ev.key === 'Escape') {
+      this.hide_ReaderUi();
     }
   }
 
@@ -29,6 +71,9 @@ export class VReader {
 
   @State() isFetched_ReaderData: boolean = false;
   @State() no_Page: number = 1;
+  @State() isOpen_Toc: boolean = false;
+  @State() isOpen_Help: boolean = false;
+  @State() isVisible_ReaderUi: boolean = true;
 
   el_Canvas!: HTMLCanvasElement;
   el_WebViewer!: HTMLDivElement;
@@ -41,8 +86,6 @@ export class VReader {
   private toc: any;
   private base64Str_Page: string = '';
 
-  private timer_CheckSocket: any;
-
   componentWillLoad() {
     if (!this.match.params.id_Document) {
       this.event_RouteTo.emit({
@@ -54,35 +97,8 @@ export class VReader {
     this.id_Document = this.match.params.id_Document.trim();
   }
 
-  // componentDidLoad() {
-  //   if (IO) {
-  //     if (IO.id) {
-  //       this.init_Reader();
-  //     } else {
-  //       this.check_IfExists_Socket();
-  //     }
-  //   } else {
-  //     this.check_IfExists_Socket();
-  //   }
-  // }
-
-  // check_IfExists_Socket() {
-  //   this.timer_CheckSocket = setInterval(() => {
-  //     if (IO) {
-  //       if (IO.id) {
-  //         clearInterval(this.timer_CheckSocket);
-  //         this.init_Reader();
-  //       } else {
-  //         console.log('checking if socket established');
-  //       }
-  //     } else {
-  //       console.log('checking if socket established');
-  //     }
-  //   }, 100);
-  // }
-
   componentDidLoad() {
-    this.init_Reader();
+    // this.init_Reader();
   }
 
   async init_Reader() {
@@ -107,80 +123,330 @@ export class VReader {
     this.isFetched_ReaderData = true;
   }
 
-  // UI_Reader: FunctionalComponent = () => (
-  //   <l-row justifyContent="space-between">
-  //     <div class="reader--panel">
-  //       <header>
-  //         <e-text>
-  //           <strong>{this.name_Publication}</strong>
-  //         </e-text>
-  //         <e-text>{this.edition_Publication}</e-text>
-  //       </header>
-  //       <footer>
-  //         <e-button action="fetch_Page" value={this.no_Page - 1} variant="reader" disabled={this.no_Page > 1 ? false : true}>
-  //           &lt;
-  //         </e-button>
-  //         <l-spacer value={1} variant="horizontal"></l-spacer>
-  //         <e-text>Page {this.no_Page}</e-text>
-  //         <l-spacer value={1} variant="horizontal"></l-spacer>
-  //         <e-button action="fetch_Page" value={this.no_Page + 1} variant="reader">
-  //           &gt;
-  //         </e-button>
-  //       </footer>
-  //     </div>
-  //     {/* <embed src={this.isFetched_PdfFile && `${this.url_Document}#toolbar=0`}></embed> */}
-  //     <embed src=""></embed>
-  //   </l-row>
-  // );
+  hide_ReaderUi() {
+    if (this.isOpen_Help || this.isOpen_Toc) {
+      return;
+    }
 
-  UI_Reader_LeftPanel: FunctionalComponent = () => (
-    <div class="ui__reader ui__reader__left-panel">
-      <header>
-        <e-text>
-          <strong>{this.title_Publication}</strong>
-        </e-text>
-        <e-text>{this.edition_Publication}</e-text>
-      </header>
-      <div class="toc">
-        {this.isFetched_ReaderData && (
-          <e-list>
-            {this.toc.map(item =>
-              item.type.toLowerCase() === 'section' ? (
-                <div class="toc__section">
-                  <e-text>{item.title}</e-text>
-                </div>
-              ) : (
-                <e-list-item>
-                  <e-link action="logout" event={true} value={item.page}>
-                    <e-text>{item.title}</e-text>
-                    <e-text variant="footnote">{item.author.toUpperCase()}</e-text>
-                  </e-link>
-                </e-list-item>
-              ),
-            )}
-          </e-list>
-        )}
-      </div>
-      <footer>
-        <e-button action="fetch_Page" value={this.no_Page - 1} variant="reader" disabled={this.no_Page > 1 ? false : true}>
-          &lt;
-        </e-button>
-        <e-text>{this.no_Page}</e-text>
-        <e-button action="fetch_Page" value={this.no_Page + 1} variant="reader">
-          &gt;
-        </e-button>
-      </footer>
-    </div>
-  );
+    this.isVisible_ReaderUi = false;
+  }
 
-  UI_Reader_RightPanel: FunctionalComponent = () => <div class="ui__reader ui__reader__right-panel"></div>;
+  show_ReaderUi() {
+    this.isVisible_ReaderUi = true;
+    setTimeout(() => {
+      console.log('hide');
+      if (this.isVisible_ReaderUi) {
+        this.isVisible_ReaderUi = false;
+      }
+    }, 5000);
+  }
 
   render() {
     return (
       <Host>
-        <embed src={this.isFetched_ReaderData && `data:application/pdf;base64,${this.base64Str_Page}#toolbar=0&navpanes=0&scrollbar=0`} type="application/pdf"></embed>
-        {/* <this.UI_Reader_LeftPanel></this.UI_Reader_LeftPanel>
-        <this.UI_Reader_RightPanel></this.UI_Reader_RightPanel> */}
+        {this.isOpen_Toc || this.isOpen_Help ? <div class="sub-window__background"></div> : ''}
+        {this.isOpen_Toc && (
+          <div class="sub-window__content">
+            <header>
+              <e-button variant="transparent--white" action="action_CloseToc">
+                {' '}
+                <ion-icon name="close-outline"></ion-icon>{' '}
+              </e-button>
+            </header>
+            <main>
+              <e-text variant="display" theme="light">
+                Table of Contents
+              </e-text>
+              <l-spacer value={2}></l-spacer>
+              <e-list>
+                <div class="toc__seperator">
+                  <e-text theme="light">ENGLISH SECTION</e-text>
+                </div>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        {' '}
+                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
+                        test article name
+                      </strong>{' '}
+                      - AUTHOR NAME
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        {' '}
+                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
+                        test article name
+                      </strong>{' '}
+                      - AUTHOR NAME
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        {' '}
+                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
+                        test article name
+                      </strong>{' '}
+                      - AUTHOR NAME
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        {' '}
+                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
+                        test article name
+                      </strong>{' '}
+                      - AUTHOR NAME
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        {' '}
+                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
+                        test article name
+                      </strong>{' '}
+                      - AUTHOR NAME
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <div class="toc__seperator">
+                  <e-text theme="light">ASSAMESE SECTION</e-text>
+                </div>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
+                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
+                      </strong>{' '}
+                      - লেখকৰ নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
+                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
+                      </strong>{' '}
+                      - লেখকৰ নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
+                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
+                      </strong>{' '}
+                      - লেখকৰ নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
+                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
+                      </strong>{' '}
+                      - লেখকৰ নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
+                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
+                      </strong>{' '}
+                      - লেখকৰ নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <div class="toc__seperator">
+                  <e-text theme="light">BENGALI SECTION</e-text>
+                </div>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
+                        এটি একটি পরীক্ষা নিবন্ধের নাম
+                      </strong>{' '}
+                      - লেখকের নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
+                        এটি একটি পরীক্ষা নিবন্ধের নাম
+                      </strong>{' '}
+                      - লেখকের নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
+                        এটি একটি পরীক্ষা নিবন্ধের নাম
+                      </strong>{' '}
+                      - লেখকের নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
+                        এটি একটি পরীক্ষা নিবন্ধের নাম
+                      </strong>{' '}
+                      - লেখকের নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+                <e-list-item>
+                  <e-link action="settings" event={true}>
+                    <e-text>
+                      <strong>
+                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
+                        এটি একটি পরীক্ষা নিবন্ধের নাম
+                      </strong>{' '}
+                      - লেখকের নাম
+                    </e-text>
+                  </e-link>
+                </e-list-item>
+              </e-list>
+            </main>
+          </div>
+        )}
+        {this.isOpen_Help && (
+          <div class="sub-window__content">
+            <header>
+              <e-button variant="transparent--white" action="action_CloseHelp">
+                {' '}
+                <ion-icon name="close-outline"></ion-icon>{' '}
+              </e-button>
+            </header>
+            <main>
+              <e-text variant="display" theme="light">
+                Instructions
+              </e-text>
+              <l-spacer value={2}></l-spacer>
+              <e-list>
+                <div class="toc__seperator">
+                  <e-text theme="light">PAGE NAVIGATION & ZOOM</e-text>
+                </div>
+                <e-list-item>
+                  <e-text theme="light">
+                    Press <ion-icon name="arrow-forward-outline"></ion-icon> arrow key for next page
+                  </e-text>
+                </e-list-item>
+                <e-list-item>
+                  <e-text theme="light">
+                    Press <ion-icon name="arrow-back-outline"></ion-icon> arrow key for previous page
+                  </e-text>
+                </e-list-item>
+                <e-list-item>
+                  <e-text theme="light">
+                    Press <ion-icon name="arrow-up-outline"></ion-icon> arrow key to zoom in
+                  </e-text>
+                </e-list-item>
+                <e-list-item>
+                  <e-text theme="light">
+                    Press <ion-icon name="arrow-up-outline"></ion-icon> arrow key to zoom out
+                  </e-text>
+                </e-list-item>
+                <div class="toc__seperator">
+                  <e-text theme="light">FOCUSED READING MODE</e-text>
+                </div>
+                <e-list-item>
+                  <e-text theme="light">
+                    Press <strong>ESC</strong> key to enter focused reading mode. It will hide the interface elements for an optimal reading experience. To turn off this mode,
+                    click anywhere on the document
+                  </e-text>
+                </e-list-item>
+              </e-list>
+            </main>
+          </div>
+        )}
+
+        <header class={!this.isVisible_ReaderUi && 'hide'}>
+          <l-row>
+            <e-button variant="transparent--white" action="action_GoBack">
+              {' '}
+              <ion-icon name="arrow-back-outline"></ion-icon>
+            </e-button>
+            &nbsp;&nbsp;
+            <div class="title__container">
+              <e-text theme="light">
+                Aitihya - The Heritage, Vol. XIV Issue 2 (Full Edition) Aitihya - The Heritage, Vol. XIV Issue 2 (Full Edition) Aitihya - The Heritage, Vol. XIV Issue 2 (Full
+                Edition)
+              </e-text>
+            </div>
+          </l-row>
+          <l-row>
+            <e-button variant="transparent--white" action="action_OpenHelp">
+              {' '}
+              <ion-icon name="information-circle-outline"></ion-icon>{' '}
+            </e-button>
+            <e-button variant="transparent--white" action="action_OpenToc">
+              {' '}
+              <ion-icon name="list-outline"></ion-icon>
+            </e-button>
+          </l-row>
+        </header>
+        {/* <embed src={this.isFetched_ReaderData && `data:application/pdf;base64,${this.base64Str_Page}#toolbar=0&navpanes=0&scrollbar=0`} type="application/pdf"></embed> */}
+        <footer class={!this.isVisible_ReaderUi && 'hide'}>
+          <div class="ui-controls">
+            <div class="ui-controls__page-controls">
+              <e-button variant="transparent--white" action="action_PrevPage">
+                {' '}
+                <ion-icon name="chevron-back-outline"></ion-icon>
+              </e-button>
+              &nbsp; &nbsp;
+              <e-text>99 / 100</e-text>
+              &nbsp; &nbsp;
+              <e-button variant="transparent--white" action="action_NextPage">
+                {' '}
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+              </e-button>
+            </div>
+            <div class="ui-controls__zoom-controls">
+              <e-button variant="transparent--white" action="action_ZoomOut">
+                {' '}
+                <ion-icon name="remove-circle-outline"></ion-icon>{' '}
+              </e-button>
+              &nbsp;
+              <e-button variant="transparent--white" action="action_ZoomIn">
+                {' '}
+                <ion-icon name="add-circle-outline"></ion-icon>{' '}
+              </e-button>
+            </div>
+          </div>
+        </footer>
       </Host>
     );
   }
