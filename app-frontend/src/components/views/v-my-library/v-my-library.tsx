@@ -169,7 +169,7 @@ export class VMyLibrary {
         </div>
       )}
       <l-spacer value={2}></l-spacer>
-      <e-text variant="subHeading" theme="light">
+      <e-text variant="subHeading" theme="light-grey">
         <l-row>
           <ion-icon name="book"></ion-icon>
           <l-spacer variant="horizontal" value={0.25}></l-spacer>

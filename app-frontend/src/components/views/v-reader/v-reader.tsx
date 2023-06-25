@@ -72,8 +72,6 @@ export class VReader {
   @State() isOpen_Help: boolean = false;
   @State() isVisible_ReaderUi: boolean = true;
 
-  el_Embed!: HTMLEmbedElement;
-
   private id_Document: string = '';
   private title_Publication: string = '';
   private edition_Publication: string = '';

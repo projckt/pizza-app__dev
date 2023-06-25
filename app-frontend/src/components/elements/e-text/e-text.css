@@ -15,6 +15,10 @@ p {
   font-size: 0.8em;
   color: var(--grey-medium);
 }
+/* 
+.default {
+  color: var(--grey-dark);
+} */
 
 .success {
   color: var(--green-dark);
@@ -22,6 +26,10 @@ p {
 
 .danger {
   color: var(--red-dark);
+}
+
+.light-grey {
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .light {
