@@ -39,13 +39,6 @@ export class VReader {
     }
   }
 
-  @Listen('click', { target: 'window' })
-  handle_Click(e) {
-    if (!this.isVisible_ReaderUi) {
-      this.show_ReaderUi();
-    }
-  }
-
   @Listen('keydown', { target: 'window' })
   handleKeyDown(ev: KeyboardEvent) {
     if (ev.key === 'ArrowDown') {
@@ -57,7 +50,11 @@ export class VReader {
     } else if (ev.key === 'ArrowRight') {
       console.log('Next page');
     } else if (ev.key === 'Escape') {
-      this.hide_ReaderUi();
+      if (this.isVisible_ReaderUi) {
+        this.hide_ReaderUi();
+      } else {
+        this.show_ReaderUi();
+      }
     }
   }
 
@@ -75,8 +72,7 @@ export class VReader {
   @State() isOpen_Help: boolean = false;
   @State() isVisible_ReaderUi: boolean = true;
 
-  el_Canvas!: HTMLCanvasElement;
-  el_WebViewer!: HTMLDivElement;
+  el_Embed!: HTMLEmbedElement;
 
   private id_Document: string = '';
   private title_Publication: string = '';
@@ -98,7 +94,7 @@ export class VReader {
   }
 
   componentDidLoad() {
-    // this.init_Reader();
+    this.init_Reader();
   }
 
   async init_Reader() {
@@ -127,18 +123,11 @@ export class VReader {
     if (this.isOpen_Help || this.isOpen_Toc) {
       return;
     }
-
     this.isVisible_ReaderUi = false;
   }
 
   show_ReaderUi() {
     this.isVisible_ReaderUi = true;
-    setTimeout(() => {
-      console.log('hide');
-      if (this.isVisible_ReaderUi) {
-        this.isVisible_ReaderUi = false;
-      }
-    }, 5000);
   }
 
   render() {
@@ -369,44 +358,24 @@ export class VReader {
                     Press <ion-icon name="arrow-back-outline"></ion-icon> arrow key for previous page
                   </e-text>
                 </e-list-item>
-                <e-list-item>
-                  <e-text theme="light">
-                    Press <ion-icon name="arrow-up-outline"></ion-icon> arrow key to zoom in
-                  </e-text>
-                </e-list-item>
-                <e-list-item>
-                  <e-text theme="light">
-                    Press <ion-icon name="arrow-up-outline"></ion-icon> arrow key to zoom out
-                  </e-text>
-                </e-list-item>
                 <div class="toc__seperator">
                   <e-text theme="light">FOCUSED READING MODE</e-text>
                 </div>
                 <e-list-item>
                   <e-text theme="light">
-                    Press <strong>ESC</strong> key to enter focused reading mode. It will hide the interface elements for an optimal reading experience. To turn off this mode,
-                    click anywhere on the document
+                    Press <strong>ESC</strong> key to enter focused reading mode. It will hide the interface elements for an optimal reading experience. To exit this mode, press
+                    ESC key again.
                   </e-text>
                 </e-list-item>
               </e-list>
             </main>
           </div>
         )}
-
         <header class={!this.isVisible_ReaderUi && 'hide'}>
-          <l-row>
-            <e-button variant="transparent--white" action="action_GoBack">
-              {' '}
-              <ion-icon name="arrow-back-outline"></ion-icon>
-            </e-button>
-            &nbsp;&nbsp;
-            <div class="title__container">
-              <e-text theme="light">
-                Aitihya - The Heritage, Vol. XIV Issue 2 (Full Edition) Aitihya - The Heritage, Vol. XIV Issue 2 (Full Edition) Aitihya - The Heritage, Vol. XIV Issue 2 (Full
-                Edition)
-              </e-text>
-            </div>
-          </l-row>
+          <e-button variant="transparent--white" action="action_GoBack">
+            {' '}
+            <ion-icon name="arrow-back-outline"></ion-icon>
+          </e-button>
           <l-row>
             <e-button variant="transparent--white" action="action_OpenHelp">
               {' '}
@@ -418,7 +387,7 @@ export class VReader {
             </e-button>
           </l-row>
         </header>
-        {/* <embed src={this.isFetched_ReaderData && `data:application/pdf;base64,${this.base64Str_Page}#toolbar=0&navpanes=0&scrollbar=0`} type="application/pdf"></embed> */}
+        {this.isFetched_ReaderData && <embed src={`data:application/pdf;base64,${this.base64Str_Page}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf`}></embed>}
         <footer class={!this.isVisible_ReaderUi && 'hide'}>
           <div class="ui-controls">
             <div class="ui-controls__page-controls">
