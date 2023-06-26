@@ -12,11 +12,7 @@ import { IO } from '../../../global/script';
 })
 export class VReader {
   @Listen('buttonClick') handle_ButtonClick(e) {
-    if (e.detail.action === 'fetch_Page') {
-      this.no_Page = e.detail.value;
-      this.isFetched_ReaderData = false;
-      // this.fetchReader
-    } else if (e.detail.action === 'action_GoBack') {
+    if (e.detail.action === 'action_GoBack') {
       this.event_RouteTo.emit({
         type: 'goBack',
       });
@@ -29,9 +25,17 @@ export class VReader {
     } else if (e.detail.action === 'action_CloseHelp') {
       this.isOpen_Help = false;
     } else if (e.detail.action === 'action_PrevPage') {
-      console.log('prev page');
+      if (this.no_Page === 1) {
+        return;
+      }
+      this.no_Page = this.no_Page - 1;
+      this.get_Page();
     } else if (e.detail.action === 'action_NextPage') {
-      console.log('next page');
+      if (this.no_Page === this.count_Pages) {
+        return;
+      }
+      this.no_Page = this.no_Page + 1;
+      this.get_Page();
     } else if (e.detail.action === 'action_ZoomOut') {
       console.log('zoom out');
     } else if (e.detail.action === 'action_ZoomIn') {
@@ -39,17 +43,30 @@ export class VReader {
     }
   }
 
+  @Listen('event_LinkClick') handle_LinkClick(e) {
+    if (e.detail.action === 'goTo_Page') {
+      this.no_Page = e.detail.value;
+      this.isOpen_Toc = false;
+      this.get_Page();
+    }
+  }
+
   @Listen('keydown', { target: 'window' })
   handleKeyDown(ev: KeyboardEvent) {
-    if (ev.key === 'ArrowDown') {
-      console.log('Zoom out');
-    } else if (ev.key === 'ArrowUp') {
-      console.log('Zoom in');
-    } else if (ev.key === 'ArrowLeft') {
-      console.log('Prev page');
+    if (ev.key === 'ArrowLeft') {
+      if (this.no_Page === 1) {
+        return;
+      }
+      this.no_Page = this.no_Page - 1;
+      this.get_Page();
     } else if (ev.key === 'ArrowRight') {
-      console.log('Next page');
+      if (this.no_Page === this.count_Pages) {
+        return;
+      }
+      this.no_Page = this.no_Page + 1;
+      this.get_Page();
     } else if (ev.key === 'Escape') {
+      console.log('esc');
       if (this.isVisible_ReaderUi) {
         this.hide_ReaderUi();
       } else {
@@ -71,6 +88,7 @@ export class VReader {
   @State() isOpen_Toc: boolean = false;
   @State() isOpen_Help: boolean = false;
   @State() isVisible_ReaderUi: boolean = true;
+  @State() base64Str_Page: string = '';
 
   private id_Document: string = '';
   private title_Publication: string = '';
@@ -78,7 +96,6 @@ export class VReader {
   private title_Document: string = '';
   private count_Pages: number = 0;
   private toc: any;
-  private base64Str_Page: string = '';
 
   componentWillLoad() {
     if (!this.match.params.id_Document) {
@@ -92,12 +109,12 @@ export class VReader {
   }
 
   componentDidLoad() {
-    this.init_Reader();
+    this.get_Page();
   }
 
-  async init_Reader() {
-    let payload_Init_Reader: any = helper_Generate_Reader_Init_Payload(this.id_Document, this.no_Page, IO.id);
-    let { success, message, payload } = await helper_ApiCall_Reader_Init_Payload(payload_Init_Reader);
+  async get_Page() {
+    let payload_get_Page: any = helper_Generate_Reader_Init_Payload(this.id_Document, this.no_Page, IO.id);
+    let { success, message, payload } = await helper_ApiCall_Reader_Init_Payload(payload_get_Page);
 
     if (!success) {
       alert(message);
@@ -153,11 +170,17 @@ export class VReader {
                   {this.toc.map((item: any) =>
                     item.type === 'article' ? (
                       <e-list-item>
-                        <e-link action="goTo_Page" event={true} value={item.page}>
-                          <e-text>
-                            <strong>{item.title}</strong> - {item.author}
-                          </e-text>
-                        </e-link>
+                        <l-row justifyContent="space-between" align="flex-start">
+                          <div class="toc__item--1">
+                            <e-link action="goTo_Page" event={true} value={item.page}>
+                              <e-text>
+                                <strong>{item.title}</strong>
+                              </e-text>
+                              <e-text>Authors: {item.author}</e-text>
+                            </e-link>
+                          </div>
+                          <e-text theme="light">{item.page}</e-text>
+                        </l-row>
                       </e-list-item>
                     ) : (
                       <div class="toc__seperator">
@@ -234,7 +257,7 @@ export class VReader {
         <footer class={!this.isVisible_ReaderUi && 'hide'}>
           <div class="ui-controls">
             <div class="ui-controls__page-controls">
-              <e-button variant="transparent--white" action="action_PrevPage">
+              <e-button variant="transparent--white" action="action_PrevPage" disabled={this.no_Page === 1 ? true : false}>
                 {' '}
                 <ion-icon name="chevron-back-outline"></ion-icon>
               </e-button>
@@ -243,7 +266,7 @@ export class VReader {
                 {this.no_Page} / {this.count_Pages}
               </e-text>
               &nbsp; &nbsp;
-              <e-button variant="transparent--white" action="action_NextPage">
+              <e-button variant="transparent--white" action="action_NextPage" disabled={this.no_Page === this.count_Pages ? true : false}>
                 {' '}
                 <ion-icon name="chevron-forward-outline"></ion-icon>
               </e-button>

@@ -80,7 +80,7 @@ input {
 
 .sub-window__content main {
   color: var(255, 255, 255, 0.8);
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   margin-top: 4em;
   overflow: scroll;
@@ -90,6 +90,10 @@ input {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1em 0;
+}
+
+.toc__item--1 {
+  width: 80%;
 }
 
 .ui-controls__page-controls {
