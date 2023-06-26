@@ -76,7 +76,7 @@ export class VReader {
   private title_Publication: string = '';
   private edition_Publication: string = '';
   private title_Document: string = '';
-  private count_Document_Pages: number = 0;
+  private count_Pages: number = 0;
   private toc: any;
   private base64Str_Page: string = '';
 
@@ -111,8 +111,8 @@ export class VReader {
     this.title_Publication = payload.title_Publication;
     this.edition_Publication = payload.edition_Publication;
     this.title_Document = payload.title_Document;
+    this.count_Pages = payload.count_Pages;
     this.toc = payload.toc;
-    this.count_Document_Pages = payload.count_Document_Pages;
     this.base64Str_Page = payload.base64Str_Page;
     this.isFetched_ReaderData = true;
   }
@@ -144,188 +144,33 @@ export class VReader {
               <e-text variant="display" theme="light">
                 Table of Contents
               </e-text>
+              <e-text theme="light">
+                {this.title_Publication}, {this.edition_Publication} - {this.title_Document}
+              </e-text>
               <l-spacer value={2}></l-spacer>
-              <e-list>
-                <div class="toc__seperator">
-                  <e-text theme="light">ENGLISH SECTION</e-text>
-                </div>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        {' '}
-                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
-                        test article name
-                      </strong>{' '}
-                      - AUTHOR NAME
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        {' '}
-                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
-                        test article name
-                      </strong>{' '}
-                      - AUTHOR NAME
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        {' '}
-                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
-                        test article name
-                      </strong>{' '}
-                      - AUTHOR NAME
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        {' '}
-                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
-                        test article name
-                      </strong>{' '}
-                      - AUTHOR NAME
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        {' '}
-                        This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a test article name. This is a
-                        test article name
-                      </strong>{' '}
-                      - AUTHOR NAME
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <div class="toc__seperator">
-                  <e-text theme="light">ASSAMESE SECTION</e-text>
-                </div>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
-                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
-                      </strong>{' '}
-                      - লেখকৰ নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
-                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
-                      </strong>{' '}
-                      - লেখকৰ নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
-                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
-                      </strong>{' '}
-                      - লেখকৰ নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
-                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
-                      </strong>{' '}
-                      - লেখকৰ নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা
-                        পৰীক্ষামূলক প্ৰবন্ধৰ নাম। এইটো এটা পৰীক্ষামূলক প্ৰবন্ধৰ নাম
-                      </strong>{' '}
-                      - লেখকৰ নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <div class="toc__seperator">
-                  <e-text theme="light">BENGALI SECTION</e-text>
-                </div>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
-                        এটি একটি পরীক্ষা নিবন্ধের নাম
-                      </strong>{' '}
-                      - লেখকের নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
-                        এটি একটি পরীক্ষা নিবন্ধের নাম
-                      </strong>{' '}
-                      - লেখকের নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
-                        এটি একটি পরীক্ষা নিবন্ধের নাম
-                      </strong>{' '}
-                      - লেখকের নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
-                        এটি একটি পরীক্ষা নিবন্ধের নাম
-                      </strong>{' '}
-                      - লেখকের নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-                <e-list-item>
-                  <e-link action="settings" event={true}>
-                    <e-text>
-                      <strong>
-                        এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম। এটি একটি পরীক্ষা নিবন্ধের নাম।
-                        এটি একটি পরীক্ষা নিবন্ধের নাম
-                      </strong>{' '}
-                      - লেখকের নাম
-                    </e-text>
-                  </e-link>
-                </e-list-item>
-              </e-list>
+              {this.toc.length > 0 ? (
+                <e-list>
+                  {this.toc.map((item: any) =>
+                    item.type === 'article' ? (
+                      <e-list-item>
+                        <e-link action="goTo_Page" event={true} value={item.page}>
+                          <e-text>
+                            <strong>{item.title}</strong> - {item.author}
+                          </e-text>
+                        </e-link>
+                      </e-list-item>
+                    ) : (
+                      <div class="toc__seperator">
+                        <e-text theme="light">{item.title.toUpperCase()}</e-text>
+                      </div>
+                    ),
+                  )}
+                </e-list>
+              ) : (
+                <e-text theme="light">
+                  This document <strong>does not have</strong> a table of contents
+                </e-text>
+              )}
             </main>
           </div>
         )}
@@ -394,7 +239,9 @@ export class VReader {
                 <ion-icon name="chevron-back-outline"></ion-icon>
               </e-button>
               &nbsp; &nbsp;
-              <e-text>99 / 100</e-text>
+              <e-text>
+                {this.no_Page} / {this.count_Pages}
+              </e-text>
               &nbsp; &nbsp;
               <e-button variant="transparent--white" action="action_NextPage">
                 {' '}
