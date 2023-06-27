@@ -37,15 +37,23 @@ export class VReader {
       this.no_Page = this.no_Page + 1;
       this.get_Page();
     } else if (e.detail.action === 'action_ZoomOut') {
-      console.log('zoom out');
+      if (this.scale_Embed <= 1) {
+        return;
+      }
+      this.scale_Embed = this.scale_Embed - 0.15;
+      this.el_Embed.style.transform = `scale(${this.scale_Embed})`;
     } else if (e.detail.action === 'action_ZoomIn') {
-      console.log('zoom in');
+      if (this.scale_Embed >= 1.45) {
+        return;
+      }
+      this.scale_Embed = this.scale_Embed + 0.15;
+      this.el_Embed.style.transform = `scale(${this.scale_Embed})`;
     }
   }
 
   @Listen('event_LinkClick') handle_LinkClick(e) {
     if (e.detail.action === 'goTo_Page') {
-      this.no_Page = e.detail.value;
+      this.no_Page = parseInt(e.detail.value);
       this.isOpen_Toc = false;
       this.get_Page();
     }
@@ -89,6 +97,7 @@ export class VReader {
   @State() isOpen_Help: boolean = false;
   @State() isVisible_ReaderUi: boolean = true;
   @State() base64Str_Page: string = '';
+  @State() scale_Embed: number = 1;
 
   private id_Document: string = '';
   private title_Publication: string = '';
@@ -96,6 +105,8 @@ export class VReader {
   private title_Document: string = '';
   private count_Pages: number = 0;
   private toc: any;
+
+  el_Embed!: HTMLEmbedElement;
 
   componentWillLoad() {
     if (!this.match.params.id_Document) {
@@ -253,7 +264,12 @@ export class VReader {
             </e-button>
           </l-row>
         </header>
-        {this.isFetched_ReaderData && <embed src={`data:application/pdf;base64,${this.base64Str_Page}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf`}></embed>}
+        {this.isFetched_ReaderData && (
+          <embed
+            src={`data:application/pdf;base64,${this.base64Str_Page}#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf`}
+            ref={el => (this.el_Embed = el as HTMLEmbedElement)}
+          ></embed>
+        )}
         <footer class={!this.isVisible_ReaderUi && 'hide'}>
           <div class="ui-controls">
             <div class="ui-controls__page-controls">
@@ -272,12 +288,12 @@ export class VReader {
               </e-button>
             </div>
             <div class="ui-controls__zoom-controls">
-              <e-button variant="transparent--white" action="action_ZoomOut">
+              <e-button variant="transparent--white" action="action_ZoomOut" disabled={this.scale_Embed <= 1 ? true : false}>
                 {' '}
                 <ion-icon name="remove-circle-outline"></ion-icon>{' '}
               </e-button>
               &nbsp;
-              <e-button variant="transparent--white" action="action_ZoomIn">
+              <e-button variant="transparent--white" action="action_ZoomIn" disabled={this.scale_Embed >= 1.45 ? true : false}>
                 {' '}
                 <ion-icon name="add-circle-outline"></ion-icon>{' '}
               </e-button>
