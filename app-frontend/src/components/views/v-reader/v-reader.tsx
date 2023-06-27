@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop, State, h, Host, Listen, FunctionalComponent } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, State, h, Host, Listen } from '@stencil/core';
 import { MatchResults, RouterHistory, injectHistory } from '@stencil/router';
 
 import { helper_Generate_Reader_Init_Payload, helper_ApiCall_Reader_Init_Payload } from './helpers';
@@ -55,6 +55,16 @@ export class VReader {
     if (e.detail.action === 'goTo_Page') {
       this.no_Page = parseInt(e.detail.value);
       this.isOpen_Toc = false;
+      this.get_Page();
+    } else if (e.detail.action === 'open_PagePrompt') {
+      let input_FromPrompt: any = prompt('Enter page no', 'e.g. 65');
+      if (!input_FromPrompt) {
+        return;
+      }
+      if (isNaN(input_FromPrompt)) {
+        return;
+      }
+      this.no_Page = parseInt(input_FromPrompt);
       this.get_Page();
     }
   }
@@ -278,9 +288,9 @@ export class VReader {
                 <ion-icon name="chevron-back-outline"></ion-icon>
               </e-button>
               &nbsp; &nbsp;
-              <e-text>
+              <e-link action="open_PagePrompt" event={true}>
                 {this.no_Page} / {this.count_Pages}
-              </e-text>
+              </e-link>
               &nbsp; &nbsp;
               <e-button variant="transparent--white" action="action_NextPage" disabled={this.no_Page === this.count_Pages ? true : false}>
                 {' '}

@@ -9,10 +9,11 @@
 header,
 footer {
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   display: flex;
   width: 100%;
   padding: 2em;
+  z-index: 9;
 }
 
 header {
