@@ -22,6 +22,7 @@ export class AppRoot {
 
   @Listen('success_Auth') handle_success_Auth(e) {
     helper_Set_State(e.detail.payload);
+    helper_Set_Session_In_LocalStorage();
   }
 
   componentWillLoad() {
@@ -33,9 +34,6 @@ export class AppRoot {
 
   componentDidLoad() {
     init_Socket();
-    if (!state.isActive_Session) {
-      return;
-    }
     this.fetch_AccountData();
   }
 
@@ -49,6 +47,7 @@ export class AppRoot {
       this.history.push('/login', {});
       return console.log(message);
     }
+    helper_Set_State(payload);
     helper_Set_Session_In_LocalStorage();
   }
 
@@ -59,12 +58,12 @@ export class AppRoot {
           {/* <stencil-route url="/" component="v-login" /> */}
 
           {/* LoggedOut Routes */}
-          {/* <this.Route_LoggedOut url="/" component="v-login"></this.Route_LoggedOut> */}
           <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>
           <this.Route_LoggedOut url="/signup" component="v-signup"></this.Route_LoggedOut>
           <this.Route_LoggedOut url="/forgot-password" component="v-forgot-password"></this.Route_LoggedOut>
 
           {/* LoggedIn Routes */}
+          <this.Route_LoggedIn url="/" component="v-my-library"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/my-library" component="v-my-library"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/store" component="v-store"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/checkout/:id_Document" component="v-checkout"></this.Route_LoggedIn>
