@@ -162,7 +162,7 @@ export class VMyLibrary {
 
   RightPanel: FunctionalComponent = () => (
     <div class="right-panel">
-      {!state.isVerified_AccountEmail && (
+      {state.account_Email && !state.isVerified_AccountEmail && (
         <div>
           <l-spacer value={2}></l-spacer>
           <this.Banner_EmailVerification></this.Banner_EmailVerification>

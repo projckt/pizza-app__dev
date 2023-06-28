@@ -87,6 +87,9 @@ export namespace Components {
     }
     interface PUserControl {
     }
+    interface VCatchAll {
+        "history": RouterHistory;
+    }
     interface VCheckout {
         "history": RouterHistory;
         "match": MatchResults;
@@ -229,6 +232,12 @@ declare global {
         prototype: HTMLPUserControlElement;
         new (): HTMLPUserControlElement;
     };
+    interface HTMLVCatchAllElement extends Components.VCatchAll, HTMLStencilElement {
+    }
+    var HTMLVCatchAllElement: {
+        prototype: HTMLVCatchAllElement;
+        new (): HTMLVCatchAllElement;
+    };
     interface HTMLVCheckoutElement extends Components.VCheckout, HTMLStencilElement {
     }
     var HTMLVCheckoutElement: {
@@ -303,6 +312,7 @@ declare global {
         "p-publication": HTMLPPublicationElement;
         "p-reading": HTMLPReadingElement;
         "p-user-control": HTMLPUserControlElement;
+        "v-catch-all": HTMLVCatchAllElement;
         "v-checkout": HTMLVCheckoutElement;
         "v-forgot-password": HTMLVForgotPasswordElement;
         "v-login": HTMLVLoginElement;
@@ -400,6 +410,9 @@ declare namespace LocalJSX {
     interface PUserControl {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
+    interface VCatchAll {
+        "history"?: RouterHistory;
+    }
     interface VCheckout {
         "history"?: RouterHistory;
         "match"?: MatchResults;
@@ -457,6 +470,7 @@ declare namespace LocalJSX {
         "p-publication": PPublication;
         "p-reading": PReading;
         "p-user-control": PUserControl;
+        "v-catch-all": VCatchAll;
         "v-checkout": VCheckout;
         "v-forgot-password": VForgotPassword;
         "v-login": VLogin;
@@ -491,6 +505,7 @@ declare module "@stencil/core" {
             "p-publication": LocalJSX.PPublication & JSXBase.HTMLAttributes<HTMLPPublicationElement>;
             "p-reading": LocalJSX.PReading & JSXBase.HTMLAttributes<HTMLPReadingElement>;
             "p-user-control": LocalJSX.PUserControl & JSXBase.HTMLAttributes<HTMLPUserControlElement>;
+            "v-catch-all": LocalJSX.VCatchAll & JSXBase.HTMLAttributes<HTMLVCatchAllElement>;
             "v-checkout": LocalJSX.VCheckout & JSXBase.HTMLAttributes<HTMLVCheckoutElement>;
             "v-forgot-password": LocalJSX.VForgotPassword & JSXBase.HTMLAttributes<HTMLVForgotPasswordElement>;
             "v-login": LocalJSX.VLogin & JSXBase.HTMLAttributes<HTMLVLoginElement>;

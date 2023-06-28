@@ -34,7 +34,9 @@ export class AppRoot {
 
   componentDidLoad() {
     init_Socket();
-    this.fetch_AccountData();
+    if (state.isActive_Session) {
+      this.fetch_AccountData();
+    }
   }
 
   disconnectedCallback() {
@@ -55,7 +57,7 @@ export class AppRoot {
     return (
       <stencil-router>
         <stencil-route-switch scrollTopOffset={0}>
-          {/* <stencil-route url="/" component="v-login" /> */}
+          <stencil-route url="/" component={state.isActive_Session ? 'v-my-library' : 'v-login'} exact={true} />
 
           {/* LoggedOut Routes */}
           <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>
@@ -63,16 +65,18 @@ export class AppRoot {
           <this.Route_LoggedOut url="/forgot-password" component="v-forgot-password"></this.Route_LoggedOut>
 
           {/* LoggedIn Routes */}
-          <this.Route_LoggedIn url="/" component="v-my-library"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/my-library" component="v-my-library"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/store" component="v-store"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/checkout/:id_Document" component="v-checkout"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/reader/:id_Document" component="v-reader"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/payment-cancel" component="v-payment-cancel"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/payment-handle/:id_Session" component="v-payment-handle"></this.Route_LoggedIn>
+          <this.Route_LoggedIn url="/checkout/:id_Document" component="v-checkout"></this.Route_LoggedIn>
+          <this.Route_LoggedIn url="/reader/:id_Document" component="v-reader"></this.Route_LoggedIn>
 
-          {/* <stencil-route url="/payment-cancel" component="v-payment-cancel" />
-          <stencil-route url="/payment-handle/:id_Session" component="v-payment-handle" /> */}
+          <stencil-route component="v-catch-all" />
+          {/* SAMPLE ROUTES
+          <stencil-route url="/payment-cancel" component="v-payment-cancel" />
+          <stencil-route url="/payment-handle/:id_Session" component="v-payment-handle" /> 
+          */}
         </stencil-route-switch>
       </stencil-router>
     );
