@@ -1,7 +1,7 @@
 import { Component, Event, EventEmitter, Listen, h } from '@stencil/core';
 import { state } from '../../../global/script';
 import { helper_UserControl_Api_Logout } from './helpers';
-import { helper_Clear_AccountDetails_In_LocalStorage } from '../../app-root/helpers';
+import { helper_Clear_Session_In_LocalStorage } from '../../app-root/helpers';
 
 @Component({
   tag: 'p-user-control',
@@ -31,7 +31,7 @@ export class PUserControl {
       return alert(payload.message);
     }
 
-    helper_Clear_AccountDetails_In_LocalStorage();
+    helper_Clear_Session_In_LocalStorage();
     state.isActive_Session = payload.isActive_Session;
 
     this.event_RouteTo.emit({

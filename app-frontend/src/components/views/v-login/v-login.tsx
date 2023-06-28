@@ -70,7 +70,9 @@ export class VLogin {
       return alert(payload_LoginInputs_Submission.message);
     }
 
-    this.success_Auth.emit();
+    this.success_Auth.emit({
+      payload: payload_LoginInputs_Submission.payload,
+    });
   }
 
   render() {

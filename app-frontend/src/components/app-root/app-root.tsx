@@ -1,7 +1,7 @@
 import { Component, Prop, Listen, h } from '@stencil/core';
 import { RouterHistory, injectHistory } from '@stencil/router';
 import { state, IO, init_Socket } from '../../global/script';
-import { helper_Set_AccountDetails, helper_Check_If_AccountDetails_In_LocalStorage, helper_Set_AccountDetails_In_LocalStorage } from './helpers';
+import { helper_Set_State, helper_Set_Session_In_LocalStorage, helper_Check_Session_In_LocalStorage } from './helpers';
 import { Helper_ApiCall_GetAccountDetails_BySession } from '../../global/script/helpers';
 
 @Component({
@@ -20,25 +20,23 @@ export class AppRoot {
     }
   }
 
-  @Listen('success_Auth') handle_success_Auth() {
-    this.fetch_AccountData();
+  @Listen('success_Auth') handle_success_Auth(e) {
+    helper_Set_State(e.detail.payload);
   }
 
-  private isFetched_AccountData: boolean = false;
-
   componentWillLoad() {
-    let { success, payload } = helper_Check_If_AccountDetails_In_LocalStorage();
-    if (success) {
-      helper_Set_AccountDetails(payload);
-      this.isFetched_AccountData = true;
+    let { payload } = helper_Check_Session_In_LocalStorage();
+    if (payload.isLogged) {
+      state.isActive_Session = payload.isLogged;
     }
   }
 
   componentDidLoad() {
-    if (!this.isFetched_AccountData) {
-      this.fetch_AccountData();
-    }
     init_Socket();
+    if (!state.isActive_Session) {
+      return;
+    }
+    this.fetch_AccountData();
   }
 
   disconnectedCallback() {
@@ -47,14 +45,11 @@ export class AppRoot {
 
   async fetch_AccountData() {
     let { success, message, payload } = await Helper_ApiCall_GetAccountDetails_BySession();
-
     if (!success) {
       this.history.push('/login', {});
       return console.log(message);
     }
-
-    helper_Set_AccountDetails(payload);
-    helper_Set_AccountDetails_In_LocalStorage(payload);
+    helper_Set_Session_In_LocalStorage();
   }
 
   render() {
@@ -64,12 +59,12 @@ export class AppRoot {
           {/* <stencil-route url="/" component="v-login" /> */}
 
           {/* LoggedOut Routes */}
+          {/* <this.Route_LoggedOut url="/" component="v-login"></this.Route_LoggedOut> */}
           <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>
           <this.Route_LoggedOut url="/signup" component="v-signup"></this.Route_LoggedOut>
           <this.Route_LoggedOut url="/forgot-password" component="v-forgot-password"></this.Route_LoggedOut>
 
           {/* LoggedIn Routes */}
-
           <this.Route_LoggedIn url="/my-library" component="v-my-library"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/store" component="v-store"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/checkout/:id_Document" component="v-checkout"></this.Route_LoggedIn>

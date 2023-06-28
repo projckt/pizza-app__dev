@@ -76,7 +76,9 @@ export class VSignup {
       return alert(payload_SignupInputs_Submission.message);
     }
 
-    this.success_Auth.emit();
+    this.success_Auth.emit({
+      payload: payload_SignupInputs_Submission.payload,
+    });
   }
 
   render() {
