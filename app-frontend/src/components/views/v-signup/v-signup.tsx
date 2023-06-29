@@ -59,10 +59,10 @@ export class VSignup {
     }
   }
 
-  @State() isActive_SignupButton: boolean = false;
+  @State() isActive_Signup_Button: boolean = false;
 
   async handle_Submit_SignupInputs() {
-    this.isActive_SignupButton = true;
+    this.isActive_Signup_Button = true;
     let payload_SignupInputs: interface_SignupInputs = generate_Signup_Payload(this.name_First, this.name_Last, this.email, this.password);
 
     let { isValid_SignupInputs, message_Validation_SignupInputs } = helper_Validate_SignupInputs(payload_SignupInputs);
@@ -79,7 +79,7 @@ export class VSignup {
       return alert(payload_SignupInputs_Submission.message);
     }
 
-    this.isActive_SignupButton = false;
+    this.isActive_Signup_Button = false;
 
     this.success_Auth.emit({
       payload: payload_SignupInputs_Submission.payload,
@@ -115,7 +115,7 @@ export class VSignup {
                 Forgot Password
               </e-link>
             </e-text>
-            <e-button action="submit_SignupInputs" active={this.isActive_SignupButton}>
+            <e-button action="submit_SignupInputs" active={this.isActive_Signup_Button}>
               Sign up
             </e-button>
           </l-row>

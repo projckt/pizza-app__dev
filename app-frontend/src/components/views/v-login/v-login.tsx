@@ -53,10 +53,10 @@ export class VLogin {
     }
   }
 
-  @State() isActive_LoginButton: boolean = false;
+  @State() isActive_Login_Button: boolean = false;
 
   async handle_Submit_LoginInputs() {
-    this.isActive_LoginButton = true;
+    this.isActive_Login_Button = true;
     let payload_LoginInputs: interface_LoginInputs = generate_Login_Payload(this.email, this.password);
 
     let { isValid_LoginInputs, message_Validate_LoginInputs } = helper_Validate_LoginInputs(payload_LoginInputs);
@@ -73,7 +73,7 @@ export class VLogin {
       return alert(payload_LoginInputs_Submission.message);
     }
 
-    this.isActive_LoginButton = false;
+    this.isActive_Login_Button = false;
 
     this.success_Auth.emit({
       payload: payload_LoginInputs_Submission.payload,
@@ -104,7 +104,7 @@ export class VLogin {
                 Forgot Password
               </e-link>
             </e-text>
-            <e-button action="submit_LoginInputs" active={this.isActive_LoginButton}>
+            <e-button action="submit_LoginInputs" active={this.isActive_Login_Button}>
               Login
             </e-button>
           </l-row>

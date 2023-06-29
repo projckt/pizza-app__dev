@@ -57,6 +57,8 @@ export class VMyLibrary {
     }
   }
 
+  @State() isActive_ResendVerificationCode_Button: boolean = false;
+
   componentDidLoad() {
     this.fetch_ViewData();
   }
@@ -74,6 +76,7 @@ export class VMyLibrary {
   }
 
   async handle_Submit_ReSend_EmailVerificationCode() {
+    this.isActive_ResendVerificationCode_Button = true;
     let payload_ReSend_EmailVerificationCode_Inputs: interface_ReSend_EmailVerificationCode_Inputs = generate_ReSend_EmailVerificationCode_Payload(state.account_Email);
 
     let { isValid_ReSend_EmailVerificationCode_Inputs, message_Validate_ReSend_EmailVerificationCode_Inputs } =
@@ -86,6 +89,7 @@ export class VMyLibrary {
     if (!success) {
       return alert(message);
     }
+    this.isActive_ResendVerificationCode_Button = false;
 
     alert(message);
   }
@@ -126,7 +130,9 @@ export class VMyLibrary {
           <l-spacer variant="horizontal" value={0.5}></l-spacer>
           <e-input type="number" name="code_EmailVerification" placeholder="4-digit code"></e-input>
         </l-row>
-        <e-button action="action_ReSend_EmailVerificationCode">Re-send code</e-button>
+        <e-button action="action_ReSend_EmailVerificationCode" active={this.isActive_ResendVerificationCode_Button}>
+          Re-send code
+        </e-button>
       </l-row>
     </c-banner>
   );
