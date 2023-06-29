@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, Listen, State, h } from '@stencil/core';
 import { generate_Signup_Payload, helper_Validate_SignupInputs, helper_Signup_Api_Signup } from './helpers';
 import { interface_SignupInputs } from './interfaces';
 
@@ -59,7 +59,10 @@ export class VSignup {
     }
   }
 
+  @State() isActive_SignupButton: boolean = false;
+
   async handle_Submit_SignupInputs() {
+    this.isActive_SignupButton = true;
     let payload_SignupInputs: interface_SignupInputs = generate_Signup_Payload(this.name_First, this.name_Last, this.email, this.password);
 
     let { isValid_SignupInputs, message_Validation_SignupInputs } = helper_Validate_SignupInputs(payload_SignupInputs);
@@ -75,6 +78,8 @@ export class VSignup {
     if (!payload_SignupInputs_Submission.success) {
       return alert(payload_SignupInputs_Submission.message);
     }
+
+    this.isActive_SignupButton = false;
 
     this.success_Auth.emit({
       payload: payload_SignupInputs_Submission.payload,
@@ -110,7 +115,9 @@ export class VSignup {
                 Forgot Password
               </e-link>
             </e-text>
-            <e-button action="submit_SignupInputs">Sign up</e-button>
+            <e-button action="submit_SignupInputs" active={this.isActive_SignupButton}>
+              Sign up
+            </e-button>
           </l-row>
           <l-spacer value={2}></l-spacer>
           <l-seperator></l-seperator>

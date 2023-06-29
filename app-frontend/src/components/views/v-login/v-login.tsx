@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Host, Listen, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, State, Listen, h } from '@stencil/core';
 import { generate_Login_Payload, helper_Validate_LoginInputs, helper_Login_Api } from './helpers';
 import { interface_LoginInputs } from './interfaces';
 
@@ -53,7 +53,10 @@ export class VLogin {
     }
   }
 
+  @State() isActive_LoginButton: boolean = false;
+
   async handle_Submit_LoginInputs() {
+    this.isActive_LoginButton = true;
     let payload_LoginInputs: interface_LoginInputs = generate_Login_Payload(this.email, this.password);
 
     let { isValid_LoginInputs, message_Validate_LoginInputs } = helper_Validate_LoginInputs(payload_LoginInputs);
@@ -69,6 +72,8 @@ export class VLogin {
     if (!payload_LoginInputs_Submission.success) {
       return alert(payload_LoginInputs_Submission.message);
     }
+
+    this.isActive_LoginButton = false;
 
     this.success_Auth.emit({
       payload: payload_LoginInputs_Submission.payload,
@@ -99,7 +104,9 @@ export class VLogin {
                 Forgot Password
               </e-link>
             </e-text>
-            <e-button action="submit_LoginInputs">Login</e-button>
+            <e-button action="submit_LoginInputs" active={this.isActive_LoginButton}>
+              Login
+            </e-button>
           </l-row>
           <l-spacer value={2}></l-spacer>
           <l-seperator></l-seperator>

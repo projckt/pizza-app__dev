@@ -21,6 +21,7 @@ export namespace Components {
     }
     interface EButton {
         "action": string;
+        "active": boolean;
         "disabled": boolean;
         "size": string;
         "value": any;
@@ -339,6 +340,7 @@ declare namespace LocalJSX {
     }
     interface EButton {
         "action"?: string;
+        "active"?: boolean;
         "disabled"?: boolean;
         "onButtonClick"?: (event: CustomEvent<any>) => void;
         "size"?: string;
