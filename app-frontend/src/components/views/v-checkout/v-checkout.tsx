@@ -40,6 +40,9 @@ export class VCheckout {
     }
   }
 
+  @State() isActive_ConfirmAndPay_Button: boolean = false;
+  @State() isDisabled_ConfirmAndPay_Button: boolean = true;
+
   private data_Document: any;
   private id_Document: string = '';
   private title_Publication: string = '';
@@ -102,9 +105,11 @@ export class VCheckout {
 
   async init_Stripe() {
     this.stripe = await loadStripe(this.stripe_Key_Public!);
+    this.isDisabled_ConfirmAndPay_Button = false;
   }
 
   async create_Checkout_Session() {
+    this.isActive_ConfirmAndPay_Button = true;
     let payload_Create_Stripe_CheckoutSession: any = helper_Generate_Create_Stripe_CheckoutSession_Payload(this.id_Document);
     let { success, message, payload } = await helper_ApiCall_Create_Stripe_CheckoutSession(payload_Create_Stripe_CheckoutSession);
     if (!success) {
@@ -114,7 +119,7 @@ export class VCheckout {
     const { error } = await this.stripe!.redirectToCheckout({
       sessionId: payload,
     });
-
+    this.isActive_ConfirmAndPay_Button = false;
     console.warn(error.message);
   }
 
@@ -201,7 +206,9 @@ export class VCheckout {
                 &lt; Back
               </e-link>
             </e-text>
-            <e-button action="action_Create_CheckoutSession">Confirm & pay</e-button>
+            <e-button action="action_Create_CheckoutSession" disabled={this.isDisabled_ConfirmAndPay_Button} active={this.isActive_ConfirmAndPay_Button}>
+              Confirm & pay
+            </e-button>
           </l-row>
         </c-card>
       </Host>
