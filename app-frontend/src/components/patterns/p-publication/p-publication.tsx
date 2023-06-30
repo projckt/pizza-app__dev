@@ -28,6 +28,7 @@ export class PPublication {
 
   @State() price_Active_Document: string;
   @State() id_Active_Document: string;
+  @State() isDisabled_Buy_Button: boolean = false;
 
   private isLoaded: boolean = false;
 
@@ -42,15 +43,15 @@ export class PPublication {
   }
 
   async fetch_DocumentPrice(id_Document: string) {
+    this.isDisabled_Buy_Button = true;
     let payload_To_Fetch_DocumentPrice: interface_Fetch_DocumentPrice_Payload = helper_Generate_Payload_To_Fetch_DocumentPrice(id_Document);
     let { success, message, payload } = await helper_ApiCall_Fetch_DocumentPrice(payload_To_Fetch_DocumentPrice);
-
     if (!success) {
       return alert(message);
     }
-
     this.id_Active_Document = payload.id;
     this.price_Active_Document = `${payload.currency}${payload.price}`;
+    this.isDisabled_Buy_Button = false;
   }
 
   generate_Price_Active_Document() {
@@ -113,7 +114,7 @@ export class PPublication {
         <l-spacer value={1}></l-spacer>
         <l-row justifyContent="space-between">
           <e-text>{this.price_Active_Document}</e-text>
-          <e-button action="goToCheckout" value={this.id_Active_Document} size="wide">
+          <e-button action="goToCheckout" value={this.id_Active_Document} size="wide" disabled={this.isDisabled_Buy_Button}>
             Buy
           </e-button>
         </l-row>

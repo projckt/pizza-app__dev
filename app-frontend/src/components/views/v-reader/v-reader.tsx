@@ -64,6 +64,9 @@ export class VReader {
       if (isNaN(input_FromPrompt)) {
         return;
       }
+      if (this.count_Pages < parseInt(input_FromPrompt)) {
+        return;
+      }
       this.no_Page = parseInt(input_FromPrompt);
       this.get_Page();
     }
