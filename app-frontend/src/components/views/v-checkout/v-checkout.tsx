@@ -109,9 +109,10 @@ export class VCheckout {
   }
 
   async create_Checkout_Session() {
-    this.isActive_ConfirmAndPay_Button = true;
     let payload_Create_Stripe_CheckoutSession: any = helper_Generate_Create_Stripe_CheckoutSession_Payload(this.id_Document);
+    this.isActive_ConfirmAndPay_Button = true;
     let { success, message, payload } = await helper_ApiCall_Create_Stripe_CheckoutSession(payload_Create_Stripe_CheckoutSession);
+    this.isActive_ConfirmAndPay_Button = false;
     if (!success) {
       return alert(message);
     }
@@ -119,7 +120,6 @@ export class VCheckout {
     const { error } = await this.stripe!.redirectToCheckout({
       sessionId: payload,
     });
-    this.isActive_ConfirmAndPay_Button = false;
     console.warn(error.message);
   }
 

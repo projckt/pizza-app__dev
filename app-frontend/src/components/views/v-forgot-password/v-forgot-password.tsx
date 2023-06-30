@@ -23,6 +23,8 @@ export class VForgotPassword {
 
   @State() wizard_CurrentStep: number = 0;
   @State() state: string = this.wizard_Steps[this.wizard_CurrentStep];
+  @State() isActive_SendResetCode_Button: boolean = false;
+  @State() isActive_ConfirmPassword_Button: boolean = false;
 
   @Event({
     eventName: 'event_RouteTo',
@@ -44,7 +46,7 @@ export class VForgotPassword {
 
   @Listen('buttonClick') handle_ButtonClick(e) {
     if (e.detail.action === 'send_ResetCode') {
-      this.handle_Submit_SendResetCode_Inputs();
+      this.handle_Submit_SendResetCode();
     } else if (e.detail.action === 'confirm_Password') {
       this.handle_Confirm_Password();
     }
@@ -63,7 +65,7 @@ export class VForgotPassword {
     }
   }
 
-  handle_Submit_SendResetCode_Inputs = async () => {
+  handle_Submit_SendResetCode = async () => {
     let payload_SendResetCode_Inputs: interface_SendResetCode_Inputs = generate_SendResetCode_Payload(this.email);
 
     let { isValid_SendResetCode_Inputs, message_Validate_SendResetCode_Inputs } = helper_Validate_SendResetCode_Inputs(payload_SendResetCode_Inputs);
@@ -71,13 +73,15 @@ export class VForgotPassword {
       return alert(message_Validate_SendResetCode_Inputs);
     }
 
+    this.isActive_SendResetCode_Button = true;
     let { isSuccess_SendResetCode_Inputs_Submission, message_SendResetCode_Inputs_Submission, payload_SendResetCode_Inputs_Submission } = await helper_SendResetCode_Api(
       payload_SendResetCode_Inputs,
     );
+    this.isActive_SendResetCode_Button = false;
+
     if (!isSuccess_SendResetCode_Inputs_Submission) {
       return alert(message_SendResetCode_Inputs_Submission);
     }
-
     if (!payload_SendResetCode_Inputs_Submission.success) {
       return alert(payload_SendResetCode_Inputs_Submission);
     }
@@ -101,15 +105,17 @@ export class VForgotPassword {
       return alert(message_Validate_ConfirmPassword_Inputs);
     }
 
+    this.isActive_ConfirmPassword_Button = true;
     let { isSuccess_ConfirmPassword_Inputs_Submission, message_ConfirmPassword_Inputs_Submission, payload_ConfirmPassword_Inputs_Submission } = await helper_ConfirmPassword_Api(
       payload_ConfirmPassword_Inputs,
     );
+    this.isActive_ConfirmPassword_Button = false;
+
     if (!isSuccess_ConfirmPassword_Inputs_Submission) {
       return alert(message_ConfirmPassword_Inputs_Submission);
     }
 
     alert(`${payload_ConfirmPassword_Inputs_Submission.message}. Proceed to login`);
-
     this.event_RouteTo.emit({
       type: 'push',
       route: '/login',
@@ -136,7 +142,9 @@ export class VForgotPassword {
             &lt; Back
           </e-link>
         </e-text>
-        <e-button action="send_ResetCode">Send reset code</e-button>
+        <e-button action="send_ResetCode" active={this.isActive_SendResetCode_Button}>
+          Send reset code
+        </e-button>
       </l-row>
     </div>
   );
@@ -164,7 +172,9 @@ export class VForgotPassword {
             &lt; Back
           </e-link>
         </e-text>
-        <e-button action="confirm_Password">Confirm</e-button>
+        <e-button action="confirm_Password" active={this.isActive_ConfirmPassword_Button}>
+          Confirm
+        </e-button>
       </l-row>
     </div>
   );

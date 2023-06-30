@@ -85,11 +85,12 @@ export class VMyLibrary {
       return alert(message_Validate_ReSend_EmailVerificationCode_Inputs);
     }
 
+    this.isActive_ResendVerificationCode_Button = true;
     let { success, message } = await helper_ApiCall_ReSend_EmailVerificationCode(payload_ReSend_EmailVerificationCode_Inputs);
+    this.isActive_ResendVerificationCode_Button = false;
     if (!success) {
       return alert(message);
     }
-    this.isActive_ResendVerificationCode_Button = false;
 
     alert(message);
   }

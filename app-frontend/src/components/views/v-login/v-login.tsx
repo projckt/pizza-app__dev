@@ -56,7 +56,6 @@ export class VLogin {
   @State() isActive_Login_Button: boolean = false;
 
   async handle_Submit_LoginInputs() {
-    this.isActive_Login_Button = true;
     let payload_LoginInputs: interface_LoginInputs = generate_Login_Payload(this.email, this.password);
 
     let { isValid_LoginInputs, message_Validate_LoginInputs } = helper_Validate_LoginInputs(payload_LoginInputs);
@@ -64,7 +63,9 @@ export class VLogin {
       return alert(message_Validate_LoginInputs);
     }
 
+    this.isActive_Login_Button = true;
     let { isSuccess_LoginInputs_Submission, message_LoginInputs_Submission, payload_LoginInputs_Submission } = await helper_Login_Api(payload_LoginInputs);
+    this.isActive_Login_Button = false;
     if (!isSuccess_LoginInputs_Submission) {
       return alert(message_LoginInputs_Submission);
     }
@@ -72,8 +73,6 @@ export class VLogin {
     if (!payload_LoginInputs_Submission.success) {
       return alert(payload_LoginInputs_Submission.message);
     }
-
-    this.isActive_Login_Button = false;
 
     this.success_Auth.emit({
       payload: payload_LoginInputs_Submission.payload,

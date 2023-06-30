@@ -62,7 +62,6 @@ export class VSignup {
   @State() isActive_Signup_Button: boolean = false;
 
   async handle_Submit_SignupInputs() {
-    this.isActive_Signup_Button = true;
     let payload_SignupInputs: interface_SignupInputs = generate_Signup_Payload(this.name_First, this.name_Last, this.email, this.password);
 
     let { isValid_SignupInputs, message_Validation_SignupInputs } = helper_Validate_SignupInputs(payload_SignupInputs);
@@ -70,7 +69,9 @@ export class VSignup {
       return alert(message_Validation_SignupInputs);
     }
 
+    this.isActive_Signup_Button = true;
     let { isSuccess_SignupInputs_Submission, message_SignupInputs_Submission, payload_SignupInputs_Submission } = await helper_Signup_Api_Signup(payload_SignupInputs);
+    this.isActive_Signup_Button = false;
     if (!isSuccess_SignupInputs_Submission) {
       return alert(message_SignupInputs_Submission);
     }
@@ -78,8 +79,6 @@ export class VSignup {
     if (!payload_SignupInputs_Submission.success) {
       return alert(payload_SignupInputs_Submission.message);
     }
-
-    this.isActive_Signup_Button = false;
 
     this.success_Auth.emit({
       payload: payload_SignupInputs_Submission.payload,

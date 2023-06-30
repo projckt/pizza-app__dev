@@ -104,7 +104,6 @@ export class VStore {
   }
 
   async handle_Submit_ReSend_EmailVerificationCode() {
-    this.isActive_ResendVerificationCode_Button = true;
     let payload_ReSend_EmailVerificationCode_Inputs: interface_ReSend_EmailVerificationCode_Inputs = generate_ReSend_EmailVerificationCode_Payload(state.account_Email);
 
     let { isValid_ReSend_EmailVerificationCode_Inputs, message_Validate_ReSend_EmailVerificationCode_Inputs } =
@@ -113,11 +112,12 @@ export class VStore {
       return alert(message_Validate_ReSend_EmailVerificationCode_Inputs);
     }
 
+    this.isActive_ResendVerificationCode_Button = true;
     let { success, message } = await helper_ApiCall_ReSend_EmailVerificationCode(payload_ReSend_EmailVerificationCode_Inputs);
+    this.isActive_ResendVerificationCode_Button = false;
     if (!success) {
       return alert(message);
     }
-    this.isActive_ResendVerificationCode_Button = false;
 
     alert(message);
   }
