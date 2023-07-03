@@ -65,12 +65,10 @@ export class AppRoot {
           <this.Route_LoggedOut url="/forgot-password" component="v-forgot-password"></this.Route_LoggedOut>
 
           {/* LoggedIn Routes */}
-          <this.Route_LoggedIn url="/my-library" component="v-my-library"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/store" component="v-store"></this.Route_LoggedIn>
+          <this.Route_LoggedIn url="/home" component="v-home"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/payment-cancel" component="v-payment-cancel"></this.Route_LoggedIn>
           <this.Route_LoggedIn url="/payment-handle/:id_Session" component="v-payment-handle"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/checkout/:id_Document" component="v-checkout"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/reader/:id_Document" component="v-reader"></this.Route_LoggedIn>
+          <this.Route_LoggedIn url="/checkout/:id_Order" component="v-checkout"></this.Route_LoggedIn>
 
           <stencil-route component="v-catch-all" />
           {/* SAMPLE ROUTES

@@ -97,6 +97,8 @@ export namespace Components {
     }
     interface VForgotPassword {
     }
+    interface VHome {
+    }
     interface VLogin {
     }
     interface VMyLibrary {
@@ -251,6 +253,12 @@ declare global {
         prototype: HTMLVForgotPasswordElement;
         new (): HTMLVForgotPasswordElement;
     };
+    interface HTMLVHomeElement extends Components.VHome, HTMLStencilElement {
+    }
+    var HTMLVHomeElement: {
+        prototype: HTMLVHomeElement;
+        new (): HTMLVHomeElement;
+    };
     interface HTMLVLoginElement extends Components.VLogin, HTMLStencilElement {
     }
     var HTMLVLoginElement: {
@@ -316,6 +324,7 @@ declare global {
         "v-catch-all": HTMLVCatchAllElement;
         "v-checkout": HTMLVCheckoutElement;
         "v-forgot-password": HTMLVForgotPasswordElement;
+        "v-home": HTMLVHomeElement;
         "v-login": HTMLVLoginElement;
         "v-my-library": HTMLVMyLibraryElement;
         "v-payment-cancel": HTMLVPaymentCancelElement;
@@ -423,6 +432,8 @@ declare namespace LocalJSX {
     interface VForgotPassword {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
     }
+    interface VHome {
+    }
     interface VLogin {
         "onEvent_RouteTo"?: (event: CustomEvent<any>) => void;
         "onSuccess_Auth"?: (event: CustomEvent<any>) => void;
@@ -475,6 +486,7 @@ declare namespace LocalJSX {
         "v-catch-all": VCatchAll;
         "v-checkout": VCheckout;
         "v-forgot-password": VForgotPassword;
+        "v-home": VHome;
         "v-login": VLogin;
         "v-my-library": VMyLibrary;
         "v-payment-cancel": VPaymentCancel;
@@ -510,6 +522,7 @@ declare module "@stencil/core" {
             "v-catch-all": LocalJSX.VCatchAll & JSXBase.HTMLAttributes<HTMLVCatchAllElement>;
             "v-checkout": LocalJSX.VCheckout & JSXBase.HTMLAttributes<HTMLVCheckoutElement>;
             "v-forgot-password": LocalJSX.VForgotPassword & JSXBase.HTMLAttributes<HTMLVForgotPasswordElement>;
+            "v-home": LocalJSX.VHome & JSXBase.HTMLAttributes<HTMLVHomeElement>;
             "v-login": LocalJSX.VLogin & JSXBase.HTMLAttributes<HTMLVLoginElement>;
             "v-my-library": LocalJSX.VMyLibrary & JSXBase.HTMLAttributes<HTMLVMyLibraryElement>;
             "v-payment-cancel": LocalJSX.VPaymentCancel & JSXBase.HTMLAttributes<HTMLVPaymentCancelElement>;

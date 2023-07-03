@@ -1,6 +1,6 @@
 {
-  "name": "Aitihya - Digital Library",
-  "short_name": "Stencil",
+  "name": "Webapp Starter Frontend",
+  "short_name": "webapp_starter",
   "start_url": "/",
   "display": "standalone",
   "icons": [

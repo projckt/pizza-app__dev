@@ -6,7 +6,7 @@ mkdir prod
 # Init Git prod
 cd prod
 git init
-git remote add origin git@github.com-slim-dl:slim-dl/app-prod.git
+git remote add origin git@github.com-projckt:projckt/starter_webapp-prod.git
 
 # Pre-build app-server
 cd ..

@@ -1,11 +1,42 @@
-## app-frontend
+# Main
 
-- Change `name` and `description` in package.json
-- Change `<title></title>` and `<meta name="Description">` in index.html
-- Change `name` and `short_name` in manifest.json
+## build.sh
+
+- Add git remote
+
+---
+
+# Frontend
+
+## package.json
+
+- Change `name`
+- Change `description`
+
+---
+
+## src/index.html
+
+- Change `<title></title>`
+- Change `<meta name="Description">`
+
+---
+
+## src/manifest.json
+
+- Change `name`
+- Change `short_name`
 - Change `font-family` (Optional)
 
-## app-backend
+---
 
-- Change `name` and `description` in package.json
+# Server
+
+## package.json
+
+- Change `name`
+- Change `description`
+
+## package.json
+
 - Change `PORT` in index.ts
