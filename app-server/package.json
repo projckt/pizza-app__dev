@@ -1,7 +1,7 @@
 {
-  "name": "app-server",
+  "name": "pizza-ontology-test-server",
   "version": "0.0.1",
-  "description": "Serves the app frontend",
+  "description": "Server of Pizza Ontology Test",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",

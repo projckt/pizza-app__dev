@@ -1,6 +1,6 @@
 {
-  "name": "Webapp Starter Frontend",
-  "short_name": "webapp_starter",
+  "name": "Pizza Ontology Test",
+  "short_name": "pizza_ontology_test",
   "start_url": "/",
   "display": "standalone",
   "icons": [
