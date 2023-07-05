@@ -57,60 +57,12 @@ export class AppRoot {
     return (
       <stencil-router>
         <stencil-route-switch scrollTopOffset={0}>
-          <stencil-route url="/" component={state.isActive_Session ? 'v-my-library' : 'v-login'} exact={true} />
-
-          {/* LoggedOut Routes */}
-          <this.Route_LoggedOut url="/login" component="v-login"></this.Route_LoggedOut>
-          <this.Route_LoggedOut url="/signup" component="v-signup"></this.Route_LoggedOut>
-          <this.Route_LoggedOut url="/forgot-password" component="v-forgot-password"></this.Route_LoggedOut>
-
-          {/* LoggedIn Routes */}
-          <this.Route_LoggedIn url="/home" component="v-home"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/payment-cancel" component="v-payment-cancel"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/payment-handle/:id_Session" component="v-payment-handle"></this.Route_LoggedIn>
-          <this.Route_LoggedIn url="/checkout/:id_Order" component="v-checkout"></this.Route_LoggedIn>
-
+          <stencil-route url="/" component="v-home" />
           <stencil-route component="v-catch-all" />
-          {/* SAMPLE ROUTES
-          <stencil-route url="/payment-cancel" component="v-payment-cancel" />
-          <stencil-route url="/payment-handle/:id_Session" component="v-payment-handle" /> 
-          */}
         </stencil-route-switch>
       </stencil-router>
     );
   }
-
-  Route_LoggedIn = ({ component, ...props }: { [key: string]: any }) => {
-    const Component = component;
-    return (
-      <stencil-route
-        {...props}
-        routeRender={routeRenderProps => {
-          if (state.isActive_Session) {
-            return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
-          } else {
-            return <stencil-router-redirect url="/login"></stencil-router-redirect>;
-          }
-        }}
-      />
-    );
-  };
-
-  Route_LoggedOut = ({ component, ...props }: { [key: string]: any }) => {
-    const Component = component;
-    return (
-      <stencil-route
-        {...props}
-        routeRender={routeRenderProps => {
-          if (!state.isActive_Session) {
-            return <Component {...props} {...props.componentProps} {...routeRenderProps}></Component>;
-          } else {
-            return <stencil-router-redirect url="/my-library"></stencil-router-redirect>;
-          }
-        }}
-      />
-    );
-  };
 }
 
 injectHistory(AppRoot);

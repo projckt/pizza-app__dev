@@ -6,4 +6,10 @@ body {
   color: var(--grey-dark);
   font-family: 'Roboto', sans-serif;
   line-height: var(--site-line-height);
+  padding: 1em 2em;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
 }
