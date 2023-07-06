@@ -20,6 +20,7 @@ export class VHome {
   async getToppings() {
     this.isFetched_Toppings = false;
     let url: string = `${this.url}/toppings`;
+    url = 'https://pizza-api.audit4sg.org/toppings';
     let options: any = {
       method: 'GET',
       headers: {
@@ -42,6 +43,7 @@ export class VHome {
     this.isFetched_Toppings = false;
     this.isFetched_Pizza = false;
     let url: string = `${this.url}/toppings-by-spiciness`;
+    url = 'https://pizza-api.audit4sg.org/toppings-by-spiciness';
     let options: any = {
       method: 'POST',
       headers: {
@@ -66,6 +68,7 @@ export class VHome {
   async handleToppingsChange(e) {
     this.isFetched_Pizza = false;
     let url: string = `${this.url}/pizzas-by-topping`;
+    url = 'https://pizza-api.audit4sg.org/pizzas-by-topping';
     let options: any = {
       method: 'POST',
       headers: {
