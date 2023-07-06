@@ -48,6 +48,12 @@ export namespace Components {
     }
     interface EListItem {
     }
+    interface ERadio {
+        "isChecked": boolean;
+        "label": string;
+        "name": string;
+        "value": string;
+    }
     interface ESelect {
         "name": string;
         "options": any;
@@ -181,6 +187,12 @@ declare global {
         prototype: HTMLEListItemElement;
         new (): HTMLEListItemElement;
     };
+    interface HTMLERadioElement extends Components.ERadio, HTMLStencilElement {
+    }
+    var HTMLERadioElement: {
+        prototype: HTMLERadioElement;
+        new (): HTMLERadioElement;
+    };
     interface HTMLESelectElement extends Components.ESelect, HTMLStencilElement {
     }
     var HTMLESelectElement: {
@@ -312,6 +324,7 @@ declare global {
         "e-link": HTMLELinkElement;
         "e-list": HTMLEListElement;
         "e-list-item": HTMLEListItemElement;
+        "e-radio": HTMLERadioElement;
         "e-select": HTMLESelectElement;
         "e-text": HTMLETextElement;
         "l-row": HTMLLRowElement;
@@ -378,6 +391,13 @@ declare namespace LocalJSX {
     interface EList {
     }
     interface EListItem {
+    }
+    interface ERadio {
+        "isChecked"?: boolean;
+        "label"?: string;
+        "name"?: string;
+        "onRadioClick"?: (event: CustomEvent<any>) => void;
+        "value"?: string;
     }
     interface ESelect {
         "name"?: string;
@@ -474,6 +494,7 @@ declare namespace LocalJSX {
         "e-link": ELink;
         "e-list": EList;
         "e-list-item": EListItem;
+        "e-radio": ERadio;
         "e-select": ESelect;
         "e-text": EText;
         "l-row": LRow;
@@ -510,6 +531,7 @@ declare module "@stencil/core" {
             "e-link": LocalJSX.ELink & JSXBase.HTMLAttributes<HTMLELinkElement>;
             "e-list": LocalJSX.EList & JSXBase.HTMLAttributes<HTMLEListElement>;
             "e-list-item": LocalJSX.EListItem & JSXBase.HTMLAttributes<HTMLEListItemElement>;
+            "e-radio": LocalJSX.ERadio & JSXBase.HTMLAttributes<HTMLERadioElement>;
             "e-select": LocalJSX.ESelect & JSXBase.HTMLAttributes<HTMLESelectElement>;
             "e-text": LocalJSX.EText & JSXBase.HTMLAttributes<HTMLETextElement>;
             "l-row": LocalJSX.LRow & JSXBase.HTMLAttributes<HTMLLRowElement>;
