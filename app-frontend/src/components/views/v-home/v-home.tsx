@@ -11,6 +11,7 @@ export class VHome {
 
   private toppings: any = [];
   private pizzas: any = [];
+  private url = document.domain === 'localhost' ? 'http://localhost:2554' : 'https://pizza-api.audit4sg.org';
 
   componentDidLoad() {
     this.getToppings();
@@ -18,7 +19,7 @@ export class VHome {
 
   async getToppings() {
     this.isFetched_Toppings = false;
-    let url: string = 'http://localhost:2554/toppings';
+    let url: string = `${this.url}/toppings`;
     let options: any = {
       method: 'GET',
       headers: {
@@ -40,7 +41,7 @@ export class VHome {
   async handleSpicinesChange(e) {
     this.isFetched_Toppings = false;
     this.isFetched_Pizza = false;
-    let url: string = 'http://localhost:2554/toppings-by-spiciness';
+    let url: string = `${this.url}/toppings-by-spiciness`;
     let options: any = {
       method: 'POST',
       headers: {
@@ -64,7 +65,7 @@ export class VHome {
 
   async handleToppingsChange(e) {
     this.isFetched_Pizza = false;
-    let url: string = 'http://localhost:2554/pizzas-by-topping';
+    let url: string = `${this.url}/pizzas-by-topping`;
     let options: any = {
       method: 'POST',
       headers: {
