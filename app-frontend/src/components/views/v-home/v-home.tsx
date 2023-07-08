@@ -371,7 +371,7 @@ export class VHome {
         <h1></h1>
         <p>
           <strong>EXPLORE THE PIZZA ONTOLOGY</strong>
-          <br /> Ontology: <a href="http://www.co-ode.org/ontologies/pizza/pizza.owl">http://www.co-ode.org/ontologies/pizza/pizza.owl</a>
+          <br /> Ontology: <a href="https://protege.stanford.edu/ontologies/pizza/pizza.owl">https://protege.stanford.edu/ontologies/pizza/pizza.owl</a>
         </p>
         <hr />
         <main>
