@@ -75,6 +75,9 @@ export namespace Components {
     }
     interface PGallery {
     }
+    interface PLoader {
+        "variant": string;
+    }
     interface PPublication {
         "description": string;
         "documents": any;
@@ -223,6 +226,12 @@ declare global {
         prototype: HTMLPGalleryElement;
         new (): HTMLPGalleryElement;
     };
+    interface HTMLPLoaderElement extends Components.PLoader, HTMLStencilElement {
+    }
+    var HTMLPLoaderElement: {
+        prototype: HTMLPLoaderElement;
+        new (): HTMLPLoaderElement;
+    };
     interface HTMLPPublicationElement extends Components.PPublication, HTMLStencilElement {
     }
     var HTMLPPublicationElement: {
@@ -319,6 +328,7 @@ declare global {
         "l-seperator": HTMLLSeperatorElement;
         "l-spacer": HTMLLSpacerElement;
         "p-gallery": HTMLPGalleryElement;
+        "p-loader": HTMLPLoaderElement;
         "p-publication": HTMLPPublicationElement;
         "p-user-control": HTMLPUserControlElement;
         "v-catch-all": HTMLVCatchAllElement;
@@ -408,6 +418,9 @@ declare namespace LocalJSX {
     }
     interface PGallery {
     }
+    interface PLoader {
+        "variant"?: string;
+    }
     interface PPublication {
         "description"?: string;
         "documents"?: any;
@@ -482,6 +495,7 @@ declare namespace LocalJSX {
         "l-seperator": LSeperator;
         "l-spacer": LSpacer;
         "p-gallery": PGallery;
+        "p-loader": PLoader;
         "p-publication": PPublication;
         "p-user-control": PUserControl;
         "v-catch-all": VCatchAll;
@@ -518,6 +532,7 @@ declare module "@stencil/core" {
             "l-seperator": LocalJSX.LSeperator & JSXBase.HTMLAttributes<HTMLLSeperatorElement>;
             "l-spacer": LocalJSX.LSpacer & JSXBase.HTMLAttributes<HTMLLSpacerElement>;
             "p-gallery": LocalJSX.PGallery & JSXBase.HTMLAttributes<HTMLPGalleryElement>;
+            "p-loader": LocalJSX.PLoader & JSXBase.HTMLAttributes<HTMLPLoaderElement>;
             "p-publication": LocalJSX.PPublication & JSXBase.HTMLAttributes<HTMLPPublicationElement>;
             "p-user-control": LocalJSX.PUserControl & JSXBase.HTMLAttributes<HTMLPUserControlElement>;
             "v-catch-all": LocalJSX.VCatchAll & JSXBase.HTMLAttributes<HTMLVCatchAllElement>;

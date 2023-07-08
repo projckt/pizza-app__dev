@@ -61,3 +61,30 @@ label {
 .pizza-emoji {
   font-size: 3em;
 }
+
+.pizza-toppings-container {
+  overflow: scroll;
+}
+
+.pizza-skel-container {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2em;
+  column-gap: 2em;
+  row-gap: 2em;
+  column-gap: 2em;
+  width: 100%;
+}
+
+.warning-container {
+  display: block;
+  background: #fff7dc;
+  padding: 0.25em 1em;
+  border-radius: 1em 0 0 1em;
+  border: 1px solid #ffeaa7;
+  border-right: 0;
+}
+
+.pizza-details-loader {
+  width: 200px;
+}
