@@ -98,7 +98,7 @@ export class VHome {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        spiciness: e.target.value,
+        name: e.target.value,
       }),
     };
 
@@ -123,7 +123,7 @@ export class VHome {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        topping: e.target.value,
+        name: e.target.value,
       }),
     };
 
@@ -148,7 +148,7 @@ export class VHome {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        country: e.target.value,
+        name: e.target.value,
       }),
     };
     await fetch(url, options)
@@ -165,14 +165,14 @@ export class VHome {
   async handlePizzaChange(e) {
     this.activePizza = e.target.value;
     this.isFetched_PizzaDetails = false;
-    let url: string = `${this.url}/pizza-toppings`;
+    let url: string = `${this.url}/toppings-by-pizza`;
     let options: any = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        pizza: this.activePizza,
+        name: this.activePizza,
       }),
     };
     await fetch(url, options)
@@ -188,14 +188,14 @@ export class VHome {
 
   async initPizzaToppings() {
     this.isFetched_PizzaDetails = false;
-    let url: string = `${this.url}/pizza-toppings`;
+    let url: string = `${this.url}/toppings-by-pizza`;
     let options: any = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        pizza: this.activePizza,
+        name: this.activePizza,
       }),
     };
     await fetch(url, options)
@@ -296,9 +296,13 @@ export class VHome {
         <div class="pizza-toppings-container">
           {this.countries.map(item => (
             <div class="radio-container">
-              <input id={item.name} name="countries" type="radio" value={item.name} onChange={e => this.handleCountryChange(e)}></input>
-              <label htmlFor={item.name}>
-                {item.flag} {item.name}
+              <input id={item} name="countries" type="radio" value={item} onChange={e => this.handleCountryChange(e)}></input>
+              <label htmlFor={item}>
+                {item} {item === 'America' && '🇺🇸'}
+                {item === 'England' && '🇬🇧'}
+                {item === 'France' && '🇫🇷'}
+                {item === 'Germany' && '🇩🇪'}
+                {item === 'Italy' && '🇮🇹'}
               </label>
             </div>
           ))}
